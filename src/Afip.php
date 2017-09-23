@@ -7,7 +7,7 @@
  *
  * @link http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf WSFE Specification
  *
- * @author 	Ivan Muñoz
+ * @author 	Ivan Muñoz ivanalemunioz@gmail.com
  * @package Afip
  * @version 0.1
  **/
