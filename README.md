@@ -202,9 +202,9 @@ Para mas informacion acerca de este metodo ver el item 4.10 de la [especificacio
 2. [Enviar consulta al Web Service](#enviar-consulta-al-web-service)
 
 #### Transformar formato de fecha que utiliza AFIP (yyyymmdd) a yyyy-mm-dd
-Para esto utilizaremos el metodo `FormatDate` pasandole la fecha como parmetro
+Para esto utilizaremos el metodo `FormatDate` pasandole la fecha como parametro
 ````php
-$date = $afip->FormatDate(19970508); //Nos devuelve 1997-05-08
+$date = $afip->FormatDate('19970508'); //Nos devuelve 1997-05-08
 ````
 
 #### Enviar consulta al Web Service
