@@ -184,8 +184,8 @@ $tax_types = $afip->GetTaxTypes();
 ````
 
 ### Otros metodos disponibles en el SDK
-1. Transformar formato de fecha que utiliza AFIP (yyyymmdd) a yyyy-mm-dd
-2. Enviar consulta al Web Service
+1. [Transformar formato de fecha que utiliza AFIP (yyyymmdd) a yyyy-mm-dd](#transformar-formato-de-fecha-que-utiliza-afip-yyyymmdd-a-yyyy-mm-dd)
+2. [Enviar consulta al Web Service](#enviar-consulta-al-web-service)
 
 #### Transformar formato de fecha que utiliza AFIP (yyyymmdd) a yyyy-mm-dd
 Para esto utilizaremos el metodo `FormatDate` pasandole la fecha como parmetro
@@ -196,11 +196,11 @@ $date = $afip->FormatDate(19970508); //Nos devuelve 1997-05-08
 #### Enviar consulta al Web Service
 Podemos utilizar este metodo para enviar otras consultas al Web Service, para esto utilizaremos el metodo `ExecuteRequest` pasandole como primer parametro el Web Service a ejecutar, segundo parametro la operacion a realizar y como tercer parametro le pasaremos los parametros que seran enviados el Web Service (excepto el parametro 'Auth' que es agregado automaticamente)
 ````php
-$response = $afip->ExecuteRequest('wsfe', 'FEParamGetTiposTributos'); //Ejecuta el la operacion FEParamGetTiposTributos del wsfe
+$response = $afip->ExecuteRequest('wsfe', 'FEParamGetCotizacion', array('MonId' => 'DOL')); //Ejecuta la operacion FEParamGetCotizacion del wsfe 
 
-echo 'Estos son los tributos disponibles:';
+echo 'La cotizacion de la moneda es:';
 echo '<pre>';
-print_r($response->ResultGet->TributoTipo);
+print_r($response->ResultGet);
 echo '</pre>';
 ````
 
