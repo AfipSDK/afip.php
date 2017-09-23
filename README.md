@@ -49,26 +49,26 @@ $last_voucher = $afip->GetLastVoucher(1,6) //Devuelve el numero del ultimo compr
 Debemos utilizar el metodo `CreateVoucher` pasandole como parametro un Array con los detalles del comprobante y si queremos tener la respuesta completa enviada por el WS debemos pasarle como segundo parametro TRUE, en caso de no enviarle el segundo parametro nos devolvera como respuesta `array(CAE => CAE asignado el comprobante, CAEFchVto => Fecha de vencimiento del CAE (yyyy-mm-dd))`.
 ````php
 $data = array(
-	'CantReg' 		=> 1, // Cantidad de items del/los comprobante/s
-	'PtoVta' 		=> 1, // Punto de venta
-	'CbteTipo' 		=> 6, // Tipo de comprobante (ver tipos disponibles) 
-	'Concepto' 		=> 1, // Concepto del Comprobante: (1)Productos, (2)Servicios, (3)Productos y Servicios
-	'DocTipo' 		=> 80, // Tipo de documento del comprador (ver tipos disponibles)
-	'DocNro' 		=> 20111111112, // Numero de documento del comprador
+	'CantReg' 	=> 1, // Cantidad de items del/los comprobante/s
+	'PtoVta' 	=> 1, // Punto de venta
+	'CbteTipo' 	=> 6, // Tipo de comprobante (ver tipos disponibles) 
+	'Concepto' 	=> 1, // Concepto del Comprobante: (1)Productos, (2)Servicios, (3)Productos y Servicios
+	'DocTipo' 	=> 80, // Tipo de documento del comprador (ver tipos disponibles)
+	'DocNro' 	=> 20111111112, // Numero de documento del comprador
 	'CbteDesde' 	=> 1, // Numero de comprobante o numero del primer comprobante en caso de ser mas de uno
 	'CbteHasta' 	=> 1, // Numero de comprobante o numero del ultimo comprobante en caso de ser mas de uno
-	'CbteFch' 		=> intval(date('Ymd')), // (Opcional) Fecha del comprobante (yyyymmdd) o fecha actual si es nulo
-	'ImpTotal' 		=> 184.05, // Importe total del comprobante
+	'CbteFch' 	=> intval(date('Ymd')), // (Opcional) Fecha del comprobante (yyyymmdd) o fecha actual si es nulo
+	'ImpTotal' 	=> 184.05, // Importe total del comprobante
 	'ImpTotConc' 	=> 0, // Importe neto no gravado
-	'ImpNeto' 		=> 150, // Importe neto gravado
-	'ImpOpEx' 		=> 0, // Importe exento de IVA
-	'ImpIVA' 		=> 26.25, //Importe total de IVA
-	'ImpTrib' 		=> 7.8, //Importe total de tributos
+	'ImpNeto' 	=> 150, // Importe neto gravado
+	'ImpOpEx' 	=> 0, // Importe exento de IVA
+	'ImpIVA' 	=> 26.25, //Importe total de IVA
+	'ImpTrib' 	=> 7.8, //Importe total de tributos
 	'FchServDesde' 	=> NULL, // (Opcional) Fecha de inicio del servicio (yyyymmdd), obligatorio para Concepto 2 y 3
 	'FchServHasta' 	=> NULL, // (Opcional) Fecha de fin del servicio (yyyymmdd), obligatorio para Concepto 2 y 3
 	'FchVtoPago' 	=> NULL, // (Opcional) Fecha de vencimiento del servicio (yyyymmdd), obligatorio para Concepto 2 y 3
-	'MonId' 		=> 'PES', //Tipo de moneda usada en el comprobante (ver tipos disponibles)('PES' para pesos argentinos) 
-	'MonCotiz' 		=> 1, // Cotización de la moneda usada (1 para pesos argentinos)  
+	'MonId' 	=> 'PES', //Tipo de moneda usada en el comprobante (ver tipos disponibles)('PES' para pesos argentinos) 
+	'MonCotiz' 	=> 1, // Cotización de la moneda usada (1 para pesos argentinos)  
 	'CbtesAsoc' 	=> array( // (Opcional) Comprobantes asociados
 		array(
 			'Tipo' 		=> 6, // Tipo de comprobante (ver tipos disponibles) 
@@ -77,7 +77,7 @@ $data = array(
 			'Cuit' 		=> 20111111112 // (Opcional) Cuit del emisor del comprobante
 			)
 		),
-	'Tributos' 		=> array( // (Opcional) Tributos asociados al comprobante
+	'Tributos' 	=> array( // (Opcional) Tributos asociados al comprobante
 		array(
 			'Id' 		=>  99, // Id del tipo de tributo (ver tipos disponibles) 
 			'Desc' 		=> 'Ingresos Brutos', // (Opcional) Descripcion
@@ -86,7 +86,7 @@ $data = array(
 			'Importe' 	=> 7.8 // Importe del tributo
 		)
 	), 
-	'Iva' 			=> array( // (Opcional) Alícuotas asociadas al comprobante
+	'Iva' 		=> array( // (Opcional) Alícuotas asociadas al comprobante
 		array(
 			'Id' 		=> 5, // Id del tipo de IVA (ver tipos disponibles) 
 			'BaseImp' 	=> 100, // Base imponible
@@ -101,8 +101,8 @@ $data = array(
 	), 
 	'Compradores' 	=> array( // (Opcional) Detalles de los clientes del comprobante 
 		array(
-			'DocTipo' 		=> 80, // Tipo de documento (ver tipos disponibles) 
-			'DocNro' 		=> 20111111112, // Numero de documento
+			'DocTipo' 	=> 80, // Tipo de documento (ver tipos disponibles) 
+			'DocNro' 	=> 20111111112, // Numero de documento
 			'Porcentaje' 	=> 100 // Porcentaje de titularidad del comprador
 		)
 	)
@@ -158,30 +158,44 @@ Para mas informacion acerca de este metodo ver el item 4.19 de la [especificacio
 ````php
 $voucher_types = $afip->GetVoucherTypes();
 ````
+
+Para mas informacion acerca de este metodo ver el item 4.4 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 #### Obtener tipos de conceptos disponibles
 ````php
 $concept_types = $afip->GetConceptTypes();
 ````
+
+Para mas informacion acerca de este metodo ver el item 4.5 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 #### Obtener tipos de documentos disponibles
 ````php
 $document_types = $afip->GetDocumentTypes();
 ````
+
+Para mas informacion acerca de este metodo ver el item 4.6 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 #### Obtener tipos de alícuotas disponibles
 ````php
 $aloquot_types = $afip->GetAliquotTypes();
 ````
+
+Para mas informacion acerca de este metodo ver el item 4.7 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 #### Obtener tipos de monedas disponibles 
 ````php
 $currencies_types = $afip->GetCurrenciesTypes();
 ````
+
+Para mas informacion acerca de este metodo ver el item 4.8 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 #### Obtener tipos de opciones disponibles para el comprobante
 ````php
 $option_types = $afip->GetOptionsTypes();
 ````
+
+Para mas informacion acerca de este metodo ver el item 4.9 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 #### Obtener tipos de tributos disponibles
 ````php
 $tax_types = $afip->GetTaxTypes();
 ````
+
+Para mas informacion acerca de este metodo ver el item 4.10 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 
 ### Otros metodos disponibles en el SDK
 1. [Transformar formato de fecha que utiliza AFIP (yyyymmdd) a yyyy-mm-dd](#transformar-formato-de-fecha-que-utiliza-afip-yyyymmdd-a-yyyy-mm-dd)
