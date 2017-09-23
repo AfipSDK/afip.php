@@ -6,7 +6,7 @@ El SDK fue programado con la intencion de facilitar el acceso a los Web services
 **Esta primera version del SDK solo cubre algunos items de la especificacion del Web Service de Facturacion Electronica (wsfe1)** pero en el futuro se iran agregando los que restan, hasta tener el SDK completo.
 Es un software libre en el que cualquier programador puede contribuir.
 
-*Este software y sus desarroladores no tienen ninguna relacion con la AFIP* 
+*Este software y sus desarroladores no tienen ninguna relacion con la AFIP.* 
 
 ## Instalacion
 1. Clonarlo con `git clone` o descargar el repositorio desde [aqui](https://github.com/ivanalemunioz/afip-php/archive/master.zip "Dercargar repositorio").
@@ -32,20 +32,20 @@ Una vez realizado esto podemos comenzar a usar el SDK
 
 > Nota: Aqui hablaremos de comprobante indistintamente si es una factura, nota de credito, etc 
 
-#### Metodos disponibles para Facturacion Electronica (wsfe)
-1. Obtener numero del ultimo comprobante creado *(FECompUltimoAutorizado)*
-2. Crear y asignar CAE a un comprobante *(FECAESolicitar)*
-3. Crear y asignar CAE a siguiente comprobante *(FECompUltimoAutorizado + FECAESolicitar)*
-4. Obtener informacion de un comprobante *(FECompConsultar)*
+### Metodos disponibles para Facturacion Electronica (wsfe)
+1. [Obtener numero del ultimo comprobante creado *(FECompUltimoAutorizado)*](#obtener-numero-del-ultimo-comprobante-creado)
+2. [Crear y asignar CAE a un comprobante *(FECAESolicitar)*](#crear-y-asignar-cae-a-un-comprobante)
+3. [Crear y asignar CAE a siguiente comprobante *(FECompUltimoAutorizado + FECAESolicitar)*](#crear-y-asignar-cae-a-siguiente-comprobante)
+4. [Obtener informacion de un comprobante *(FECompConsultar)*](#obtener-informacion-de-un-comprobante)
 
 La especificacion de este Web Service se encuentra disponible en http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf
 
-##### Obtener numero del ultimo comprobante creado
+#### Obtener numero del ultimo comprobante creado
 Debemos utilizar el metodo `GetLastVoucher` con los parametros punto de venta y tipo de comprobante que queremos consultar.
 ````php
 $last_voucher = $afip->GetLastVoucher(1,6) //Devuelve el numero del ultimo comprobante creado para el punto de venta 1 y el tipo de comprobante 6 (Factura B)
 ````
-##### Crear y asignar CAE a un comprobante 
+#### Crear y asignar CAE a un comprobante 
 Debemos utilizar el metodo `CreateVoucher` pasandole como parametro un Array con los detalles del comprobante y si queremos tener la respuesta completa enviada por el WS debemos pasarle como segundo parametro TRUE, en caso de no enviarle el segundo parametro nos devolvera como respuesta `array(CAE => CAE asignado el comprobante, CAEFchVto => Fecha de vencimiento del CAE (yyyy-mm-dd))`.
 ````php
 $data = array(
@@ -116,7 +116,7 @@ $res['CAEFchVto']; //Fecha de vencimiento del CAE (yyyy-mm-dd)
 
 Para mas informacion acerca de este metodo ver el item 4.1 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 
-##### Crear y asignar CAE a siguiente comprobante 
+#### Crear y asignar CAE a siguiente comprobante 
 
 Debemos utilizar el metodo `CreateNextVoucher` pasandole como parametro un Array con los detalles del comprobante al igual que el metodo `CreateVoucher`, nos devolvera como respuesta array(CAE => CAE asignado al comprobante, CAEFchVto => Fecha de vencimiento del CAE (yyyy-mm-dd), voucher_number => Numero asignado al comprobante).
 ````php
@@ -126,7 +126,7 @@ $res['CAE']; //CAE asignado el comprobante
 $res['CAEFchVto']; //Fecha de vencimiento del CAE (yyyy-mm-dd)
 $res['voucher_number']; //Numero asignado al comprobante
 ````
-##### Obtener informacion de un comprobante
+#### Obtener informacion de un comprobante
 Con este metodo podemos obtener toda la informacion relacionada a un comprobante o simplemente saber si el comprobante existe, debemos ejecutar el metodo `GetVoucherInfo` pasandole como parametros el numero de comprobante, el punto de venta y el tipo de comprobante, nos devolvera un Array con toda la informacion del comprobante o NULL si el comprobante no existe.
 ````php
 $voucher_info = $afip->GetVoucherInfo(1,1,6) //Devuelve la informacion del comprobante 1 para el punto de venta 1 y el tipo de comprobante 6 (Factura B)
@@ -144,57 +144,56 @@ else{
 
 Para mas informacion acerca de este metodo ver el item 4.19 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 
+### Metodos para obtener los tipos de datos disponibles en WSFE
+1. [Obtener tipos de comprobantes disponibles *(FEParamGetTiposCbte)*](#obtener-tipos-de-comprobantes-disponibles)
+2. [Obtener tipos de conceptos disponibles *(FEParamGetTiposConcepto)*](#obtener-tipos-de-conceptos-disponibles)
+3. [Obtener tipos de documentos disponibles *(FEParamGetTiposDoc)*](#obtener-tipos-de-documentos-disponibles)
+4. [Obtener tipos de alícuotas disponibles *(FEParamGetTiposIva)*](#obtener-tipos-de-al%C3%ADcuotas-disponibles)
+5. [Obtener tipos de monedas disponibles  *(FEParamGetTiposMonedas)*](#obtener-tipos-de-monedas-disponibles)
+6. [Obtener tipos de opciones disponibles para el comprobante *(FEParamGetTiposOpcional)*](#obtener-tipos-de-opciones-disponibles-para-el-comprobante)
+7. [Obtener tipos de tributos disponibles *(FEParamGetTiposTributos)*](#obtener-tipos-de-tributos-disponibles)
 
-#### Metodos para obtener los tipos de datos disponibles en WSFE
-1. Obtener tipos de comprobantes disponibles *(FEParamGetTiposCbte)*
-2. Obtener tipos de conceptos disponibles *(FEParamGetTiposConcepto)*
-3. Obtener tipos de documentos disponibles *(FEParamGetTiposDoc)*
-4. Obtener tipos de alícuotas disponibles *(FEParamGetTiposIva)*
-5. Obtener tipos de monedas disponibles  *(FEParamGetTiposMonedas)*
-6. Obtener tipos de opciones disponibles para el comprobante *(FEParamGetTiposOpcional)*
-7. Obtener tipos de tributos disponibles *(FEParamGetTiposTributos)*
-
-##### Obtener tipos de comprobantes disponibles
+#### Obtener tipos de comprobantes disponibles
 
 ````php
 $voucher_types = $afip->GetVoucherTypes();
 ````
-##### Obtener tipos de conceptos disponibles
+#### Obtener tipos de conceptos disponibles
 ````php
 $concept_types = $afip->GetConceptTypes();
 ````
-##### Obtener tipos de documentos disponibles
+#### Obtener tipos de documentos disponibles
 ````php
 $document_types = $afip->GetDocumentTypes();
 ````
-##### Obtener tipos de alícuotas disponibles
+#### Obtener tipos de alícuotas disponibles
 ````php
 $aloquot_types = $afip->GetAliquotTypes();
 ````
-##### Obtener tipos de monedas disponibles 
+#### Obtener tipos de monedas disponibles 
 ````php
 $currencies_types = $afip->GetCurrenciesTypes();
 ````
-##### Obtener tipos de opciones disponibles para el comprobante
+#### Obtener tipos de opciones disponibles para el comprobante
 ````php
 $option_types = $afip->GetOptionsTypes();
 ````
-##### Obtener tipos de tributos disponibles
+#### Obtener tipos de tributos disponibles
 ````php
 $tax_types = $afip->GetTaxTypes();
 ````
 
-#### Otros metodos disponibles en el SDK
+### Otros metodos disponibles en el SDK
 1. Transformar formato de fecha que utiliza AFIP (yyyymmdd) a yyyy-mm-dd
 2. Enviar consulta al Web Service
 
-##### Transformar formato de fecha que utiliza AFIP (yyyymmdd) a yyyy-mm-dd
+#### Transformar formato de fecha que utiliza AFIP (yyyymmdd) a yyyy-mm-dd
 Para esto utilizaremos el metodo `FormatDate` pasandole la fecha como parmetro
 ````php
 $date = $afip->FormatDate(19970508); //Nos devuelve 1997-05-08
 ````
 
-##### Enviar consulta al Web Service
+#### Enviar consulta al Web Service
 Podemos utilizar este metodo para enviar otras consultas al Web Service, para esto utilizaremos el metodo `ExecuteRequest` pasandole como primer parametro el Web Service a ejecutar, segundo parametro la operacion a realizar y como tercer parametro le pasaremos los parametros que seran enviados el Web Service (excepto el parametro 'Auth' que es agregado automaticamente)
 ````php
 $response = $afip->ExecuteRequest('wsfe', 'FEParamGetTiposTributos'); //Ejecuta el la operacion FEParamGetTiposTributos del wsfe
