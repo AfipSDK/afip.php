@@ -2,18 +2,18 @@
 SDK Para los Web Services de AFIP (Argentina)
 
 ## Acerca de
-El SDK fue programado con la intencion de facilitar el acceso a los Web services de la AFIP.
-**Esta primera version del SDK solo cubre algunos items de la especificacion del Web Service de Facturacion Electronica (wsfe1)** pero en el futuro se iran agregando los que restan, hasta tener el SDK completo.
+El SDK fue programado con la intención de facilitar el acceso a los Web services de la AFIP.
+**Esta primera versión del SDK solo cubre algunos items de la especificación del Web Service de Facturacion Electronica (wsfe1)** pero en el futuro se irán agregando los que restan, hasta tener el SDK completo.
 Es un software libre en el que cualquier programador puede contribuir.
 
-*Este software y sus desarroladores no tienen ninguna relacion con la AFIP.* 
+*Este software y sus desarroladores no tienen ninguna relación con la AFIP.* 
 
-## Instalacion
+## Instalación
 1. Clonarlo con `git clone` o descargar el repositorio desde [aqui](https://github.com/ivanalemunioz/afip-php/archive/master.zip "Dercargar repositorio").
-2. Copiar el contenido de la carpeta *res* a tu aplicacion.
+2. Copiar el contenido de la carpeta *res* a tu aplicación.
 3. Remplazar *Afip_res/cert* por tu certificado provisto por AFIP y *Afip_res/key* por la clave generada. 
 
-Ir a http://www.afip.gob.ar/ws/paso4.asp para obtener mas informacion de como generar la clave y certificado
+Ir a http://www.afip.gob.ar/ws/paso4.asp para obtener mas información de como generar la clave y certificado
 
 ## Como usarlo
 Lo primero es incluir el SDK en tu aplication
@@ -21,7 +21,7 @@ Lo primero es incluir el SDK en tu aplication
 include 'Afip.php';
 ````
 
-Luego creamos una instancia de la clase Afip pasandole un Array como parametro. 
+Luego creamos una instancia de la clase Afip pasandole un Array como parámetro. 
 Opciones disponibles: 
 * **CUIT** *(int)* El CUIT a usar en los Web Services
 * **production** *(bool)* (default FALSE) (Opcional) TRUE para usar los Web Services en modo produccion
@@ -30,23 +30,23 @@ $afip = new Afip(array('CUIT' => 20111111112));
 ````
 Una vez realizado esto podemos comenzar a usar el SDK
 
-> Nota: Aqui hablaremos de comprobante indistintamente si es una factura, nota de credito, etc 
+> Nota: Aquí hablaremos de comprobante indistintamente si es una factura, nota de crédito, etc 
 
-### Metodos disponibles para Facturacion Electronica (wsfe)
-1. [Obtener numero del ultimo comprobante creado *(FECompUltimoAutorizado)*](#obtener-numero-del-ultimo-comprobante-creado)
+### Métodos disponibles para Facturación Electrónica (wsfe)
+1. [Obtener número del último comprobante creado *(FECompUltimoAutorizado)*](#obtener-numero-del-ultimo-comprobante-creado)
 2. [Crear y asignar CAE a un comprobante *(FECAESolicitar)*](#crear-y-asignar-cae-a-un-comprobante)
 3. [Crear y asignar CAE a siguiente comprobante *(FECompUltimoAutorizado + FECAESolicitar)*](#crear-y-asignar-cae-a-siguiente-comprobante)
-4. [Obtener informacion de un comprobante *(FECompConsultar)*](#obtener-informacion-de-un-comprobante)
+4. [Obtener información de un comprobante *(FECompConsultar)*](#obtener-informacion-de-un-comprobante)
 
-La especificacion de este Web Service se encuentra disponible en http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf
+La especificación de este Web Service se encuentra disponible en http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf
 
-#### Obtener numero del ultimo comprobante creado
-Debemos utilizar el metodo `GetLastVoucher` con los parametros punto de venta y tipo de comprobante que queremos consultar.
+#### Obtener número del último comprobante creado
+Debemos utilizar el método `GetLastVoucher` con los parámetros punto de venta y tipo de comprobante que queremos consultar.
 ````php
-$last_voucher = $afip->GetLastVoucher(1,6) //Devuelve el numero del ultimo comprobante creado para el punto de venta 1 y el tipo de comprobante 6 (Factura B)
+$last_voucher = $afip->GetLastVoucher(1,6) //Devuelve el número del último comprobante creado para el punto de venta 1 y el tipo de comprobante 6 (Factura B)
 ````
 #### Crear y asignar CAE a un comprobante 
-Debemos utilizar el metodo `CreateVoucher` pasandole como parametro un Array con los detalles del comprobante y si queremos tener la respuesta completa enviada por el WS debemos pasarle como segundo parametro TRUE, en caso de no enviarle el segundo parametro nos devolvera como respuesta `array(CAE => CAE asignado el comprobante, CAEFchVto => Fecha de vencimiento del CAE (yyyy-mm-dd))`.
+Debemos utilizar el método `CreateVoucher` pasándole como parámetro un Array con los detalles del comprobante y si queremos tener la respuesta completa enviada por el WS debemos pasarle como segundo parámetro TRUE, en caso de no enviarle el segundo parámetro nos devolverá como respuesta `array(CAE => CAE asignado el comprobante, CAEFchVto => Fecha de vencimiento del CAE (yyyy-mm-dd))`.
 ````php
 $data = array(
 	'CantReg' 	=> 1, // Cantidad de items del/los comprobante/s
@@ -54,9 +54,9 @@ $data = array(
 	'CbteTipo' 	=> 6, // Tipo de comprobante (ver tipos disponibles) 
 	'Concepto' 	=> 1, // Concepto del Comprobante: (1)Productos, (2)Servicios, (3)Productos y Servicios
 	'DocTipo' 	=> 80, // Tipo de documento del comprador (ver tipos disponibles)
-	'DocNro' 	=> 20111111112, // Numero de documento del comprador
-	'CbteDesde' 	=> 1, // Numero de comprobante o numero del primer comprobante en caso de ser mas de uno
-	'CbteHasta' 	=> 1, // Numero de comprobante o numero del ultimo comprobante en caso de ser mas de uno
+	'DocNro' 	=> 20111111112, // Número de documento del comprador
+	'CbteDesde' 	=> 1, // Número de comprobante o numero del primer comprobante en caso de ser mas de uno
+	'CbteHasta' 	=> 1, // Número de comprobante o numero del último comprobante en caso de ser mas de uno
 	'CbteFch' 	=> intval(date('Ymd')), // (Opcional) Fecha del comprobante (yyyymmdd) o fecha actual si es nulo
 	'ImpTotal' 	=> 184.05, // Importe total del comprobante
 	'ImpTotConc' 	=> 0, // Importe neto no gravado
@@ -80,7 +80,7 @@ $data = array(
 	'Tributos' 	=> array( // (Opcional) Tributos asociados al comprobante
 		array(
 			'Id' 		=>  99, // Id del tipo de tributo (ver tipos disponibles) 
-			'Desc' 		=> 'Ingresos Brutos', // (Opcional) Descripcion
+			'Desc' 		=> 'Ingresos Brutos', // (Opcional) Descripción
 			'BaseImp' 	=> 150, // Base imponible para el tributo
 			'Alic' 		=> 5.2, // Alícuota
 			'Importe' 	=> 7.8 // Importe del tributo
@@ -95,14 +95,14 @@ $data = array(
 	), 
 	'Opcionales' 	=> array( // (Opcional) Campos auxiliares
 		array(
-			'Id' 		=> 17, // Codigo de tipo de opcion (ver tipos disponibles) 
+			'Id' 		=> 17, // Código de tipo de opción (ver tipos disponibles) 
 			'Valor' 	=> 2 // Valor 
 		)
 	), 
 	'Compradores' 	=> array( // (Opcional) Detalles de los clientes del comprobante 
 		array(
 			'DocTipo' 	=> 80, // Tipo de documento (ver tipos disponibles) 
-			'DocNro' 	=> 20111111112, // Numero de documento
+			'DocNro' 	=> 20111111112, // Número de documento
 			'Porcentaje' 	=> 100 // Porcentaje de titularidad del comprador
 		)
 	)
@@ -114,37 +114,37 @@ $res['CAE']; //CAE asignado el comprobante
 $res['CAEFchVto']; //Fecha de vencimiento del CAE (yyyy-mm-dd)
 ````
 
-Para mas informacion acerca de este metodo ver el item 4.1 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
+Para mas información acerca de este método ver el item 4.1 de la [especificación del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 
 #### Crear y asignar CAE a siguiente comprobante 
 
-Debemos utilizar el metodo `CreateNextVoucher` pasandole como parametro un Array con los detalles del comprobante al igual que el metodo `CreateVoucher`, nos devolvera como respuesta array(CAE => CAE asignado al comprobante, CAEFchVto => Fecha de vencimiento del CAE (yyyy-mm-dd), voucher_number => Numero asignado al comprobante).
+Debemos utilizar el método `CreateNextVoucher` pasándole como parámetro un Array con los detalles del comprobante al igual que el método `CreateVoucher`, nos devolverá como respuesta array(CAE => CAE asignado al comprobante, CAEFchVto => Fecha de vencimiento del CAE (yyyy-mm-dd), voucher_number => Número asignado al comprobante).
 ````php
 $res = $afip->CreateNextVoucher($data);
 
 $res['CAE']; //CAE asignado el comprobante
 $res['CAEFchVto']; //Fecha de vencimiento del CAE (yyyy-mm-dd)
-$res['voucher_number']; //Numero asignado al comprobante
+$res['voucher_number']; //Número asignado al comprobante
 ````
-#### Obtener informacion de un comprobante
-Con este metodo podemos obtener toda la informacion relacionada a un comprobante o simplemente saber si el comprobante existe, debemos ejecutar el metodo `GetVoucherInfo` pasandole como parametros el numero de comprobante, el punto de venta y el tipo de comprobante, nos devolvera un Array con toda la informacion del comprobante o NULL si el comprobante no existe.
+#### Obtener información de un comprobante
+Con este método podemos obtener toda la información relacionada a un comprobante o simplemente saber si el comprobante existe, debemos ejecutar el método `GetVoucherInfo` pasándole como parámetros el número de comprobante, el punto de venta y el tipo de comprobante, nos devolverá un Array con toda la información del comprobante o NULL si el comprobante no existe.
 ````php
-$voucher_info = $afip->GetVoucherInfo(1,1,6) //Devuelve la informacion del comprobante 1 para el punto de venta 1 y el tipo de comprobante 6 (Factura B)
+$voucher_info = $afip->GetVoucherInfo(1,1,6) //Devuelve la información del comprobante 1 para el punto de venta 1 y el tipo de comprobante 6 (Factura B)
 
 if($voucher_info === NULL){
     echo 'El comprobante no existe';
 }
 else{
-    echo 'Esta es la informacion del comprobante:';
+    echo 'Esta es la información del comprobante:';
     echo '<pre>';
     print_r($voucher_info);
     echo '</pre>';
 }
 ````
 
-Para mas informacion acerca de este metodo ver el item 4.19 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
+Para mas información acerca de este método ver el item 4.19 de la [especificación del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 
-### Metodos para obtener los tipos de datos disponibles en WSFE
+### Métodos para obtener los tipos de datos disponibles en WSFE
 1. [Obtener tipos de comprobantes disponibles *(FEParamGetTiposCbte)*](#obtener-tipos-de-comprobantes-disponibles)
 2. [Obtener tipos de conceptos disponibles *(FEParamGetTiposConcepto)*](#obtener-tipos-de-conceptos-disponibles)
 3. [Obtener tipos de documentos disponibles *(FEParamGetTiposDoc)*](#obtener-tipos-de-documentos-disponibles)
@@ -159,60 +159,60 @@ Para mas informacion acerca de este metodo ver el item 4.19 de la [especificacio
 $voucher_types = $afip->GetVoucherTypes();
 ````
 
-Para mas informacion acerca de este metodo ver el item 4.4 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
+Para mas información acerca de este método ver el item 4.4 de la [especificación del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 #### Obtener tipos de conceptos disponibles
 ````php
 $concept_types = $afip->GetConceptTypes();
 ````
 
-Para mas informacion acerca de este metodo ver el item 4.5 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
+Para mas información acerca de este método ver el item 4.5 de la [especificación del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 #### Obtener tipos de documentos disponibles
 ````php
 $document_types = $afip->GetDocumentTypes();
 ````
 
-Para mas informacion acerca de este metodo ver el item 4.6 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
+Para mas información acerca de este método ver el item 4.6 de la [especificación del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 #### Obtener tipos de alícuotas disponibles
 ````php
 $aloquot_types = $afip->GetAliquotTypes();
 ````
 
-Para mas informacion acerca de este metodo ver el item 4.7 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
+Para mas información acerca de este método ver el item 4.7 de la [especificación del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 #### Obtener tipos de monedas disponibles 
 ````php
 $currencies_types = $afip->GetCurrenciesTypes();
 ````
 
-Para mas informacion acerca de este metodo ver el item 4.8 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
+Para mas información acerca de este método ver el item 4.8 de la [especificación del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 #### Obtener tipos de opciones disponibles para el comprobante
 ````php
 $option_types = $afip->GetOptionsTypes();
 ````
 
-Para mas informacion acerca de este metodo ver el item 4.9 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
+Para mas información acerca de este método ver el item 4.9 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 #### Obtener tipos de tributos disponibles
 ````php
 $tax_types = $afip->GetTaxTypes();
 ````
 
-Para mas informacion acerca de este metodo ver el item 4.10 de la [especificacion del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
+Para mas información acerca de este método ver el item 4.10 de la [especificación del Web service](http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf)
 
-### Otros metodos disponibles en el SDK
+### Otros métodos disponibles en el SDK
 1. [Transformar formato de fecha que utiliza AFIP (yyyymmdd) a yyyy-mm-dd](#transformar-formato-de-fecha-que-utiliza-afip-yyyymmdd-a-yyyy-mm-dd)
 2. [Enviar consulta al Web Service](#enviar-consulta-al-web-service)
 
 #### Transformar formato de fecha que utiliza AFIP (yyyymmdd) a yyyy-mm-dd
-Para esto utilizaremos el metodo `FormatDate` pasandole la fecha como parametro
+Para esto utilizaremos el método `FormatDate` pasándole la fecha como parámetro
 ````php
 $date = $afip->FormatDate('19970508'); //Nos devuelve 1997-05-08
 ````
 
 #### Enviar consulta al Web Service
-Podemos utilizar este metodo para enviar otras consultas al Web Service, para esto utilizaremos el metodo `ExecuteRequest` pasandole como primer parametro el Web Service a ejecutar, segundo parametro la operacion a realizar y como tercer parametro le pasaremos los parametros que seran enviados el Web Service (excepto el parametro 'Auth' que es agregado automaticamente)
+Podemos utilizar este método para enviar otras consultas al Web Service, para esto utilizaremos el método `ExecuteRequest` pasándole como primer parámetro el Web Service a ejecutar, segundo parámetro la operación a realizar y como tercer parámetro le pasaremos los parámetros que serán enviados el Web Service (excepto el parámetro 'Auth' que es agregado automáticamente)
 ````php
-$response = $afip->ExecuteRequest('wsfe', 'FEParamGetCotizacion', array('MonId' => 'DOL')); //Ejecuta la operacion FEParamGetCotizacion del wsfe 
+$response = $afip->ExecuteRequest('wsfe', 'FEParamGetCotizacion', array('MonId' => 'DOL')); //Ejecuta la operación FEParamGetCotizacion del wsfe 
 
-echo 'La cotizacion de la moneda es:';
+echo 'La cotización de la moneda es:';
 echo '<pre>';
 print_r($response->ResultGet);
 echo '</pre>';
