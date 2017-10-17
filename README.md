@@ -49,7 +49,7 @@ $last_voucher = $afip->GetLastVoucher(1,6) //Devuelve el número del último com
 Debemos utilizar el método `CreateVoucher` pasándole como parámetro un Array con los detalles del comprobante y si queremos tener la respuesta completa enviada por el WS debemos pasarle como segundo parámetro TRUE, en caso de no enviarle el segundo parámetro nos devolverá como respuesta `array(CAE => CAE asignado el comprobante, CAEFchVto => Fecha de vencimiento del CAE (yyyy-mm-dd))`.
 ````php
 $data = array(
-	'CantReg' 	=> 1, // Cantidad de items del/los comprobante/s
+	'CantReg' 	=> 1, // Cantidad de comprobantes a registrar
 	'PtoVta' 	=> 1, // Punto de venta
 	'CbteTipo' 	=> 6, // Tipo de comprobante (ver tipos disponibles) 
 	'Concepto' 	=> 1, // Concepto del Comprobante: (1)Productos, (2)Servicios, (3)Productos y Servicios

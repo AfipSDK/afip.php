@@ -2,7 +2,7 @@
 include '../res/Afip.php'; 
 
 $data = array(
-	'CantReg' 		=> 1, // Cantidad de items del/los comprobante/s
+	'CantReg' 		=> 1, // Cantidad de comprobantes a registrar
 	'PtoVta' 		=> 1, // Punto de venta
 	'CbteTipo' 		=> 6, // Tipo de comprobante (ver tipos disponibles) 
 	'Concepto' 		=> 1, // Concepto del Comprobante: (1)Productos, (2)Servicios, (3)Productos y Servicios

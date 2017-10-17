@@ -167,7 +167,7 @@ class Afip {
 		$req = array(
 			'FeCAEReq' => array(
 				'FeCabReq' => array(
-					'CantReg' 	=> $data['CantReg'],
+					'CantReg' 	=> $data['CbteHasta']-$data['CbteDesde']+1,
 					'PtoVta' 	=> $data['PtoVta'],
 					'CbteTipo' 	=> $data['CbteTipo']
 					),
