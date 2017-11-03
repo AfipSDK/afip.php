@@ -129,7 +129,7 @@ $res['voucher_number']; //Número asignado al comprobante
 #### Obtener información de un comprobante
 Con este método podemos obtener toda la información relacionada a un comprobante o simplemente saber si el comprobante existe, debemos ejecutar el método `GetVoucherInfo` pasándole como parámetros el número de comprobante, el punto de venta y el tipo de comprobante, nos devolverá un Array con toda la información del comprobante o NULL si el comprobante no existe.
 ````php
-$voucher_info = $afip->GetVoucherInfo(1,1,6) //Devuelve la información del comprobante 1 para el punto de venta 1 y el tipo de comprobante 6 (Factura B)
+$voucher_info = $afip->GetVoucherInfo(1,1,6); //Devuelve la información del comprobante 1 para el punto de venta 1 y el tipo de comprobante 6 (Factura B)
 
 if($voucher_info === NULL){
     echo 'El comprobante no existe';
