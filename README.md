@@ -34,7 +34,7 @@ Una vez realizado esto podemos comenzar a usar el SDK
 > Nota: Aquí hablaremos de comprobante indistintamente si es una factura, nota de crédito, etc 
 
 ### Métodos disponibles para Facturación Electrónica (wsfe)
-1. [Obtener número del último comprobante creado *(FECompUltimoAutorizado)*](#obtener-numero-del-ultimo-comprobante-creado)
+1. [Obtener número del último comprobante creado *(FECompUltimoAutorizado)*](#obtener-número-del-último-comprobante-creado)
 2. [Crear y asignar CAE a un comprobante *(FECAESolicitar)*](#crear-y-asignar-cae-a-un-comprobante)
 3. [Crear y asignar CAE a siguiente comprobante *(FECompUltimoAutorizado + FECAESolicitar)*](#crear-y-asignar-cae-a-siguiente-comprobante)
 4. [Obtener información de un comprobante *(FECompConsultar)*](#obtener-información-de-un-comprobante)
