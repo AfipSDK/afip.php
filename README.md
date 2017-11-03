@@ -36,7 +36,7 @@ Una vez realizado esto podemos comenzar a usar el SDK
 1. [Obtener número del último comprobante creado *(FECompUltimoAutorizado)*](#obtener-numero-del-ultimo-comprobante-creado)
 2. [Crear y asignar CAE a un comprobante *(FECAESolicitar)*](#crear-y-asignar-cae-a-un-comprobante)
 3. [Crear y asignar CAE a siguiente comprobante *(FECompUltimoAutorizado + FECAESolicitar)*](#crear-y-asignar-cae-a-siguiente-comprobante)
-4. [Obtener información de un comprobante *(FECompConsultar)*](#obtener-informacion-de-un-comprobante)
+4. [Obtener información de un comprobante *(FECompConsultar)*](#obtener-información-de-un-comprobante)
 
 La especificación de este Web Service se encuentra disponible en http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf
 
