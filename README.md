@@ -12,6 +12,7 @@ Es un software libre en el que cualquier programador puede contribuir.
 1. Clonarlo con `git clone` o descargar el repositorio desde [aqui](https://github.com/ivanalemunioz/afip-php/archive/master.zip "Dercargar repositorio").
 2. Copiar el contenido de la carpeta *res* a tu aplicación.
 3. Remplazar *Afip_res/cert* por tu certificado provisto por AFIP y *Afip_res/key* por la clave generada. 
+4. Procuren que la carpeta *Afip_res* no sea accesible desde internet ya que allí se guardara toda la informacion para acceder a los web services
 
 Ir a http://www.afip.gob.ar/ws/paso4.asp para obtener mas información de como generar la clave y certificado
 
