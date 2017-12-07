@@ -1,16 +1,18 @@
 <?php
 /**
- * Software Development Kit for AFIP Web Services
+ * Software Development Kit for AFIP web services
  * 
- * This first Afip SDK release is intended only for some items 
- * in WSFE specification, another items can be added later
+ * This release of Afip SDK is intended to facilitate 
+ * the integration to other different web services that 
+ * Electronic Billing   
  *
- * @link http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf WSFE Specification
+ * @link http://www.afip.gob.ar/ws/ AFIP Web Services documentation
  *
  * @author 	Ivan Muñoz ivanalemunioz@gmail.com
  * @package Afip
- * @version 0.1
+ * @version 0.5
  **/
+
 class Afip {
 
 	/**
@@ -19,12 +21,13 @@ class Afip {
 	 * @var string
 	 **/
 	var $WSAA_WSDL;
+
 	/**
-	 * File name for the WSDL corresponding to WSFE
+	 * The url to get WSAA token
 	 *
 	 * @var string
 	 **/
-	var $WSFE_WSDL;
+	var $WSAA_URL;
 
 	/**
 	 * File name for the X.509 certificate in PEM format
@@ -41,32 +44,18 @@ class Afip {
 	var $PRIVATEKEY;
 
 	/**
+	 * The passphrase (if any) to sign
+	 *
+	 * @var string
+	 **/
+	var $PASSPHRASE;
+
+	/**
 	 * Afip resources folder
 	 *
 	 * @var string
 	 **/
 	var $RES_FOLDER;
-
-	/**
-	 * The passphrase (if any) to sign
-	 *
-	 * @var string
-	 **/
-	var $PASSPHRASE = 'xxxxx';
-
-	/**
-	 * The url to get WSAA token
-	 *
-	 * @var string
-	 **/
-	var $WSAA_URL;
-
-	/**
-	 * The url to WSFE
-	 *
-	 * @var string
-	 **/
-	var $WSFE_URL;
 
 	/**
 	 * The CUIL to use
@@ -75,9 +64,22 @@ class Afip {
 	 **/
 	var $CUIL;
 
-	function __construct($options = array())
+	/**
+	 * Implemented Web Services
+	 *
+	 * @var array[string]
+	 **/
+	var $implemented_ws = array(
+		'ElectronicBilling',
+		'RegisterScopeFour',
+		'RegisterScopeFive',
+		'RegisterScopeTen'
+	);
+
+	function __construct($options)
 	{
 		ini_set("soap.wsdl_cache_enabled", "0");
+		
 
 		if (!isset($options['CUIT'])) {
 			throw new Exception("CUIT field is required in options array");
@@ -90,6 +92,14 @@ class Afip {
 			$options['production'] = FALSE;
 		}
 
+		if (!isset($options['passphrase'])) {
+			$options['passphrase'] = 'xxxxx';
+		}
+
+		$this->PASSPHRASE = $options['passphrase'];
+
+		$this->options = $options;
+
 		$dir_name = dirname(__FILE__);
 
 		$this->RES_FOLDER 	= $dir_name.'/Afip_res/';
@@ -98,14 +108,10 @@ class Afip {
 
 		$this->WSAA_WSDL 	= $this->RES_FOLDER.'wsaa.wsdl';
 		if ($options['production'] === TRUE) {
-			$this->WSFE_WSDL 	= $this->RES_FOLDER.'wsfe1-production.wsdl';
 			$this->WSAA_URL 	= 'https://wsaa.afip.gov.ar/ws/services/LoginCms';
-			$this->WSFE_URL 	= 'https://servicios1.afip.gov.ar/wsfev1/service.asmx';
 		}
 		else{
-			$this->WSFE_WSDL 	= $this->RES_FOLDER.'wsfe1.wsdl';
 			$this->WSAA_URL 	= 'https://wsaahomo.afip.gov.ar/ws/services/LoginCms';
-			$this->WSFE_URL 	= 'https://wswhomo.afip.gov.ar/wsfev1/service.asmx';
 		}
 
 		if (!file_exists($this->CERT)) 
@@ -114,357 +120,6 @@ class Afip {
 			throw new Exception("Failed to open ".$this->PRIVATEKEY."\n", 2);
 		if (!file_exists($this->WSAA_WSDL)) 
 			throw new Exception("Failed to open ".$this->WSAA_WSDL."\n", 3);
-		if (!file_exists($this->WSFE_WSDL)) 
-			throw new Exception("Failed to open ".$this->WSFE_WSDL."\n", 3);
-	}
-
-	/**
-	 * Gets last voucher number 
-	 * 
-	 * Asks to Afip servers for number of the last voucher created for
-	 * certain sales point and voucher type {@see WSFE Specification 
-	 * item 4.15} 
-	 *
-	 * @since 0.1
-	 *
-	 * @param int $sales_point 	Sales point to ask for last voucher  
-	 * @param int $type 		Voucher type to ask for last voucher 
-	 *
-	 * @return int 
-	 **/
-	public function GetLastVoucher($sales_point, $type)
-	{
-		$req = array(
-			'PtoVta' 	=> $sales_point,
-			'CbteTipo' 	=> $type
-			);
-
-		return $this->ExecuteRequest('wsfe', 'FECompUltimoAutorizado', $req)->CbteNro;
-	}
-
-	/**
-	 * Create a voucher from AFIP
-	 *
-	 * Send to AFIP servers request for create a voucher and assign 
-	 * CAE to them {@see WSFE Specification item 4.1}
-	 * 
-	 * @since 0.1
-	 *
-	 * @param array $data Voucher parameters {@see WSFE Specification 
-	 * 	item 4.1.3}, some arrays were simplified for easy use {@example 
-	 * 	examples/CreateVoucher.php Example with all allowed
-	 * 	 attributes}
-	 * @param bool $return_response if is TRUE returns complete response  
-	 * 	from AFIP
-	 * 
-	 * @return array if $return_response is set to FALSE returns 
-	 * 	[CAE => CAE assigned to voucher, CAEFchVto => Expiration date 
-	 * 	for CAE (yyyy-mm-dd)] else returns complete response from 
-	 * 	AFIP {@see WSFE Specification item 4.1.3}
-	**/
-	public function CreateVoucher($data, $return_response = FALSE)
-	{
-		$req = array(
-			'FeCAEReq' => array(
-				'FeCabReq' => array(
-					'CantReg' 	=> $data['CbteHasta']-$data['CbteDesde']+1,
-					'PtoVta' 	=> $data['PtoVta'],
-					'CbteTipo' 	=> $data['CbteTipo']
-					),
-				'FeDetReq' => array( 
-					'FECAEDetRequest' => &$data
-				)
-			)
-		);
-
-		unset($data['CantReg']);
-		unset($data['PtoVta']);
-		unset($data['CbteTipo']);
-
-		if (isset($data['Tributos'])) 
-			$data['Tributos'] = array('Tributo' => $data['Tributos']);
-
-		if (isset($data['Iva'])) 
-			$data['Iva'] = array('AlicIva' => $data['Iva']);
-
-		if (isset($data['Opcionales'])) 
-			$data['Opcionales'] = array('Opcional' => $data['Opcionales']);
-
-		$results = $this->ExecuteRequest('wsfe', 'FECAESolicitar', $req);
-
-		if ($return_response === TRUE) {
-			return $results;
-		}
-		else{
-			return array(
-				'CAE' 		=> $results->FeDetResp->FECAEDetResponse->CAE,
-				'CAEFchVto' => $this->FormatDate($results->FeDetResp->FECAEDetResponse->CAEFchVto),
-			);
-		}
-	}
-
-	/**
-	 * Create next voucher from AFIP
-	 *
-	 * This method combines Afip::GetLastVoucher and Afip::CreateVoucher
-	 * for create the next voucher
-	 *
-	 * @since 0.1
-	 *
-	 * @param array $data Same to $data in Afip::CreateVoucher except that
-	 * 	don't need CbteDesde and CbteHasta attributes
-	 *
-	 * @return array [CAE => CAE assigned to voucher, CAEFchVto => Expiration 
-	 * 	date for CAE (yyyy-mm-dd), voucher_number => Number assigned to 
-	 * 	voucher]
-	**/
-	public function CreateNextVoucher($data)
-	{
-		$last_voucher = $this->GetLastVoucher($data['PtoVta'], $data['CbteTipo']);
-		
-		$voucher_number = $last_voucher+1;
-
-		$data['CbteDesde'] = $voucher_number;
-		$data['CbteHasta'] = $voucher_number;
-
-		$res 					= $this->CreateVoucher($data);
-		$res['voucher_number'] 	= $voucher_number;
-
-		return $res;
-	}
-
-	/**
-	 * Get complete voucher information
-	 *
-	 * Asks to AFIP servers for complete information of voucher {@see WSFE 
-	 * Specification item 4.19}
-	 *
-	 * @since 0.1
-	 *
-	 * @param int $number 		Number of voucher to get information
-	 * @param int $sales_point 	Sales point of voucher to get information
-	 * @param int $type 			Type of voucher to get information
-	 *
-	 * @return array|null returns array with complete voucher information 
-	 * 	{@see WSFE Specification item 4.19} or null if there not exists 
-	**/
-	public function GetVoucherInfo($number, $sales_point, $type)
-	{
-		$req = $this->GetWSInitialRequest('wsfe'); 
-		$req = array(
-			'FeCompConsReq' => array(
-				'CbteNro' 	=> $number,
-				'PtoVta' 	=> $sales_point,
-				'CbteTipo' 	=> $type
-			)
-		);
-
-		try {
-			$result = $this->ExecuteRequest('wsfe', 'FECompConsultar', $req);
-		} catch (Exception $e) {
-			if ($e->getCode() == 602) 
-				return NULL;
-			else
-				throw $e;
-		}
-
-		return $result->ResultGet;
-	}
-
-	/**
-	 * Asks to AFIP Servers for voucher types availables {@see WSFE 
-	 * Specification item 4.4}
-	 *
-	 * @since 0.1
-	 *
-	 * @return array All voucher types availables
-	**/
-	public function GetVoucherTypes()
-	{
-		return $this->ExecuteRequest('wsfe', 'FEParamGetTiposCbte')->ResultGet->CbteTipo;
-	}
-
-	/**
-	 * Asks to AFIP Servers for voucher concepts availables {@see WSFE 
-	 * Specification item 4.5}
-	 *
-	 * @since 0.1
-	 *
-	 * @return array All voucher concepts availables
-	**/
-	public function GetConceptTypes()
-	{
-		return $this->ExecuteRequest('wsfe', 'FEParamGetTiposConcepto')->ResultGet->ConceptoTipo;
-	}
-
-	/**
-	 * Asks to AFIP Servers for document types availables {@see WSFE 
-	 * Specification item 4.6}
-	 *
-	 * @since 0.1
-	 *
-	 * @return array All document types availables
-	**/
-	public function GetDocumentTypes()
-	{
-		return $this->ExecuteRequest('wsfe', 'FEParamGetTiposDoc')->ResultGet->DocTipo;
-	}
-
-	/**
-	 * Asks to AFIP Servers for aliquot availables {@see WSFE 
-	 * Specification item 4.7}
-	 *
-	 * @since 0.1
-	 *
-	 * @return array All aliquot availables
-	**/
-	public function GetAliquotTypes()
-	{
-		return $this->ExecuteRequest('wsfe', 'FEParamGetTiposIva')->ResultGet->IvaTipo;
-	}
-
-	/**
-	 * Asks to AFIP Servers for currencies availables {@see WSFE 
-	 * Specification item 4.8}
-	 *
-	 * @since 0.1
-	 *
-	 * @return array All currencies availables
-	**/
-	public function GetCurrenciesTypes()
-	{
-		return $this->ExecuteRequest('wsfe', 'FEParamGetTiposMonedas')->ResultGet->Moneda;
-	}
-
-	/**
-	 * Asks to AFIP Servers for voucher optional data available {@see WSFE 
-	 * Specification item 4.9}
-	 *
-	 * @since 0.1
-	 *
-	 * @return array All voucher optional data available
-	**/
-	public function GetOptionsTypes()
-	{
-		return $this->ExecuteRequest('wsfe', 'FEParamGetTiposOpcional')->ResultGet->OpcionalTipo;
-	}
-
-	/**
-	 * Asks to AFIP Servers for tax availables {@see WSFE 
-	 * Specification item 4.10}
-	 *
-	 * @since 0.1
-	 *
-	 * @return array All tax availables
-	**/
-	public function GetTaxTypes()
-	{
-		return $this->ExecuteRequest('wsfe', 'FEParamGetTiposTributos')->ResultGet->TributoTipo;
-	}
-
-	/**
-	 * Change date from AFIP used format (yyyymmdd) to yyyy-mm-dd
-	 *
-	 * @since 0.1
-	 *
-	 * @param string|int date to format
-	 *
-	 * @return string date in format yyyy-mm-dd
-	**/
-	public function FormatDate($date)
-	{
-		return date_format(DateTime::CreateFromFormat('Ymd', $date.''), 'Y-m-d');
-	}
-
-	/**
-	 * Sends request to AFIP servers
-	 * 
-	 * @since 0.1
-	 *
-	 * @param string 	$service 	AFIP Web Service to send request 
-	 * @param string 	$operation 	SOAP operation to do 
-	 * @param array 	$params 	Parameters to send
-	 *
-	 * @throws Exception if $service is not implemented yet
-	 *
-	 * @return mixed Operation results 
-	 **/
-	public function ExecuteRequest($service, $operation, $params = array())
-	{
-		if ($service != 'wsfe') {
-			throw new Exception('Service not implemented yet');
-		}
-
-		if (!isset($this->{'client_'.$service})) {
-			$this->{'client_'.$service} = new SoapClient($this->WSFE_WSDL, array(
-				'soap_version' 	=> SOAP_1_2,
-				'location' 		=> $this->WSFE_URL,
-				'trace' 		=> 1,
-				'exceptions' 	=> 0
-			)); 
-		}
-
-		$params = array_replace($this->GetWSInitialRequest($service), $params); 
-
-		$results = $this->{'client_'.$service}->{$operation}($params);
-
-		$this->_CheckErrors($operation, $results);
-
-		return $results->{$operation.'Result'};
-	}
-
-	/**
-	 * Make default request parameters for WS with Auth headers
-	 * 
-	 * @since 0.1
-	 *
-	 * @param string $service Service to use 
-	 *
-	 * @return array Request parameters  
-	 **/
-	private function GetWSInitialRequest($service)
-	{
-		$ta = $this->GetServiceTA($service);
-
-		return array(
-			'Auth' => array( 
-				'Token' => $ta->token,
-				'Sign' 	=> $ta->sign,
-				'Cuit' 	=> $this->CUIT
-				)
-		);
-	}
-
-	/**
-	 * Check if occurs an error on Web Service request
-	 * 
-	 * @since 0.1
-	 *
-	 * @param string 	$operation 	SOAP operation to check 
-	 * @param mixed 	$results 	AFIP response
-	 *
-	 * @throws Exception if exists an error in response 
-	 * 
-	 * @return void 
-	 **/
-	private function _CheckErrors($operation, $results)
-	{
-		if (is_soap_fault($results)) 
-			throw new Exception("SOAP Fault: ".$results->faultcode."\n".$results->faultstring."\n", 4);
-
-		$res = $results->{$operation.'Result'};
-
-		if ($operation == 'FECAESolicitar') {
-			if (isset($res->FeDetResp->FECAEDetResponse->Observaciones) && $res->FeDetResp->FECAEDetResponse->Resultado != 'A') {
-				$res->Errors = new StdClass();
-				$res->Errors->Err = $res->FeDetResp->FECAEDetResponse->Observaciones->Obs;
-			}
-		}
-
-		if (isset($res->Errors)) {
-			$err = is_array($res->Errors->Err) ? $res->Errors->Err[0] : $res->Errors->Err;
-			throw new Exception('('.$err->Code.') '.$err->Msg, $err->Code);
-		}
 	}
 
 	/**
@@ -476,9 +131,9 @@ class Afip {
 	 *
 	 * @throws Exception if an error occurs
 	 *
-	 * @return WSAA_TA Token Autorization for AFIP Web Service 
+	 * @return TokenAutorization Token Autorization for AFIP Web Service 
 	**/
-	private function GetServiceTA($service, $continue = TRUE)
+	public function GetServiceTA($service, $continue = TRUE)
 	{
 		if (file_exists($this->RES_FOLDER.'TA-'.$service.'.xml')) {
 			$TA = new SimpleXMLElement(file_get_contents($this->RES_FOLDER.'TA-'.$service.'.xml'));
@@ -487,7 +142,7 @@ class Afip {
 			$expiration_time 	= new DateTime($TA->header->expirationTime);
 
 			if ($actual_time < $expiration_time) 
-				return new WSAA_TA($TA->credentials->token, $TA->credentials->sign);
+				return new TokenAutorization($TA->credentials->token, $TA->credentials->sign);
 			else if ($continue === FALSE)
 				throw new Exception("Error Getting TA", 5);
 		}
@@ -559,25 +214,48 @@ class Afip {
 			return TRUE;
 		else
 			throw new Exception('Error writing "TA-'.$service.'.xml"', 5);
-	}	
+	}
+
+	public function __get($property)
+	{
+		if (in_array($property, $this->implemented_ws)) {
+			if (isset($this->{$property})) {
+				return $this->{$property};
+			}
+			else{
+				$file = $this->RES_FOLDER.'Class/'.$property.'.php';
+				if (!file_exists($file)) 
+					throw new Exception("Failed to open ".$file."\n", 1);
+
+				include $file;
+
+				return ($this->{$property} = new $property($this));
+			}
+		}
+		else{
+			return $this->{$property};
+		}
+	}
 }
 
 /**
- * WSAA Token Autorization
+ * Token Autorization
+ *
+ * @since 0.1
  *
  * @package Afip
  * @author 	Ivan Muñoz
  **/
-class WSAA_TA {
+class TokenAutorization {
 	/**
-	 * WSAA Token
+	 * Authorization and authentication web service Token
 	 *
 	 * @var string
 	 **/
 	var $token;
 
 	/**
-	 * WSAA Sign
+	 * Authorization and authentication web service Sign
 	 *
 	 * @var string
 	 **/
@@ -585,7 +263,126 @@ class WSAA_TA {
 
 	function __construct($token, $sign)
 	{
-		$this->token = $token;
-		$this->sign = $sign;
+		$this->token 	= $token;
+		$this->sign 	= $sign;
 	}
+}
+
+/**
+ * Base class for AFIP web services 
+ *
+ * @since 0.5
+ *
+ * @package Afip
+ * @author 	Ivan Muñoz
+**/
+class AfipWebService
+{
+	/**
+	 * Web service SOAP version
+	 *
+	 * @var intenger
+	 **/
+	var $soap_version;
+
+	/**
+	 * File name for the Web Services Description Language
+	 *
+	 * @var string
+	 **/
+	var $WSDL;
+	
+	/**
+	 * The url to web service
+	 *
+	 * @var string
+	 **/
+	var $URL;
+
+	/**
+	 * File name for the Web Services Description 
+	 * Language in test mode
+	 *
+	 * @var string
+	 **/
+	var $WSDL_TEST;
+
+	
+	/**
+	 * The url to web service in test mode
+	 *
+	 * @var string
+	 **/
+	var $URL_TEST;
+	
+	/**
+	 * The Afip parent Class
+	 *
+	 * @var Afip
+	 **/
+	var $afip;
+	
+	function __construct($afip)
+	{
+		$this->afip = $afip;
+
+		if ($this->afip->options['production'] === TRUE) {
+			$this->WSDL = $this->afip->RES_FOLDER.$this->WSDL;
+		}
+		else{
+			$this->WSDL = $this->afip->RES_FOLDER.$this->WSDL_TEST;
+			$this->URL 	= $this->URL_TEST;
+		}
+
+		if (!file_exists($this->WSDL)) 
+			throw new Exception("Failed to open ".$this->WSDL."\n", 3);
+	}
+
+	/**
+	 * Sends request to AFIP servers
+	 * 
+	 * @since 1.0
+	 *
+	 * @param string 	$operation 	SOAP operation to do 
+	 * @param array 	$params 	Parameters to send
+	 *
+	 * @return mixed Operation results 
+	 **/
+	public function ExecuteRequest($operation, $params = array())
+	{
+		if (!isset($this->soap_client)) {
+			$this->soap_client = new SoapClient($this->WSDL, array(
+				'soap_version' 	=> $this->soap_version,
+				'location' 		=> $this->URL,
+				'trace' 		=> 1,
+				'exceptions' 	=> 0
+			)); 
+		}
+
+		$results = $this->soap_client->{$operation}($params);
+
+		$this->_CheckErrors($operation, $results);
+
+		return $results;
+	}
+
+
+	/**
+	 * Check if occurs an error on Web Service request
+	 * 
+	 * @since 1.0
+	 *
+	 * @param string 	$operation 	SOAP operation to check 
+	 * @param mixed 	$results 	AFIP response
+	 *
+	 * @throws Exception if exists an error in response 
+	 * 
+	 * @return void 
+	 **/
+	private function _CheckErrors($operation, $results)
+	{
+		if (is_soap_fault($results)) 
+			throw new Exception("SOAP Fault: ".$results->faultcode."\n".$results->faultstring."\n", 4);
+	}
+
 }

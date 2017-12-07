@@ -1,5 +1,5 @@
 <?php
-include '../res/Afip.php'; 
+include '../src/Afip.php'; 
 
 $data = array(
 	'CantReg' 		=> 1, // Cantidad de comprobantes a registrar
@@ -63,6 +63,6 @@ $data = array(
 
 $afip = new Afip(array('CUIT' => 20111111112));
 
-$afip->CreateVoucher($data);
+$afip->ElectronicBilling->CreateVoucher($data);
 
 ?>
