@@ -32,7 +32,7 @@ En la versión 0.5 se hicieron cambios importantes en el código para facilitar 
 - [Migrar de v0.1 a v0.5](https://github.com/ivanalemunioz/afip-php/wiki/Migrar-de-v0.1-a-v0.5)
 
 
-Toda la documentacion de la libreria esta disponible en https://github.com/ivanalemunioz/afip-php/wiki
+Toda la documentacion de la libreria esta disponible en https://github.com/ivanalemunioz/Afip.php/wiki
 
 ## Soporte y contacto 
 
