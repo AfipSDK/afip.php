@@ -11,12 +11,6 @@ Es un software libre en el que cualquier programador puede contribuir.
 
 Este software y sus desarrolladores no tienen ninguna relación con la AFIP.
 
-
-## ¡¡Importante!!
-En la versión 0.5 se hicieron cambios importantes en el código para facilitar la integración de otros Web Services, por esto los que estuvieran utilizando la versión 0.1 para la Facturación Electrónica deberán hacer algunos pequeños cambios al migrar a la versión 0.5 
-
-[Migrar de v0.1 a v0.5](https://github.com/ivanalemunioz/afip-php/wiki/Migrar-de-v0.1-a-v0.5)
-
 # Indice
 **Empezar**
 1. [Instalación](https://github.com/ivanalemunioz/afip-php/wiki/Instalaci%C3%B3n) 
