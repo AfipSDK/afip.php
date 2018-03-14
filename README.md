@@ -1,11 +1,10 @@
-# AFIP SDK
-SDK Para los Web Services de AFIP (Argentina)
-
+# Afip.php
+Libreria para los Web Services de AFIP (Argentina)
 
 ## Acerca de
-El SDK fue programado con la intención de facilitar el acceso a los web services de la AFIP.
+La libreria fue programada con la intención de facilitar el acceso a los web services de la AFIP.
 
-Esta versión del SDK (0.5) esta destinada a facilitar la integración de otros web services, ademas de agregar los web services de consulta al padrón de AFIP alcance 4, 5 y 10.
+Esta versión de la libreria (0.5) esta destinada a facilitar la integración de otros web services, ademas de agregar los web services de consulta al padrón de AFIP alcance 4, 5 y 10.
 
 Es un software libre en el que cualquier programador puede contribuir.
 
