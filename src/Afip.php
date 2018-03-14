@@ -58,11 +58,11 @@ class Afip {
 	var $RES_FOLDER;
 
 	/**
-	 * The CUIL to use
+	 * The CUIT to use
 	 *
 	 * @var int
 	 **/
-	var $CUIL;
+	var $CUIT;
 
 	/**
 	 * Implemented Web Services
@@ -96,6 +96,14 @@ class Afip {
 			$options['passphrase'] = 'xxxxx';
 		}
 
+		if (!isset($options['cert'])) {
+			$options['cert'] = 'cert';
+		}
+
+		if (!isset($options['key'])) {
+			$options['key'] = 'key';
+		}
+
 		$this->PASSPHRASE = $options['passphrase'];
 
 		$this->options = $options;
@@ -103,8 +111,8 @@ class Afip {
 		$dir_name = dirname(__FILE__);
 
 		$this->RES_FOLDER 	= $dir_name.'/Afip_res/';
-		$this->CERT 		= $this->RES_FOLDER.'cert';
-		$this->PRIVATEKEY 	= $this->RES_FOLDER.'key';
+		$this->CERT 		= $this->RES_FOLDER.$options['cert'];
+		$this->PRIVATEKEY 	= $this->RES_FOLDER.$options['key'];
 
 		$this->WSAA_WSDL 	= $this->RES_FOLDER.'wsaa.wsdl';
 		if ($options['production'] === TRUE) {
@@ -135,8 +143,8 @@ class Afip {
 	**/
 	public function GetServiceTA($service, $continue = TRUE)
 	{
-		if (file_exists($this->RES_FOLDER.'TA-'.$service.'.xml')) {
-			$TA = new SimpleXMLElement(file_get_contents($this->RES_FOLDER.'TA-'.$service.'.xml'));
+		if (file_exists($this->RES_FOLDER.'TA-'.$this->options['CUIT'].'-'.$service.'.xml')) {
+			$TA = new SimpleXMLElement(file_get_contents($this->RES_FOLDER.'TA-'.$this->options['CUIT'].'-'.$service.'.xml'));
 
 			$actual_time 		= new DateTime(date('c',date('U')+600));
 			$expiration_time 	= new DateTime($TA->header->expirationTime);
@@ -177,16 +185,16 @@ class Afip {
 		$TRA->header->addChild('generationTime',date('c',date('U')-600));
 		$TRA->header->addChild('expirationTime',date('c',date('U')+600));
 		$TRA->addChild('service',$service);
-		$TRA->asXML($this->RES_FOLDER.'TRA-'.$service.'.xml');
+		$TRA->asXML($this->RES_FOLDER.'TRA-'.$this->options['CUIT'].'-'.$service.'.xml');
 
 		//Signing TRA
-		$STATUS = openssl_pkcs7_sign($this->RES_FOLDER."TRA-".$service.".xml", $this->RES_FOLDER."TRA-".$service.".tmp", "file://".$this->CERT,
+		$STATUS = openssl_pkcs7_sign($this->RES_FOLDER."TRA-".$this->options['CUIT'].'-'.$service.".xml", $this->RES_FOLDER."TRA-".$this->options['CUIT'].'-'.$service.".tmp", "file://".$this->CERT,
 			array("file://".$this->PRIVATEKEY, $this->PASSPHRASE),
 			array(),
 			!PKCS7_DETACHED
 		);
 		if (!$STATUS) {return FALSE;}
-		$inf = fopen($this->RES_FOLDER."TRA-".$service.".tmp", "r");
+		$inf = fopen($this->RES_FOLDER."TRA-".$this->options['CUIT'].'-'.$service.".tmp", "r");
 		$i = 0;
 		$CMS="";
 		while (!feof($inf)) {
@@ -194,8 +202,8 @@ class Afip {
 			if ( $i++ >= 4 ) {$CMS.=$buffer;}
 		}
 		fclose($inf);
-		unlink($this->RES_FOLDER."TRA-".$service.".xml");
-		unlink($this->RES_FOLDER."TRA-".$service.".tmp");
+		unlink($this->RES_FOLDER."TRA-".$this->options['CUIT'].'-'.$service.".xml");
+		unlink($this->RES_FOLDER."TRA-".$this->options['CUIT'].'-'.$service.".tmp");
 
 		//Request TA to WSAA
 		$client = new SoapClient($this->WSAA_WSDL, array(
@@ -210,10 +218,10 @@ class Afip {
 
 		$TA = $results->loginCmsReturn;
 
-		if (file_put_contents($this->RES_FOLDER.'TA-'.$service.'.xml', $TA)) 
+		if (file_put_contents($this->RES_FOLDER.'TA-'.$this->options['CUIT'].'-'.$service.'.xml', $TA)) 
 			return TRUE;
 		else
-			throw new Exception('Error writing "TA-'.$service.'.xml"', 5);
+			throw new Exception('Error writing "TA-'.$this->options['CUIT'].'-'.$service.'.xml"', 5);
 	}
 
 	public function __get($property)
