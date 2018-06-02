@@ -2,7 +2,7 @@
 Libreria para los Web Services de AFIP (Argentina)
 
 ## Acerca de
-Esta libreria fue programada facilitar la integracion con los Web Services de la AFIP.
+Esta libreria fue programada para facilitar la integracion con los Web Services de la AFIP.
 
 Es un software libre en el que cualquier programador puede contribuir.
 

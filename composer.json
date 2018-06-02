@@ -1,0 +1,20 @@
+{
+    "name": "ivanalemunioz/Afip.php",
+    "type": "library",
+    "description": "Libreria para usar los Web Services de AFIP (Argentina) ",
+    "keywords": ["afip","facturacion-electronica","gratis","soap","cae","padron","contribuyente","libreria"],
+    "homepage": "https://github.com/ivanalemunioz/Afip.php",
+    "license": "MIT",
+    "require": {
+        "php": "^5.3.3",
+    },
+    "authors": [
+        {
+            "name": "Ivan Muñoz",
+            "email": "ivanalemunioz@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [ "src/Afip.php" ]
+    }
+}
