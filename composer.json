@@ -6,7 +6,7 @@
     "homepage": "https://github.com/ivanalemunioz/Afip.php",
     "license": "MIT",
     "require": {
-        "php": "^5.3.3",
+        "php": "^5.3.3"
     },
     "authors": [
         {
