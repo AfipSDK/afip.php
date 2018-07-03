@@ -1,8 +1,8 @@
 # Afip.php
-Libreria para los Web Services de AFIP (Argentina)
+Libreria para usar los Web Services de AFIP (Argentina)
 
 ## Acerca de
-Esta libreria fue programada para facilitar la integracion con los Web Services de la AFIP.
+Esta libreria fue programada para facilitar la integracion con los Web Services de la AFIP y forma parte de [AfipSDK](https://ivanalemunioz.github.io/AfipSDK/).
 
 Es un software libre en el que cualquier programador puede contribuir.
 
