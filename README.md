@@ -6,6 +6,16 @@ Esta libreria fue programada para facilitar la integracion con los Web Services 
 
 Es un software libre en el que cualquier programador puede contribuir.
 
+## Dudas y ayuda
+Si tienen alguna consulta o duda pueden resolverla en el [foro de la librería](https://groups.google.com/forum/#!forum/afip-php)
+
+
+## Desarrollo personalizado
+En caso de necesitar algún desarrollo personalizado pueden consultarme a mi correo:
+
+Ivan Muñoz ivanalemunioz@gmail.com
+
+
 # Indice
 **Empezar**
 - [Primeros pasos](https://github.com/ivanalemunioz/Afip.php/wiki/Primeros-pasos) 
