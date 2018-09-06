@@ -22,7 +22,7 @@ Pueden encontrar el tutorial correspondiente aquí 👇
 
 Si necesitas más información de cómo utilizar algún web service echa un vistazo a la [documentación completa](https://github.com/ivanalemunioz/afip.php/wiki) de la librería
 
-**Además si necesitas usar otro web service que aún no está disponible aquí podes utilizar esta librería como base para se te haga más fácil, pronto haremos un tutorial explicando paso a paso como hacerlo, pero por el momento te recomendamos comenzar haciendo una copia y modificando el código de [consulta al padrón alcance 5](https://github.com/ivanalemunioz/afip.php/blob/master/src/Afip_res/Class/RegisterScopeFive.php)** 
+**Además si necesitas usar otro web service que aún no está disponible aquí podes utilizar esta librería como base para que se te haga más fácil, pronto haremos un tutorial explicando paso a paso como hacerlo, pero por el momento te recomendamos comenzar haciendo una copia y modificando el código de [consulta al padrón alcance 5](https://github.com/ivanalemunioz/afip.php/blob/master/src/Afip_res/Class/RegisterScopeFive.php)** 
 
 ## Acerca de 🤔
 Esta librería fue programada para facilitar la integración con los Web Services de la AFIP y forma parte de [Afip SDK](https://ivanalemunioz.github.io/AfipSDK/).
