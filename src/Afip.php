@@ -349,10 +349,10 @@ class AfipWebService
 		$this->afip = $afip;
 
 		if ($this->afip->options['production'] === TRUE) {
-			$this->WSDL = $this->afip->RES_FOLDER.$this->WSDL;
+			$this->WSDL = $this->afip->WS_FOLDER.$this->WSDL;
 		}
 		else{
-			$this->WSDL = $this->afip->RES_FOLDER.$this->WSDL_TEST;
+			$this->WSDL = $this->afip->WS_FOLDER.$this->WSDL_TEST;
 			$this->URL 	= $this->URL_TEST;
 		}
 
