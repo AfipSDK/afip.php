@@ -58,6 +58,13 @@ class Afip {
 	var $RES_FOLDER;
 
 	/**
+	 * Afip ws folder
+	 *
+	 * @var string
+	 **/
+	var $WS_FOLDER;
+
+	/**
 	 * The CUIT to use
 	 *
 	 * @var int
@@ -104,17 +111,24 @@ class Afip {
 			$options['key'] = 'key';
 		}
 
+		$dir_name = dirname(__FILE__);
+
+		$this->WS_FOLDER = $dir_name.'/Afip_res/';
+
+		if (!isset($options['res_folder'])) {
+			$this->RES_FOLDER = $this->WS_FOLDER;
+		} else {
+			$this->RES_FOLDER = $options['res_folder'];
+		}
+
 		$this->PASSPHRASE = $options['passphrase'];
 
 		$this->options = $options;
 
-		$dir_name = dirname(__FILE__);
-
-		$this->RES_FOLDER 	= $dir_name.'/Afip_res/';
 		$this->CERT 		= $this->RES_FOLDER.$options['cert'];
 		$this->PRIVATEKEY 	= $this->RES_FOLDER.$options['key'];
 
-		$this->WSAA_WSDL 	= $this->RES_FOLDER.'wsaa.wsdl';
+		$this->WSAA_WSDL 	= $this->WS_FOLDER.'wsaa.wsdl';
 		if ($options['production'] === TRUE) {
 			$this->WSAA_URL 	= 'https://wsaa.afip.gov.ar/ws/services/LoginCms';
 		}
@@ -231,7 +245,7 @@ class Afip {
 				return $this->{$property};
 			}
 			else{
-				$file = $this->RES_FOLDER.'Class/'.$property.'.php';
+				$file = $this->WS_FOLDER.'Class/'.$property.'.php';
 				if (!file_exists($file)) 
 					throw new Exception("Failed to open ".$file."\n", 1);
 
