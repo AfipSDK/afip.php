@@ -58,13 +58,6 @@ class Afip {
 	var $RES_FOLDER;
 
 	/**
-	 * Afip ws folder
-	 *
-	 * @var string
-	 **/
-	var $WS_FOLDER;
-
-	/**
 	 * The CUIT to use
 	 *
 	 * @var int
@@ -111,12 +104,8 @@ class Afip {
 			$options['key'] = 'key';
 		}
 
-		$dir_name = dirname(__FILE__);
-
-		$this->WS_FOLDER = $dir_name.'/Afip_res/';
-
 		if (!isset($options['res_folder'])) {
-			$this->RES_FOLDER = $this->WS_FOLDER;
+			$this->RES_FOLDER = __DIR__.'/Afip_res/';
 		} else {
 			$this->RES_FOLDER = $options['res_folder'];
 		}
@@ -128,7 +117,7 @@ class Afip {
 		$this->CERT 		= $this->RES_FOLDER.$options['cert'];
 		$this->PRIVATEKEY 	= $this->RES_FOLDER.$options['key'];
 
-		$this->WSAA_WSDL 	= $this->WS_FOLDER.'wsaa.wsdl';
+		$this->WSAA_WSDL 	= __DIR__.'/Afip_res/'.'wsaa.wsdl';
 		if ($options['production'] === TRUE) {
 			$this->WSAA_URL 	= 'https://wsaa.afip.gov.ar/ws/services/LoginCms';
 		}
@@ -245,7 +234,7 @@ class Afip {
 				return $this->{$property};
 			}
 			else{
-				$file = $this->WS_FOLDER.'Class/'.$property.'.php';
+				$file = __DIR__.'/Class/'.$property.'.php';
 				if (!file_exists($file)) 
 					throw new Exception("Failed to open ".$file."\n", 1);
 
@@ -329,7 +318,6 @@ class AfipWebService
 	 **/
 	var $WSDL_TEST;
 
-	
 	/**
 	 * The url to web service in test mode
 	 *
@@ -349,10 +337,10 @@ class AfipWebService
 		$this->afip = $afip;
 
 		if ($this->afip->options['production'] === TRUE) {
-			$this->WSDL = $this->afip->WS_FOLDER.$this->WSDL;
+			$this->WSDL = __DIR__.'/Afip_res/'.$this->WSDL;
 		}
 		else{
-			$this->WSDL = $this->afip->WS_FOLDER.$this->WSDL_TEST;
+			$this->WSDL = __DIR__.'/Afip_res/'.$this->WSDL_TEST;
 			$this->URL 	= $this->URL_TEST;
 		}
 
