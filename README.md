@@ -4,6 +4,9 @@ Si no queres perder tiempo ni romperte la cabeza tratando de usar los Web Servic
 ### ❗❗ Cómo usar la librería
 Antes de comenzar a utilizar los web services debes leer los [primeros pasos](https://github.com/ivanalemunioz/Afip.php/wiki/Primeros-pasos) donde te enseña como instalar y usar esta librería.
 
+### ❗❗ Bundle para Symfony
+Para utilizar la librería en Symfony [afip-bundle](https://github.com/gonzakpo/afip)
+
 ### 🖨️ Factura electrónica
 Podes encontrar toda la documentación necesaria para saber [cómo usar el web service de factura electrónica](https://github.com/ivanalemunioz/afip.php/wiki/Facturaci%C3%B3n-Electr%C3%B3nica) 👈 aquí
 
