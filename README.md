@@ -4,17 +4,17 @@ Si no queres perder tiempo ni romperte la cabeza tratando de usar los Web Servic
 ### ❗❗ Cómo usar la librería
 Antes de comenzar a utilizar los web services debes leer los [primeros pasos](https://github.com/ivanalemunioz/Afip.php/wiki/Primeros-pasos) donde te enseña como instalar y usar esta librería.
 
-### 🖨️ Factura electrónica
-Podes encontrar toda la documentación necesaria para saber [cómo usar el web service de factura electrónica](https://github.com/ivanalemunioz/afip.php/wiki/Facturaci%C3%B3n-Electr%C3%B3nica) 👈 aquí
+### 🖨️️ Cómo usar el web service de factura electrónica
+Podes encontrar la documentación necesaria para utilizar la [facturación electrónica](https://github.com/ivanalemunioz/afip.php/wiki/Facturaci%C3%B3n-Electr%C3%B3nica) 👈 aquí
 
-### 📘 Padrón alcance 4 (A4)
-Por el momento este web service se encuentra dado de baja (_ERROR 404_) pero de todas formas si lo necesitas puedes leer la documentación de [cómo usar el web service de padrón alcance 4](https://github.com/ivanalemunioz/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-4)
+### 📘️ Cómo usar el web service de padrón alcance 4 (A4)
+Por el momento este web service se encuentra dado de baja (_ERROR 404_) pero de todas formas si lo necesitas puedes leer la documentación de [consulta al padrón de AFIP alcance 4](https://github.com/ivanalemunioz/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-4)
 
-### 📗 Padrón alcance 5 (A5)
-Quienes usaban el padrón A4 pueden utilizar este padrón en modo de remplazo, aqui puedes saber [cómo usar el web service de padrón alcance 5](https://github.com/ivanalemunioz/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-5)
+### 📗️ Cómo usar el web service de padrón alcance 5 (A5)
+Quienes usaban el padrón A4 pueden utilizar este padrón en modo de remplazo, si queres saber cómo echa un vistazo a la documentación de [consulta al padrón de AFIP alcance 5](https://github.com/ivanalemunioz/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-5)
 
-### 📙 Padrón alcance 10 (A10)
-Si tenes que utilizar este web service también está disponible dentro de la librería, aqui puedes leer [cómo usar el web service de padrón alcance 10](https://github.com/ivanalemunioz/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-10)
+### 📙️ Cómo usar el web service de padrón alcance 10 (A10)
+Si tenes que utilizar este web service también está disponible dentro de la librería, su documentación se encuentra en [consulta al padrón de AFIP alcance 10](https://github.com/ivanalemunioz/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-10)
 
 ### ¿Necesitas migrar de versión de la librería?
 Pueden encontrar el tutorial correspondiente aquí 👇
