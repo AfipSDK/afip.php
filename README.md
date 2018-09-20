@@ -8,7 +8,7 @@ Antes de comenzar a utilizar los web services debes leer los [primeros pasos](ht
 Podes encontrar la documentación necesaria para utilizar la [facturación electrónica](https://github.com/afipsdk/afip.php/wiki/Facturaci%C3%B3n-Electr%C3%B3nica) 👈 aquí
 
 ### 📘️ Cómo usar el web service de padrón alcance 4 (A4)
-Por el momento este web service se encuentra dado de baja (_ERROR 404_) pero de todas formas si lo necesitas puedes leer la documentación de [consulta al padrón de AFIP alcance 4](https://github.com/afipsdk/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-4)
+El Servicio Web de Consulta de Padrón denominado A4 ha quedado limitado para Organismos Públicos, si lo necesitas puedes leer la documentación de [consulta al padrón de AFIP alcance 4](https://github.com/afipsdk/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-4)
 
 ### 📗️ Cómo usar el web service de padrón alcance 5 (A5)
 Quienes usaban el padrón A4 pueden utilizar este padrón en modo de remplazo, si queres saber cómo echa un vistazo a la documentación de [consulta al padrón de AFIP alcance 5](https://github.com/afipsdk/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-5)
