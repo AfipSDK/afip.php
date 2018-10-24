@@ -37,13 +37,10 @@ Si queres contribuir al proyecto sentite libre de hacer un Pull Request al repos
 ## Dudas y ayuda 🙌
 Si tienen alguna consulta o duda pueden resolverla en el [foro de la librería](https://groups.google.com/forum/#!forum/afip-php)
 
-## Soporte 🔨
-Debido a la creciente demanda de soporte para el SDK hemos creado una agenda para que puedas programar una llamada/video llamada donde te resolveremos las dudas que tengas acerca de la librería y de los web services de AFIP 
-[PROGRAMAR REUNIÓN](https://calendly.com/afipsdk/30min/)
+## Desarrollo personalizado, soporte y contacto 🔨
+En caso de necesitar algún desarrollo personalizado con los web services, soporte con la librería, o algún otro tipo de contacto pueden hablarme a mi correo
 
-
-## Contacto 📧
-afipsdk@gmail.com
+**Contacto** 📧 afipsdk@gmail.com
 
 
 _Este software y sus desarrolladores no tienen ninguna relación con la AFIP._
