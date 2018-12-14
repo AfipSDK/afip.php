@@ -247,7 +247,7 @@ class Afip {
 				if (!file_exists($file)) 
 					throw new Exception("Failed to open ".$file."\n", 1);
 
-				include $file;
+				include_once $file;
 
 				return ($this->{$property} = new $property($this));
 			}
