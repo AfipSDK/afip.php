@@ -1,6 +1,11 @@
 # Afip.php
 Si no queres perder tiempo ni romperte la cabeza tratando de usar los Web Services de AFIP podes utilizar esta librería que te va a ahorrar mucho tiempo, y además es de uso libre y gratuito ✅
 
+## Donaciones 🙌
+Las donaciones ayudan a continuar el desarrollo del proyecto de forma Open Source para que todos los desarrolladores puedan beneficiarse de su uso. Las donaciones son procesadas a través de [PayPal](https://www.paypal.me/ivanpagosAR)
+
+[![Donar Ahora](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/ivanpagosAR)
+
 ### ❗❗ Cómo usar la librería
 Antes de comenzar a utilizar los web services debes leer los [primeros pasos](https://github.com/afipsdk/Afip.php/wiki/Primeros-pasos) donde te enseña como instalar y usar esta librería.
 
