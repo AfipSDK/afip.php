@@ -1,17 +1,17 @@
 {
-    "name": "afipsdk/afip.php",
+    "name": "serbice/afip.php",
     "type": "library",
     "description": "Libreria para usar los Web Services de AFIP (Argentina) ",
     "keywords": ["afip","facturacion-electronica","gratis","soap","cae","padron","contribuyente","libreria"],
-    "homepage": "https://github.com/afipsdk/afip.php",
+    "homepage": "https://github.com/serbice/afip.php",
     "license": "MIT",
     "require": {
         "php": ">=5.3.3"
     },
     "authors": [
         {
-            "name": "Afip SDK",
-            "email": "afipsdk@gmail.com"
+            "name": "SERBice",
+            "email": "sergio@serbice.net"
         }
     ],
     "autoload": {
