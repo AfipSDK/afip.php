@@ -1,8 +1,11 @@
 # Afip.php
+_Nota: SERBice/afip-php esta basado en AFIPSDK/afip.php; Se utilizará la documentacion de uso de AfipSDK con excepcion de los cambios añadidos por SERBice que contarán con documentacion adicional._
+
 Si no queres perder tiempo ni romperte la cabeza tratando de usar los Web Services de AFIP podes utilizar esta librería que te va a ahorrar mucho tiempo, y además es de uso libre y gratuito ✅
 
 ### Donaciones 🙌
-Las donaciones ayudan a continuar el desarrollo del proyecto de forma Open Source para que todos los desarrolladores puedan beneficiarse de su uso. Las donaciones son procesadas a través de [PayPal](https://www.paypal.me/SERBice)
+
+SERBice acepta donaciones, las mismas ayudan a continuar el desarrollo del proyecto de forma Open Source para que todos los desarrolladores puedan beneficiarse de su uso. Las donaciones son procesadas a través de [PayPal](https://www.paypal.me/SERBice)
 
 [![Donar Ahora](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/SERBice)
 
@@ -22,31 +25,23 @@ Quienes usaban el padrón A4 pueden utilizar este padrón en modo de remplazo, s
 Si tenes que utilizar este web service también está disponible dentro de la librería, su documentación se encuentra en [consulta al padrón de AFIP alcance 10](https://github.com/afipsdk/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-10)
 
 ### 📙️ Cómo usar el web service de padrón alcance 13 (A13)
-Si tenes que utilizar este web service también está disponible dentro de la librería, su documentación se encuentra en [consulta al padrón de AFIP alcance 10](·)
+Si tenes que utilizar este web service también está disponible dentro de la librería, su documentación se encuentra en [consulta al padrón de AFIP alcance 13 (en construccion)](#)
 
 
-Si necesitas más información de cómo utilizar algún web service echa un vistazo a la [documentación completa de afip.php](https://github.com/afipsdk/afip.php/wiki)
-
-**Además si necesitas usar otro web service que aún no está disponible aquí podes utilizar esta librería como base para que se te haga más fácil, pronto haremos un tutorial explicando paso a paso como hacerlo, pero por el momento te recomendamos comenzar haciendo una copia y modificando el código de [consulta al padrón alcance 5](https://github.com/afipsdk/afip.php/blob/master/src/Afip_res/Class/RegisterScopeFive.php)** 
+Si necesitas más información de cómo utilizar algún web service echa un vistazo a la [documentación completa de AfipSDK/afip.php](https://github.com/afipsdk/afip.php/wiki)
 
 ### Proyectos Relacionados 🤝
 
 #### Bundle para Symfony
 Si necesitas utilizar los web services de Afip en _Symfony_ podes utilizar este [bundle](https://github.com/gonzakpo/afip)
 
-## Acerca de 🤔
+## Acerca de AfipSDK/afip.php 🤔
 Esta librería fue programada para facilitar la integración con los Web Services de la AFIP y forma parte de [Afip SDK](https://afipsdk.github.io/).
 
-Si queres contribuir al proyecto sentite libre de hacer un Pull Request al repositorio.
+## Acerca de SERBice/afip.php 🤔
+Esta librería es una ampliacion de los web services soportados por AfipSDK.
 
 ## Dudas y ayuda 🙌
-Si tienen alguna consulta o duda pueden resolverla en el [foro de la librería](https://groups.google.com/forum/#!forum/afip-php)
-
-## Desarrollo personalizado, soporte y contacto 🔨
-En caso de necesitar algún desarrollo personalizado con los web services, soporte con la librería, o algún otro tipo de contacto pueden hablarme a mi correo
-
-**Contacto** 📧 
-
+Si tienen alguna consulta o duda pueden resolverla en el [foro de la librería AfipSDK](https://groups.google.com/forum/#!forum/afip-php)
 
 _Este software y sus desarrolladores no tienen ninguna relación con la AFIP._
-
