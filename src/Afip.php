@@ -1,7 +1,8 @@
 <?php
 /**
  * Software Development Kit for AFIP web services
- * 
+ * Based on Ivan Muñoz code
+ 
  * This release of Afip SDK is intended to facilitate 
  * the integration to other different web services that 
  * Electronic Billing   
