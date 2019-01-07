@@ -1,10 +1,11 @@
 <?php
 /**
  * SDK for AFIP Register Scope 13 (ws_sr_padron_a13)
- * 
+ * Based on Ivan Muñoz code
+ *
  * @link http://www.afip.gob.ar/ws/ws-padron-a13/manual-ws-sr-padron-a13-v1.1.pdf WS Specification
  *
- * @author 	Sergio Baudracco (Original: Ivan Muñoz)
+ * @author 	Sergio Baudracco
  * @package Afip
  * @version 1.0
  **/
