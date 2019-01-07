@@ -7,7 +7,7 @@
  *
  * @author 	Sergio Baudracco
  * @package Afip
- * @version 0.1
+ * @version 1.0
  **/
 
 class ElectronicBilling extends AfipWebService {
