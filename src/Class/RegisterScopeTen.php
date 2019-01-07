@@ -1,10 +1,11 @@
 <?php
 /**
  * SDK for AFIP Register Scope Ten (ws_sr_padron_a10)
- * 
+ * Based on Ivan Muñoz code
+ *
  * @link http://www.afip.gob.ar/ws/ws_sr_padron_a10/manual_ws_sr_padron_a10_v1.1.pdf WS Specification
  *
- * @author 	Ivan Muñoz
+ * @author 	Sergio Baudracco
  * @package Afip
  * @version 1.0
  **/
