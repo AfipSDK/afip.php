@@ -1,11 +1,10 @@
 <?php
 /**
  * SDK for AFIP Register Scope Four (ws_sr_padron_a4)
- * Based on Ivan Muñoz code
- *
+ * 
  * @link http://www.afip.gob.ar/ws/ws_sr_padron_a4/manual_ws_sr_padron_a4_v1.1.pdf WS Specification
  *
- * @author 	Sergio Baudracco
+ * @author 	Ivan Muñoz
  * @package Afip
  * @version 1.0
  **/
