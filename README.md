@@ -2,9 +2,9 @@
 Si no queres perder tiempo ni romperte la cabeza tratando de usar los Web Services de AFIP podes utilizar esta librería que te va a ahorrar mucho tiempo, y además es de uso libre y gratuito ✅
 
 ### Donaciones 🙌
-Las donaciones ayudan a continuar el desarrollo del proyecto de forma Open Source para que todos los desarrolladores puedan beneficiarse de su uso. Las donaciones son procesadas a través de [PayPal](https://www.paypal.me/ivanpagosAR)
+Las donaciones ayudan a continuar el desarrollo del proyecto de forma Open Source para que todos los desarrolladores puedan beneficiarse de su uso. Las donaciones son procesadas a través de [PayPal](https://www.paypal.me/SERBice)
 
-[![Donar Ahora](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/ivanpagosAR)
+[![Donar Ahora](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/SERBice)
 
 ### ❗❗ Cómo usar la librería
 Antes de comenzar a utilizar los web services debes leer los [primeros pasos](https://github.com/afipsdk/Afip.php/wiki/Primeros-pasos) donde te enseña como instalar y usar esta librería.
@@ -21,9 +21,9 @@ Quienes usaban el padrón A4 pueden utilizar este padrón en modo de remplazo, s
 ### 📙️ Cómo usar el web service de padrón alcance 10 (A10)
 Si tenes que utilizar este web service también está disponible dentro de la librería, su documentación se encuentra en [consulta al padrón de AFIP alcance 10](https://github.com/afipsdk/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-10)
 
-### ¿Necesitas migrar de versión de la librería?
-Pueden encontrar el tutorial correspondiente aquí 👇
-- [Migrar de v0.1 a v0.5](https://github.com/afipsdk/afip.php/wiki/Migrar-de-v0.1-a-v0.5)
+### 📙️ Cómo usar el web service de padrón alcance 13 (A13)
+Si tenes que utilizar este web service también está disponible dentro de la librería, su documentación se encuentra en [consulta al padrón de AFIP alcance 10](·)
+
 
 Si necesitas más información de cómo utilizar algún web service echa un vistazo a la [documentación completa de afip.php](https://github.com/afipsdk/afip.php/wiki)
 
@@ -45,7 +45,7 @@ Si tienen alguna consulta o duda pueden resolverla en el [foro de la librería](
 ## Desarrollo personalizado, soporte y contacto 🔨
 En caso de necesitar algún desarrollo personalizado con los web services, soporte con la librería, o algún otro tipo de contacto pueden hablarme a mi correo
 
-**Contacto** 📧 afipsdk@gmail.com
+**Contacto** 📧 
 
 
 _Este software y sus desarrolladores no tienen ninguna relación con la AFIP._
