@@ -1,17 +1,16 @@
 <?php
 /**
  * Software Development Kit for AFIP web services
- * Based on Ivan Muñoz code
- 
+ * 
  * This release of Afip SDK is intended to facilitate 
  * the integration to other different web services that 
  * Electronic Billing   
  *
  * @link http://www.afip.gob.ar/ws/ AFIP Web Services documentation
  *
- * @author 	SERBice sergio@serbice.net
+ * @author 	Ivan Muñoz ivanalemunioz@gmail.com
  * @package Afip
- * @version 1.0
+ * @version 0.5
  **/
 
 class Afip {
