@@ -1,13 +1,12 @@
 <?php
 /**
  * SDK for AFIP Electronic Billing (wsfe1)
- * Based on Ivan Muñoz code
  * 
  * @link http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf WS Specification
  *
- * @author 	Sergio Baudracco
+ * @author 	Ivan Muñoz
  * @package Afip
- * @version 1.0
+ * @version 0.7
  **/
 
 class ElectronicBilling extends AfipWebService {
