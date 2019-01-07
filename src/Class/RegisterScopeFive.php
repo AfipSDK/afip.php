@@ -1,11 +1,10 @@
 <?php
 /**
  * SDK for AFIP Register Scope Five (ws_sr_padron_a5)
- * Based on Ivan Muñoz code
- *
+ * 
  * @link http://www.afip.gob.ar/ws/ws_sr_padron_a5/manual_ws_sr_padron_a5_v1.0.pdf WS Specification
  *
- * @author 	Sergio Baudracco
+ * @author 	Ivan Muñoz
  * @package Afip
  * @version 1.0
  **/
