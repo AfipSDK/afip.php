@@ -1,11 +1,6 @@
 # Afip.php
 Si no queres perder tiempo ni romperte la cabeza tratando de usar los Web Services de AFIP podes utilizar esta librería que te va a ahorrar mucho tiempo, y además es de uso libre y gratuito ✅
 
-### Donaciones 🙌
-Las donaciones ayudan a continuar el desarrollo del proyecto de forma Open Source para que todos los desarrolladores puedan beneficiarse de su uso. Las donaciones son procesadas a través de [PayPal](https://www.paypal.me/ivanpagosAR)
-
-[![Donar Ahora](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/ivanpagosAR)
-
 ### ❗❗ Cómo usar la librería
 Antes de comenzar a utilizar los web services debes leer los [primeros pasos](https://github.com/afipsdk/Afip.php/wiki/Primeros-pasos) donde te enseña como instalar y usar esta librería.
 
@@ -34,16 +29,16 @@ Si necesitas más información de cómo utilizar algún web service echa un vist
 #### Bundle para Symfony
 Si necesitas utilizar los web services de Afip en _Symfony_ podes utilizar este [bundle](https://github.com/gonzakpo/afip)
 
-## Acerca de 🤔
+## Acerca de
 Esta librería fue programada para facilitar la integración con los Web Services de la AFIP y forma parte de [Afip SDK](https://afipsdk.github.io/).
 
 Si queres contribuir al proyecto sentite libre de hacer un Pull Request al repositorio.
 
-## Dudas y ayuda 🙌
+## Dudas y ayuda
 Si tienen alguna consulta o duda pueden resolverla en el [foro de la librería](https://groups.google.com/forum/#!forum/afip-php)
 
 ## Desarrollo personalizado, soporte y contacto 🔨
-En caso de necesitar algún desarrollo personalizado con los web services, soporte con la librería, o algún otro tipo de contacto pueden hablarme a mi correo
+En caso de necesitar ayuda personalizada con la librería, o algún otro tipo de contacto pueden hablarme a mi correo
 
 **Contacto** 📧 afipsdk@gmail.com
 
