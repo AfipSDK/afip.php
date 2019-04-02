@@ -37,10 +37,8 @@ Si queres contribuir al proyecto sentite libre de hacer un Pull Request al repos
 ## Dudas y ayuda
 Si tienen alguna consulta o duda pueden resolverla en el [foro de la librería](https://groups.google.com/forum/#!forum/afip-php)
 
-## Desarrollo personalizado, soporte y contacto 🔨
-En caso de necesitar ayuda personalizada con la librería, o algún otro tipo de contacto pueden hablarme a mi correo
-
-**Contacto** 📧 afipsdk@gmail.com
+## 📧 Contacto 
+afipsdk@gmail.com
 
 
 _Este software y sus desarrolladores no tienen ninguna relación con la AFIP._
