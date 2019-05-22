@@ -156,8 +156,8 @@ class Afip {
 	**/
 	public function GetServiceTA($service, $continue = TRUE)
 	{
-		if (file_exists($this->TA_FOLDER.'TA-'.$this->options['CUIT'].'-'.$service.'.xml')) {
-			$TA = new SimpleXMLElement(file_get_contents($this->TA_FOLDER.'TA-'.$this->options['CUIT'].'-'.$service.'.xml'));
+		if (file_exists($this->TA_FOLDER.'TA-'.$this->options['CUIT'].'-'.$service.($this->options['production'] === TRUE ? '-production' : '').'.xml')) {
+			$TA = new SimpleXMLElement(file_get_contents($this->TA_FOLDER.'TA-'.$this->options['CUIT'].'-'.$service.($this->options['production'] === TRUE ? '-production' : '').'.xml'));
 
 			$actual_time 		= new DateTime(date('c',date('U')+600));
 			$expiration_time 	= new DateTime($TA->header->expirationTime);
@@ -231,7 +231,7 @@ class Afip {
 
 		$TA = $results->loginCmsReturn;
 
-		if (file_put_contents($this->TA_FOLDER.'TA-'.$this->options['CUIT'].'-'.$service.'.xml', $TA)) 
+		if (file_put_contents($this->TA_FOLDER.'TA-'.$this->options['CUIT'].'-'.$service.($this->options['production'] === TRUE ? '-production' : '').'.xml', $TA)) 
 			return TRUE;
 		else
 			throw new Exception('Error writing "TA-'.$this->options['CUIT'].'-'.$service.'.xml"', 5);
