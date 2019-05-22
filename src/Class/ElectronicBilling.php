@@ -4,7 +4,7 @@
  * 
  * @link http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf WS Specification
  *
- * @author 	Ivan Muñoz
+ * @author 	Afip SDK
  * @package Afip
  * @version 0.7
  **/

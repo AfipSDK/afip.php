@@ -8,7 +8,7 @@
  *
  * @link http://www.afip.gob.ar/ws/ AFIP Web Services documentation
  *
- * @author 	Ivan Muñoz ivanalemunioz@gmail.com
+ * @author 	Afip SDK afipsdk@gmail.com
  * @package Afip
  * @version 0.5
  **/

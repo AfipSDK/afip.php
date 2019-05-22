@@ -4,7 +4,7 @@
  * 
  * @link http://www.afip.gob.ar/ws/ws_sr_padron_a10/manual_ws_sr_padron_a10_v1.1.pdf WS Specification
  *
- * @author 	Ivan Muñoz
+ * @author 	Afip SDK
  * @package Afip
  * @version 1.0
  **/
