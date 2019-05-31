@@ -41,7 +41,7 @@
   * [Padrón alcance 10](#padr%C3%B3n-alcance-10)
 * [Migración](#migraci%C3%B3n)
 * [Proyectos relacionados](#proyectos-relacionados)
-* [Afip SDK PRO 🚀](#afip-sdk-pro)
+* [Afip SDK PRO 🚀](#afip-sdk-pro-)
 * [Contribuir](#contribuir)
 * [Licencia](#licencia)
 * [Contacto](#contacto)
@@ -80,7 +80,7 @@ composer require afipsdk/afip.php
 
 Ir a http://www.afip.gob.ar/ws/documentacion/certificados.asp para obtener mas información de como generar la clave y certificado.
 
-Si no pueden seguir la complicada documentación de AFIP para obtener el certificado pueden obtener [Afip SDK PRO](#afip-sdk-pro) donde se explica cómo obtener los certificados fácilmente.
+Si no pueden seguir la complicada documentación de AFIP para obtener el certificado pueden obtener [Afip SDK PRO](#afip-sdk-pro-) donde se explica cómo obtener los certificados fácilmente.
 
 ### Como usarlo
 
