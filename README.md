@@ -41,7 +41,7 @@
   * [Padrón alcance 10](#padr%C3%B3n-alcance-10)
 * [Migración](#migraci%C3%B3n)
 * [Proyectos relacionados](#proyectos-relacionados)
-* [Afip SDK PRO](#afip-sdk-pro)
+* [Afip SDK PRO 🚀](#afip-sdk-pro)
 * [Contribuir](#contribuir)
 * [Licencia](#licencia)
 * [Contacto](#contacto)
@@ -135,7 +135,7 @@ Pueden encontrar el tutorial correspondiente aquí 👇
 Si necesitas utilizar los web services de Afip en _Symfony_ podes utilizar este [bundle](https://github.com/gonzakpo/afip)
 
 <!-- AFIP SDK PRO -->
-### Afip SDK PRO
+### Afip SDK PRO 🚀
 
 ¿Quieres ahorrar aún más tiempo? Prueba la versión PRO de Afip SDK 
 
