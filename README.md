@@ -25,7 +25,9 @@
     <a href="https://github.com/afipsdk/afip.php/issues">Reportar un bug</a>
   </p>
 </p>
-
+<p align="center">
+    <img src="https://github.com/afipsdk/afipsdk.github.io/blob/master/images/implementation.png" alt="Implementation">
+</p>
 
 <!-- TABLE OF CONTENTS -->
 ## Tabla de contenidos
@@ -51,12 +53,7 @@
 <!-- ABOUT THE PROJECT -->
 ## Acerca del proyecto
 
-Esta librería fue creada con la intención de ayudar a los programadores a usar los Web Services de AFIP sin romperse la cabeza ni perder tiempo tratando de entender la complicada documentación que AFIP provee. Ademas forma forma parte de [Afip SDK](https://afipsdk.github.io/).
-
-<br />
-<p align="center">
-    <img src="https://github.com/afipsdk/afipsdk.github.io/blob/master/images/implementation.png" alt="Implementation">
-</p>
+Esta librería fue creada con la intención de ayudar a los programadores a usar los Web Services de AFIP sin romperse la cabeza ni perder tiempo tratando de entender la complicada documentación que AFIP provee. Ademas forma parte de [Afip SDK](https://afipsdk.github.io/).
 
 
 <!-- START GUIDE -->
