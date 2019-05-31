@@ -34,7 +34,7 @@
 * [Guía de inicio](#guía-de-inicio)
   * [Instalación](#instalaci%C3%B3n)
   * [Como usarlo](#como-usarlo)
-* [Uso](#uso)
+* [Web Services](#web-services)
   * [Factura electrónica](#factura-electr%C3%B3nica)
   * [Padrón alcance 4](#padr%C3%B3n-alcance-4)
   * [Padrón alcance 5](#padr%C3%B3n-alcance-5)
@@ -52,6 +52,11 @@
 ## Acerca del proyecto
 
 Esta librería fue creada con la intención de ayudar a los programadores a usar los Web Services de AFIP sin romperse la cabeza ni perder tiempo tratando de entender la complicada documentación que AFIP provee. Ademas forma forma parte de [Afip SDK](https://afipsdk.github.io/).
+
+<br />
+<p align="center">
+    <img src="https://github.com/afipsdk/afipsdk.github.io/blob/master/images/implementation.png" alt="Implementation">
+</p>
 
 
 <!-- START GUIDE -->
@@ -95,8 +100,8 @@ Para más información acerca de los parámetros que se le puede pasar a la inst
 Una vez realizado esto podemos comenzar a usar el SDK con los Web Services disponibles
 
 
-<!-- USE -->
-## Uso
+<!-- WEB SERVICES -->
+## Web Services
 
 Si necesitas más información de cómo utilizar algún web service echa un vistazo a la [documentación completa de afip.php](https://github.com/afipsdk/afip.php/wiki)
 
