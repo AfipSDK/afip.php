@@ -79,7 +79,8 @@ class Afip {
 		'ElectronicBilling',
 		'RegisterScopeFour',
 		'RegisterScopeFive',
-		'RegisterScopeTen'
+		'RegisterScopeTen',
+		'RegisterScopeThirteen'
 	);
 
 	function __construct($options)

@@ -16,6 +16,9 @@ Quienes usaban el padrón A4 pueden utilizar este padrón en modo de remplazo, s
 ### Cómo usar el web service de padrón alcance 10 (A10)
 Si tenes que utilizar este web service también está disponible dentro de la librería, su documentación se encuentra en [consulta al padrón de AFIP alcance 10](https://github.com/afipsdk/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-10)
 
+### Cómo usar el web service de padrón alcance 13 (A13)
+Si debes consultar por el CUIT de una persona física tendrás que utilizar este web service, su documentación se encuentra disponible en la wiki de [consulta al padrón de AFIP alcance 13](https://github.com/AfipSDK/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-13)
+
 ### ¿Necesitas migrar de versión de la librería?
 Pueden encontrar el tutorial correspondiente aquí 👇
 - [Migrar de v0.1 a v0.5](https://github.com/afipsdk/afip.php/wiki/Migrar-de-v0.1-a-v0.5)
