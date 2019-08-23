@@ -69,7 +69,7 @@ composer require afipsdk/afip.php
 ```
 
 #### Via Manual
-1. Clonarlo con `git clone` o descargar el repositorio desde [aqui](https://github.com/afipsdk/afip.php/archive/0.5.3.zip "Descargar repositorio").
+1. Clonarlo con `git clone` o descargar el repositorio desde [aqui](https://github.com/AfipSDK/afip.php/archive/v0.6.0.zip "Descargar repositorio").
 2. Copiar el contenido de la carpeta *res* a tu aplicación.
 
 **Importante** 
