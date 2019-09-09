@@ -69,7 +69,7 @@ composer require afipsdk/afip.php
 ```
 
 #### Via Manual
-1. Clonarlo con `git clone` o descargar el repositorio desde [aqui](https://github.com/afipsdk/afip.php/archive/0.5.3.zip "Descargar repositorio").
+1. Clonarlo con `git clone` o descargar el repositorio desde [aqui](https://github.com/AfipSDK/afip.php/archive/v0.6.0.zip "Descargar repositorio").
 2. Copiar el contenido de la carpeta *res* a tu aplicación.
 
 **Importante** 
@@ -138,7 +138,7 @@ Si necesitas utilizar los web services de Afip en _Symfony_ podes utilizar este 
 <!-- AFIP SDK PRO -->
 ### Afip SDK PRO 🚀
 
-¿Necesitas ayuda? Afip SDK PRO incluye soporte personalizado por 3 meses (o más) donde te ayudaremos integrar los web services de Afip con tu aplicación, y una amplia documentación con ejemplos, tutoriales, implementación en Frameworks y mucho más. 
+¿Necesitas ayuda? Obtén Afip SDK PRO que incluye soporte personalizado por 3 meses (o más) donde te ayudaremos integrar los web services de Afip con tu aplicación, y una amplia documentación con ejemplos, tutoriales, implementación en Frameworks y mucho más. 
 
 
 **[Saber más](https://afipsdk.github.io/pro.html)**
