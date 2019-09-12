@@ -264,7 +264,7 @@ class Afip {
  * @since 0.1
  *
  * @package Afip
- * @author 	Ivan Muñoz
+ * @author 	Afip SDK afipsdk@gmail.com
  **/
 class TokenAutorization {
 	/**
@@ -294,7 +294,7 @@ class TokenAutorization {
  * @since 0.5
  *
  * @package Afip
- * @author 	Ivan Muñoz
+ * @author 	Afip SDK afipsdk@gmail.com
 **/
 class AfipWebService
 {
