@@ -132,6 +132,9 @@ Pueden encontrar el tutorial correspondiente aquí 👇
 <!-- RELATED PROJECTS-->
 ### Proyectos relacionados
 
+#### Libreria para Javascript
+Si necesitas acceder los web services de AFIP en **Javascript** podes utilizar [Afip.js](https://github.com/afipsdk/afip.js)
+
 #### Bundle para Symfony
 Si necesitas utilizar los web services de Afip en _Symfony_ podes utilizar este [bundle](https://github.com/gonzakpo/afip)
 
