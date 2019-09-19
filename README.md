@@ -45,7 +45,6 @@
 * [Migración](#migraci%C3%B3n)
 * [Proyectos relacionados](#proyectos-relacionados)
 * [Afip SDK PRO 🚀](#afip-sdk-pro-)
-* [Contribuir](#contribuir)
 * [Licencia](#licencia)
 * [Contacto](#contacto)
 
@@ -145,17 +144,6 @@ Si necesitas utilizar los web services de Afip en _Symfony_ podes utilizar este 
 
 
 **[Saber más](https://afipsdk.github.io/pro.html)**
-
-
-<!-- CONTRIBUTION -->
-### Contribuir
-Las contribuciones son las que hacen que la comunidad de código abierto sea un lugar increíble para aprender, inspirar y crear. Cualquier contribución que hagas es **muy apreciada**.
-
-1. Haz un Fork
-2. Crea el Branch de tu Feature (`git checkout -b feature/AmazingFeature`)
-3. Agrega tus cambios (`git commit -m 'Add some AmazingFeature`)
-4. Haz un Push al Branch (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
 
 
 <!-- LICENCE -->
