@@ -86,6 +86,11 @@ Si lo instalaste manualmente lo primero es incluir el SDK en tu aplicación
 include 'Afip.php';
 ````
 
+En **Laravel** debe agregar en "alias" del archivo config/app.php
+````php
+'Afip' => Afipsdk\Afip\Facade::class,
+````
+
 Luego creamos una instancia de la clase Afip pasandole un Array como parámetro.
 ````php
 $afip = new Afip(array('CUIT' => 20111111112));
