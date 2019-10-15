@@ -44,7 +44,7 @@
   * [Padrón alcance 13](#padr%C3%B3n-alcance-13)
 * [Migración](#migraci%C3%B3n)
 * [Proyectos relacionados](#proyectos-relacionados)
-* [Afip SDK PRO 🚀](#afip-sdk-pro-)
+* [¿Necesitas ayuda? 🚀](#necesitas-ayuda-)
 * [Licencia](#licencia)
 * [Contacto](#contacto)
 
@@ -138,7 +138,7 @@ Si necesitas acceder los web services de AFIP en **Javascript** podes utilizar [
 Si necesitas utilizar los web services de Afip en _Symfony_ podes utilizar este [bundle](https://github.com/gonzakpo/afip)
 
 <!-- AFIP SDK PRO -->
-### Afip SDK PRO 🚀
+### ¿Necesitas ayuda? 🚀
 
 ¿Necesitas ayuda? Obtén Afip SDK PRO que incluye soporte personalizado por 3 meses (o más) donde te ayudaremos integrar los web services de Afip con tu aplicación, y una amplia documentación con ejemplos, tutoriales, implementación en Frameworks y mucho más. 
 
