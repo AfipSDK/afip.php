@@ -83,7 +83,7 @@ Si no pueden seguir la complicada documentación de AFIP para obtener el certifi
 
 Si lo instalaste manualmente lo primero es incluir el SDK en tu aplicación
 ````php
-include 'Afip.php';
+include 'ruta/a/la/libreria/src/Afip.php';
 ````
 
 Luego creamos una instancia de la clase Afip pasandole un Array como parámetro.
