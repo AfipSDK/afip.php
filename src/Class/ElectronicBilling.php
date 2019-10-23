@@ -112,12 +112,17 @@ class ElectronicBilling extends AfipWebService {
 	 *
 	 * @param array $data Same to $data in Afip::CreateVoucher except that
 	 * 	don't need CbteDesde and CbteHasta attributes
+	 * 
+	 * @param bool $return_response if is TRUE returns complete response  
+	 * 	from AFIP
 	 *
-	 * @return array [CAE => CAE assigned to voucher, CAEFchVto => Expiration 
+	 * @return array if $return_response is set to false returns 
+	 * [CAE => CAE assigned to voucher, CAEFchVto => Expiration 
 	 * 	date for CAE (yyyy-mm-dd), voucher_number => Number assigned to 
-	 * 	voucher]
+	 * 	voucher] else returns the complete response (same as in method CreateVoucher)
+	 *  and the voucher_number
 	**/
-	public function CreateNextVoucher($data)
+	public function CreateNextVoucher($data, $return_response = FALSE)
 	{
 		$last_voucher = $this->GetLastVoucher($data['PtoVta'], $data['CbteTipo']);
 		
@@ -126,7 +131,7 @@ class ElectronicBilling extends AfipWebService {
 		$data['CbteDesde'] = $voucher_number;
 		$data['CbteHasta'] = $voucher_number;
 
-		$res 					= $this->CreateVoucher($data);
+		$res 					= $this->CreateVoucher($data, $return_response);
 		$res['voucher_number'] 	= $voucher_number;
 
 		return $res;
