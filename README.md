@@ -61,6 +61,14 @@ Esta librería fue creada con la intención de ayudar a los programadores a usar
 
 ### Instalación
 
+* [Integración en CodeIgniter](https://github.com/AfipSDK/afip.php/wiki/Integraci%C3%B3n-en-CodeIgniter)
+* [Integración en Laravel](https://github.com/AfipSDK/afip.php/wiki/Integraci%C3%B3n-en-Laravel)
+* [Integración en CakePHP](https://github.com/AfipSDK/afip.php/wiki/Integraci%C3%B3n-en-CakePHP)
+* [Integración en Symfony](https://github.com/AfipSDK/afip.php/wiki/Integraci%C3%B3n-en-Symfony)
+* [Integración en Yii](https://github.com/AfipSDK/afip.php/wiki/Integraci%C3%B3n-en-Yii)
+* [Integración en Magento](https://github.com/AfipSDK/afip.php/wiki/Integraci%C3%B3n-en-Magento)
+* [Integración en WordPress](https://github.com/AfipSDK/afip.php/wiki/Integraci%C3%B3n-en-WordPress)
+
 #### Via Composer
 
 ```
@@ -77,7 +85,7 @@ composer require afipsdk/afip.php
 
 Ir a http://www.afip.gob.ar/ws/documentacion/certificados.asp para obtener mas información de como generar la clave y certificado.
 
-Si no pueden seguir la complicada documentación de AFIP para obtener el certificado pueden obtener [Afip SDK PRO](#afip-sdk-pro-) donde se explica cómo obtener los certificados fácilmente.
+Si no pueden seguir la complicada documentación de AFIP para obtener el certificado pueden obtener [Afip SDK PRO](#necesitas-ayuda-) donde se explica cómo obtener los certificados fácilmente.
 
 ### Como usarlo
 
