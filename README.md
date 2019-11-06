@@ -115,7 +115,7 @@ Si necesitas más información de cómo utilizar algún web service echa un vist
 ### Factura electrónica
 Podes encontrar la documentación necesaria para utilizar la [facturación electrónica](https://github.com/afipsdk/afip.php/wiki/Facturaci%C3%B3n-Electr%C3%B3nica) 👈 aquí
 
-> ¿Necesitas crear los PDF de tus facturas con solo unas líneas de código y obtener un enlace para descargarla o enviar a tus clientes para que ellos la descarguen? Hazlo con [Bill Cloud](https://mailchi.mp/8db44788615d/bill-cloud)
+> ¿Necesitas crear los PDF de tus facturas con solo unas líneas de código y obtener un enlace para descargarla o enviar a tus clientes para que ellos la descarguen? Hazlo con [Bill Cloud](https://afipsdk.github.io/bill-cloud.html)
 
 ### Padrón alcance 4
 El Servicio Web de Consulta de Padrón denominado A4 ha quedado limitado para Organismos Públicos, si lo necesitas puedes leer la documentación de [consulta al padrón de AFIP alcance 4](https://github.com/afipsdk/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-4)
