@@ -44,7 +44,7 @@
   * [Padrón alcance 13](#padr%C3%B3n-alcance-13)
 * [Migración](#migraci%C3%B3n)
 * [Proyectos relacionados](#proyectos-relacionados)
-* [¿Necesitas ayuda? 🚀](#necesitas-ayuda-)
+* [¿Necesitas ayuda? 😵](#necesitas-ayuda-)
 * [Licencia](#licencia)
 * [Contacto](#contacto)
 
@@ -60,14 +60,6 @@ Esta librería fue creada con la intención de ayudar a los programadores a usar
 ## Guía de inicio
 
 ### Instalación
-
-* [Integración en CodeIgniter](https://github.com/AfipSDK/afip.php/wiki/Integraci%C3%B3n-en-CodeIgniter)
-* [Integración en Laravel](https://github.com/AfipSDK/afip.php/wiki/Integraci%C3%B3n-en-Laravel)
-* [Integración en CakePHP](https://github.com/AfipSDK/afip.php/wiki/Integraci%C3%B3n-en-CakePHP)
-* [Integración en Symfony](https://github.com/AfipSDK/afip.php/wiki/Integraci%C3%B3n-en-Symfony)
-* [Integración en Yii](https://github.com/AfipSDK/afip.php/wiki/Integraci%C3%B3n-en-Yii)
-* [Integración en Magento](https://github.com/AfipSDK/afip.php/wiki/Integraci%C3%B3n-en-Magento)
-* [Integración en WordPress](https://github.com/AfipSDK/afip.php/wiki/Integraci%C3%B3n-en-WordPress)
 
 #### Via Composer
 
@@ -148,7 +140,7 @@ Si necesitas acceder los web services de AFIP en **Javascript** podes utilizar [
 Si necesitas utilizar los web services de Afip en _Symfony_ podes utilizar este [bundle](https://github.com/gonzakpo/afip)
 
 <!-- AFIP SDK PRO -->
-### ¿Necesitas ayuda? 🚀
+### ¿Necesitas ayuda? 😵
 
 Obtén Afip SDK PRO que incluye soporte personalizado por 3 meses (o más) donde te ayudaremos integrar los web services de Afip con tu aplicación, y una amplia documentación con ejemplos, tutoriales, implementación en Frameworks y plataformas, y mucho más. 
 
