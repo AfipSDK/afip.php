@@ -53,7 +53,7 @@
 <!-- ABOUT THE PROJECT -->
 ## Acerca del proyecto
 
-Esta librería fue creada con la intención de ayudar a los programadores a usar los Web Services de AFIP sin romperse la cabeza ni perder tiempo tratando de entender la complicada documentación que AFIP provee. Ademas forma parte de [Afip SDK](https://afipsdk.github.io/).
+Esta librería fue creada con la intención de ayudar a los programadores a usar los Web Services de AFIP sin romperse la cabeza ni perder tiempo tratando de entender la complicada documentación que AFIP provee. Ademas forma parte de [Afip SDK](https://afipsdk.com/).
 
 
 <!-- START GUIDE -->
@@ -107,7 +107,7 @@ Si necesitas más información de cómo utilizar algún web service echa un vist
 ### Factura electrónica
 Podes encontrar la documentación necesaria para utilizar la [facturación electrónica](https://github.com/afipsdk/afip.php/wiki/Facturaci%C3%B3n-Electr%C3%B3nica) 👈 aquí
 
-> ¿Necesitas crear los PDF de tus facturas con solo unas líneas de código y obtener un enlace para descargarla o enviar a tus clientes para que ellos la descarguen? Hazlo con [Bill Cloud](https://afipsdk.github.io/bill-cloud.html)
+> ¿Necesitas crear los PDF de tus facturas con solo unas líneas de código y obtener un enlace para descargarla o enviar a tus clientes para que ellos la descarguen? Hazlo con [Bill Cloud](https://afipsdk.com/bill-cloud.html)
 
 ### Padrón alcance 4
 El Servicio Web de Consulta de Padrón denominado A4 ha quedado limitado para Organismos Públicos, si lo necesitas puedes leer la documentación de [consulta al padrón de AFIP alcance 4](https://github.com/afipsdk/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-4)
@@ -145,7 +145,7 @@ Si necesitas utilizar los web services de Afip en _Symfony_ podes utilizar este 
 ¿Necesitas ayuda? Obtén Afip SDK PRO que incluye soporte y ayuda personalizada por 6 meses donde te ayudaremos integrar los web services de Afip con tu aplicación, y una amplia documentación con ejemplos, tutoriales, implementación en Frameworks y plataformas, y mucho más. 
 
 
-**[Saber más](https://afipsdk.github.io/pro.html)**
+**[Saber más](https://afipsdk.com/pro.html)**
 
 
 <!-- LICENCE -->
