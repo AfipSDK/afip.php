@@ -52,6 +52,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## Acerca del proyecto
+Afip SDK es la forma más rápida y simple de conectarse con los Web Services de AFIP.
 
 Esta librería fue creada con la intención de ayudar a los programadores a usar los Web Services de AFIP sin romperse la cabeza ni perder tiempo tratando de entender la complicada documentación que AFIP provee. Ademas forma parte de [Afip SDK](https://afipsdk.com/).
 
