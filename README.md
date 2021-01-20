@@ -141,7 +141,7 @@ Si necesitas utilizar los web services de Afip en _Symfony_ podes utilizar este 
 <!-- AFIP SDK PRO -->
 ### ¿Necesitas ayuda? 🚀
 
-¿Quieres implementarlo de forma rápida y fiable? Obtén Afip SDK PRO que incluye soporte y ayuda personalizada por 6 meses donde te ayudaremos integrar los web services de Afip con tu aplicación, y una amplia documentación con ejemplos, tutoriales, implementación en Frameworks y plataformas, y mucho más.
+¿Quieres implementarlo de forma rápida y fiable? Obtén Afip SDK PRO que incluye soporte y ayuda personalizada donde te ayudaremos integrar los web services de Afip con tu aplicación, y una amplia documentación con ejemplos, tutoriales, implementación en Frameworks y plataformas, y mucho más.
 
 
 **[Saber más](https://afipsdk.com/pro.html)**
