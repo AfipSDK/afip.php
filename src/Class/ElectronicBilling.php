@@ -170,6 +170,17 @@ class ElectronicBilling extends AfipWebService {
 	}
 
 	/**
+	 * Asks to AFIP Servers for sales points availables {@see WS 
+	 * Specification item 4.11}
+	 *
+	 * @return array All sales points availables
+	**/
+	public function GetSalesPoints()
+	{
+		return $this->ExecuteRequest('FEParamGetPtosVenta')->ResultGet->PtoVenta;
+	}
+
+	/**
 	 * Asks to AFIP Servers for voucher types availables {@see WS 
 	 * Specification item 4.4}
 	 *
