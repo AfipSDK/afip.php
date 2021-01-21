@@ -44,8 +44,7 @@
   * [Padrón alcance 13](#padr%C3%B3n-alcance-13)
 * [Migración](#migraci%C3%B3n)
 * [Proyectos relacionados](#proyectos-relacionados)
-* [Afip SDK PRO 🚀](#afip-sdk-pro-)
-* [Contribuir](#contribuir)
+* [¿Necesitas ayuda? 🚀](#necesitas-ayuda-)
 * [Licencia](#licencia)
 * [Contacto](#contacto)
 
@@ -53,8 +52,9 @@
 
 <!-- ABOUT THE PROJECT -->
 ## Acerca del proyecto
+Afip SDK es la forma más rápida y simple de conectarse con los Web Services de AFIP.
 
-Esta librería fue creada con la intención de ayudar a los programadores a usar los Web Services de AFIP sin romperse la cabeza ni perder tiempo tratando de entender la complicada documentación que AFIP provee. Ademas forma parte de [Afip SDK](https://afipsdk.github.io/).
+Esta librería fue creada con la intención de ayudar a los programadores a usar los Web Services de AFIP sin romperse la cabeza ni perder tiempo tratando de entender la complicada documentación que AFIP provee. Ademas forma parte de [Afip SDK](https://afipsdk.com/).
 
 
 <!-- START GUIDE -->
@@ -78,13 +78,13 @@ composer require afipsdk/afip.php
 
 Ir a http://www.afip.gob.ar/ws/documentacion/certificados.asp para obtener mas información de como generar la clave y certificado.
 
-Si no pueden seguir la complicada documentación de AFIP para obtener el certificado pueden obtener [Afip SDK PRO](#afip-sdk-pro-) donde se explica cómo obtener los certificados fácilmente.
+Si no pueden seguir la complicada documentación de AFIP para obtener el certificado pueden obtener [Afip SDK PRO](#necesitas-ayuda-) donde se explica cómo obtener los certificados fácilmente.
 
 ### Como usarlo
 
 Si lo instalaste manualmente lo primero es incluir el SDK en tu aplicación
 ````php
-include 'Afip.php';
+include 'ruta/a/la/libreria/src/Afip.php';
 ````
 
 Luego creamos una instancia de la clase Afip pasandole un Array como parámetro.
@@ -103,7 +103,7 @@ Una vez realizado esto podemos comenzar a usar el SDK con los Web Services dispo
 
 Si necesitas más información de cómo utilizar algún web service echa un vistazo a la [documentación completa de afip.php](https://github.com/afipsdk/afip.php/wiki)
 
-**Además si necesitas usar otro web service que aún no está disponible aquí podes utilizar esta librería como base para que se te haga más fácil, pronto haremos un tutorial explicando paso a paso como hacerlo, pero por el momento te recomendamos comenzar haciendo una copia y modificando el código de [consulta al padrón alcance 5](https://github.com/afipsdk/afip.php/blob/master/src/Afip_res/Class/RegisterScopeFive.php)**
+**Además si necesitas usar otro web service que aún no está disponible aquí podes utilizar esta librería como base para que se te haga más fácil, pronto haremos un tutorial explicando paso a paso como hacerlo, pero por el momento te recomendamos comenzar haciendo una copia y modificando el código de [consulta al padrón alcance 5](https://github.com/afipsdk/afip.php/blob/master/src/Class/RegisterScopeFive.php)**
 
 ### Factura electrónica
 Podes encontrar la documentación necesaria para utilizar la [facturación electrónica](https://github.com/afipsdk/afip.php/wiki/Facturaci%C3%B3n-Electr%C3%B3nica) 👈 aquí
@@ -132,27 +132,19 @@ Pueden encontrar el tutorial correspondiente aquí 👇
 <!-- RELATED PROJECTS-->
 ### Proyectos relacionados
 
+#### Libreria para Javascript
+Si necesitas acceder los web services de AFIP en **Javascript** podes utilizar [Afip.js](https://github.com/afipsdk/afip.js)
+
 #### Bundle para Symfony
 Si necesitas utilizar los web services de Afip en _Symfony_ podes utilizar este [bundle](https://github.com/gonzakpo/afip)
 
 <!-- AFIP SDK PRO -->
-### Afip SDK PRO 🚀
+### ¿Necesitas ayuda? 🚀
 
-¿Necesitas ayuda? Obtén Afip SDK PRO que incluye soporte personalizado por 3 meses (o más) donde te ayudaremos integrar los web services de Afip con tu aplicación, y una amplia documentación con ejemplos, tutoriales, implementación en Frameworks y mucho más. 
-
-
-**[Saber más](https://afipsdk.github.io/pro.html)**
+¿Quieres implementarlo de forma rápida y fiable? Obtén Afip SDK PRO que incluye soporte y ayuda personalizada donde te ayudaremos integrar los web services de Afip con tu aplicación, y una amplia documentación con ejemplos, tutoriales, implementación en Frameworks y plataformas, y mucho más.
 
 
-<!-- CONTRIBUTION -->
-### Contribuir
-Las contribuciones son las que hacen que la comunidad de código abierto sea un lugar increíble para aprender, inspirar y crear. Cualquier contribución que hagas es **muy apreciada**.
-
-1. Haz un Fork
-2. Crea el Branch de tu Feature (`git checkout -b feature/AmazingFeature`)
-3. Agrega tus cambios (`git commit -m 'Add some AmazingFeature`)
-4. Haz un Push al Branch (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+**[Saber más](https://afipsdk.com/pro.html)**
 
 
 <!-- LICENCE -->
