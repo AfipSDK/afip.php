@@ -56,13 +56,34 @@ class RegisterScopeFive extends AfipWebService {
 		);
 
 		try {
-			return $this->ExecuteRequest('getPersona', $params);
+			return $this->ExecuteRequest('getPersona_v2', $params);
 		} catch (Exception $e) {
 			if (strpos($e->getMessage(), 'No existe') !== FALSE)
 				return NULL;
 			else
 				throw $e;
 		}
+	}
+
+	/**
+	 * Asks to web service for taxpayers details 
+	 *
+	 * @throws Exception if exists an error in response 
+	 *
+	 * @return [object] returns web service full response
+	**/
+	public function GetTaxpayersDetails($identifiers)
+	{
+		$ta = $this->afip->GetServiceTA('ws_sr_padron_a5');
+		
+		$params = array(
+			'token' 			=> $ta->token,
+			'sign' 				=> $ta->sign,
+			'cuitRepresentada' 	=> $this->afip->CUIT,
+			'idPersona' 		=> $identifiers
+		);
+
+		return $this->ExecuteRequest('getPersonaList_v2', $params)->persona;
 	}
 
 	/**
@@ -79,7 +100,10 @@ class RegisterScopeFive extends AfipWebService {
 	{
 		$results = parent::ExecuteRequest($operation, $params);
 
-		return $results->{$operation == 'getPersona' ? 'personaReturn' : 'return'};
+		return $results->{
+			$operation === 'getPersona_v2' ? 'personaReturn' :
+				($operation === 'getPersonaList_v2' ? 'personaListReturn': 'return')
+			};
 	}
 }
 
