@@ -66,6 +66,35 @@ class RegisterScopeThirteen extends AfipWebService {
 	}
 
 	/**
+	 * Asks to web service for tax id by document number
+	 *
+	 * @throws Exception if exists an error in response 
+	 *
+	 * @return object|null if taxpayer does not exists, return null,  
+	 * if it exists, returns idPersona property of response
+	**/
+	public function GetTaxIDByDocument($documentNumber)
+	{
+		$ta = $this->afip->GetServiceTA('ws_sr_padron_a13');
+		
+		$params = array(
+			'token' 			=> $ta->token,
+			'sign' 				=> $ta->sign,
+			'cuitRepresentada' 	=> $this->afip->CUIT,
+			'documento' 		=> $documentNumber
+		);
+
+		try {
+			return $this->ExecuteRequest('getIdPersonaListByDocumento', $params)->idPersona;
+		} catch (Exception $e) {
+			if (strpos($e->getMessage(), 'No existe') !== FALSE)
+				return NULL;
+			else
+				throw $e;
+		}
+	}
+
+	/**
 	 * Sends request to AFIP servers
 	 * 
 	 * @since 1.0
@@ -79,7 +108,9 @@ class RegisterScopeThirteen extends AfipWebService {
 	{
 		$results = parent::ExecuteRequest($operation, $params);
 
-		return $results->{$operation == 'getPersona' ? 'personaReturn' : 'return'};
+		return $results->{$operation == 'getPersona' ? 'personaReturn' :
+				($operation == 'getIdPersonaListByDocumento' ? 'idPersonaListReturn': 'return')
+			};
 	}
 }
 
