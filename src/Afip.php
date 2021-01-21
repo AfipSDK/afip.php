@@ -79,6 +79,7 @@ class Afip {
 		'ElectronicBilling',
 		'RegisterScopeFour',
 		'RegisterScopeFive',
+		'RegisterInscriptionProof',
 		'RegisterScopeTen',
 		'RegisterScopeThirteen'
 	);
@@ -224,7 +225,8 @@ class Afip {
 		'soap_version'   => SOAP_1_2,
 		'location'       => $this->WSAA_URL,
 		'trace'          => 1,
-		'exceptions'     => 0
+		'exceptions'     => 0,
+				'stream_context' => stream_context_create(['ssl'=> ['verify_peer'=> false,'verify_peer_name'=> false]])
 		)); 
 		$results=$client->loginCms(array('in0'=>$CMS));
 		if (is_soap_fault($results)) 
@@ -373,7 +375,8 @@ class AfipWebService
 				'soap_version' 	=> $this->soap_version,
 				'location' 		=> $this->URL,
 				'trace' 		=> 1,
-				'exceptions' 	=> 0
+				'exceptions' 	=> 0,
+				'stream_context' => stream_context_create(['ssl'=> ['verify_peer'=> false,'verify_peer_name'=> false]])
 			)); 
 		}
 
