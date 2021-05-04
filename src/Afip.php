@@ -226,7 +226,7 @@ class Afip {
 		'location'       => $this->WSAA_URL,
 		'trace'          => 1,
 		'exceptions'     => 0,
-				'stream_context' => stream_context_create(['ciphers'=> 'AES256-SHA','ssl'=> ['verify_peer'=> false,'verify_peer_name'=> false]])
+				'stream_context' => stream_context_create(['ssl'=> ['ciphers'=> 'AES256-SHA','verify_peer'=> false,'verify_peer_name'=> false]])
 		)); 
 		$results=$client->loginCms(array('in0'=>$CMS));
 		if (is_soap_fault($results)) 
