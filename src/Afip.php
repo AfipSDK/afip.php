@@ -379,7 +379,7 @@ class AfipWebService
 				'soap_version'   => $this->soap_version,
 				'location'       => $this->URL,
 				'trace'          => 1,
-				'exceptions'     => $this->options['exceptions'],
+				'exceptions'     => $this->afip->options['exceptions'],
 				'stream_context' => stream_context_create(['ssl'=> ['ciphers'=> 'AES256-SHA','verify_peer'=> false,'verify_peer_name'=> false]])
 			));
 		}
