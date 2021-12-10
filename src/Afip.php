@@ -10,7 +10,7 @@
  *
  * @author 	Afip SDK afipsdk@gmail.com
  * @package Afip
- * @version 0.5
+ * @version 0.6
  **/
 
 class Afip {
@@ -154,7 +154,7 @@ class Afip {
 	 *
 	 * @throws Exception if an error occurs
 	 *
-	 * @return TokenAutorization Token Autorization for AFIP Web Service 
+	 * @return TokenAuthorization Token Authorization for AFIP Web Service 
 	**/
 	public function GetServiceTA($service, $continue = TRUE)
 	{
@@ -165,7 +165,7 @@ class Afip {
 			$expiration_time 	= new DateTime($TA->header->expirationTime);
 
 			if ($actual_time < $expiration_time) 
-				return new TokenAutorization($TA->credentials->token, $TA->credentials->sign);
+				return new TokenAuthorization($TA->credentials->token, $TA->credentials->sign);
 			else if ($continue === FALSE)
 				throw new Exception("Error Getting TA", 5);
 		}
@@ -240,6 +240,26 @@ class Afip {
 			throw new Exception('Error writing "TA-'.$this->options['CUIT'].'-'.$service.'.xml"', 5);
 	}
 
+	/**
+	 * Create generic Web Service
+	 * 
+	 * @since 0.6
+	 * 
+	 * @param string $service Web Service name
+	 * @param array $options Web Service options
+	 *
+	 * @throws Exception if an error occurs
+	 *
+	 * @return AfipWebService Token Authorization for AFIP Web Service 
+	 **/
+	public function WebService($service, $options)
+	{
+		$options['service'] = $service;
+		$options['generic'] = TRUE;
+
+		return new AfipWebService($this, $options);
+	}
+
 	public function __get($property)
 	{
 		if (in_array($property, $this->implemented_ws)) {
@@ -261,14 +281,14 @@ class Afip {
 }
 
 /**
- * Token Autorization
+ * Token Authorization
  *
  * @since 0.1
  *
  * @package Afip
  * @author 	Afip SDK afipsdk@gmail.com
  **/
-class TokenAutorization {
+class TokenAuthorization {
 	/**
 	 * Authorization and authentication web service Token
 	 *
@@ -293,7 +313,7 @@ class TokenAutorization {
 /**
  * Base class for AFIP web services 
  *
- * @since 0.5
+ * @since 0.6
  *
  * @package Afip
  * @author 	Afip SDK afipsdk@gmail.com
@@ -343,15 +363,60 @@ class AfipWebService
 	 **/
 	var $afip;
 	
-	function __construct($afip)
+	/**
+	 * Class options
+	 *
+	 * @var object
+	 **/
+	var $options;
+	
+	function __construct($afip, $options = array())
 	{
 		$this->afip = $afip;
+		$this->options = $options;
 
-		if ($this->afip->options['production'] === TRUE) {
-			$this->WSDL = __DIR__.'/Afip_res/'.$this->WSDL;
-		} else {
-			$this->WSDL = __DIR__.'/Afip_res/'.$this->WSDL_TEST;
-			$this->URL 	= $this->URL_TEST;
+		if (isset($options['generic']) && $options['generic'] === TRUE) {
+			if (!isset($options['WSDL'])) {
+				throw new Exception("WSDL field is required in options");
+			}
+
+			if (!isset($options['URL'])) {
+				throw new Exception("URL field is required in options");
+			}
+
+			if (!isset($options['WSDL_TEST'])) {
+				throw new Exception("WSDL_TEST field is required in options");
+			}
+
+			if (!isset($options['URL_TEST'])) {
+				throw new Exception("URL_TEST field is required in options");
+			}
+
+			if (!isset($options['service'])) {
+				throw new Exception("service field is required in options");
+			}
+
+			if ($this->afip->options['production'] === TRUE) {
+				$this->WSDL = $options['WSDL'];
+				$this->URL 	= $options['URL'];
+			} else {
+				$this->WSDL = $options['WSDL_TEST'];
+				$this->URL 	= $options['URL_TEST'];
+			}
+
+			if (!isset($options['soap_version'])) {
+				$options['soap_version'] = SOAP_1_2;
+			}
+
+			$this->soap_version = $options['soap_version'];
+		}
+		else {
+			if ($this->afip->options['production'] === TRUE) {
+				$this->WSDL = __DIR__.'/Afip_res/'.$this->WSDL;
+			} else {
+				$this->WSDL = __DIR__.'/Afip_res/'.$this->WSDL_TEST;
+				$this->URL 	= $this->URL_TEST;
+			}
 		}
 
 		if (!file_exists($this->WSDL)) 
@@ -359,9 +424,23 @@ class AfipWebService
 	}
 
 	/**
+	 * Get Web Service Token Authorization from WSAA
+	 * 
+	 * @since 0.6
+	 *
+	 * @throws Exception if an error occurs
+	 *
+	 * @return TokenAuthorization Token Authorization for AFIP Web Service 
+	 **/
+	public function GetTokenAuthorization()
+	{
+		return $this->afip->GetServiceTA($this->options['service']);
+	}
+
+	/**
 	 * Sends request to AFIP servers
 	 * 
-	 * @since 1.0
+	 * @since 0.6
 	 *
 	 * @param string 	$operation 	SOAP operation to do 
 	 * @param array 	$params 	Parameters to send
@@ -390,7 +469,7 @@ class AfipWebService
 	/**
 	 * Check if occurs an error on Web Service request
 	 * 
-	 * @since 1.0
+	 * @since 0.6
 	 *
 	 * @param string 	$operation 	SOAP operation to check 
 	 * @param mixed 	$results 	AFIP response
