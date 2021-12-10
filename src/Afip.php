@@ -103,6 +103,10 @@ class Afip {
 			$options['passphrase'] = 'xxxxx';
 		}
 
+		if (!isset($options['exceptions'])) {
+			$options['exceptions'] = FALSE;
+		}
+
 		if (!isset($options['cert'])) {
 			$options['cert'] = 'cert';
 		}
@@ -222,11 +226,11 @@ class Afip {
 
 		//Request TA to WSAA
 		$client = new SoapClient($this->WSAA_WSDL, array(
-		'soap_version'   => SOAP_1_2,
-		'location'       => $this->WSAA_URL,
-		'trace'          => 1,
-		'exceptions'     => 0,
-				'stream_context' => stream_context_create(['ssl'=> ['ciphers'=> 'AES256-SHA','verify_peer'=> false,'verify_peer_name'=> false]])
+			'soap_version'   => SOAP_1_2,
+			'location'       => $this->WSAA_URL,
+			'trace'          => 1,
+			'exceptions'     => $this->options['exceptions'],
+			'stream_context' => stream_context_create(['ssl'=> ['ciphers'=> 'AES256-SHA','verify_peer'=> false,'verify_peer_name'=> false]])
 		)); 
 		$results=$client->loginCms(array('in0'=>$CMS));
 		if (is_soap_fault($results)) 
@@ -451,12 +455,12 @@ class AfipWebService
 	{
 		if (!isset($this->soap_client)) {
 			$this->soap_client = new SoapClient($this->WSDL, array(
-				'soap_version' 	=> $this->soap_version,
-				'location' 		=> $this->URL,
-				'trace' 		=> 1,
-				'exceptions' 	=> 0,
+				'soap_version'   => $this->soap_version,
+				'location'       => $this->URL,
+				'trace'          => 1,
+				'exceptions'     => $this->afip->options['exceptions'],
 				'stream_context' => stream_context_create(['ssl'=> ['ciphers'=> 'AES256-SHA','verify_peer'=> false,'verify_peer_name'=> false]])
-			)); 
+			));
 		}
 
 		$results = $this->soap_client->{$operation}($params);
