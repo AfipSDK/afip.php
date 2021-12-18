@@ -42,6 +42,7 @@
   * [Padrón alcance 5](#padr%C3%B3n-alcance-5)
   * [Padrón alcance 10](#padr%C3%B3n-alcance-10)
   * [Padrón alcance 13](#padr%C3%B3n-alcance-13)
+  * [Otro web service](#otro-web-service)
 * [Migración](#migraci%C3%B3n)
 * [Proyectos relacionados](#proyectos-relacionados)
 * [¿Necesitas ayuda? 🚀](#necesitas-ayuda-)
@@ -119,6 +120,12 @@ Si tenes que utilizar este web service también está disponible dentro de la li
 
 ### Padrón alcance 13
 Si debes consultar por el CUIT de una persona física tendrás que utilizar este web service, su documentación se encuentra disponible en la wiki de [consulta al padrón de AFIP alcance 13](https://github.com/AfipSDK/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-13)
+
+### Otro web service
+Si necesitas usar algún otro web service la versión PRO incluye un tutorial completo para integrar cualquier otro web service de AFIP
+
+
+**[Saber más](https://afipsdk.com/pro.html)**
 
 
 <!-- MIGRATION -->
