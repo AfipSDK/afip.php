@@ -132,7 +132,7 @@ class ElectronicBilling extends AfipWebService {
 		$data['CbteHasta'] = $voucher_number;
 
 		$res               = $this->CreateVoucher($data, $return_response);
-		$res['Cbte']       = $voucher_number;
+		$res['CbteNro']    = $voucher_number;
 
 		return $res;
 	}
