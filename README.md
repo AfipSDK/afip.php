@@ -42,7 +42,7 @@
   * [Padrón alcance 5](#padr%C3%B3n-alcance-5)
   * [Padrón alcance 10](#padr%C3%B3n-alcance-10)
   * [Padrón alcance 13](#padr%C3%B3n-alcance-13)
-  * [Otro web service](#otro-web-service)
+  * [🎉 Otro web service](#otro-web-service)
 * [Migración](#migraci%C3%B3n)
 * [Proyectos relacionados](#proyectos-relacionados)
 * [¿Necesitas ayuda? 🚀](#necesitas-ayuda-)
@@ -70,7 +70,7 @@ composer require afipsdk/afip.php
 ```
 
 #### Via Manual
-1. Clonarlo con `git clone` o descargar el repositorio desde [aqui](https://github.com/AfipSDK/afip.php/archive/v0.6.0.zip "Descargar repositorio").
+1. Clonarlo con `git clone` o descargar el repositorio desde [aqui](https://github.com/AfipSDK/afip.php/archive/refs/heads/master.zip "Descargar repositorio").
 2. Copiar el contenido de la carpeta *res* a tu aplicación.
 
 **Importante** 
@@ -103,8 +103,6 @@ Una vez realizado esto podemos comenzar a usar el SDK con los Web Services dispo
 ## Web Services
 
 Si necesitas más información de cómo utilizar algún web service echa un vistazo a la [documentación completa de afip.php](https://github.com/afipsdk/afip.php/wiki)
-
-**Además si necesitas usar otro web service que aún no está disponible aquí podes utilizar esta librería como base para que se te haga más fácil, pronto haremos un tutorial explicando paso a paso como hacerlo, pero por el momento te recomendamos comenzar haciendo una copia y modificando el código de [consulta al padrón alcance 5](https://github.com/afipsdk/afip.php/blob/master/src/Class/RegisterScopeFive.php)**
 
 ### Factura electrónica
 Podes encontrar la documentación necesaria para utilizar la [facturación electrónica](https://github.com/afipsdk/afip.php/wiki/Facturaci%C3%B3n-Electr%C3%B3nica) 👈 aquí
