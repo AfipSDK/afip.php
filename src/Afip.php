@@ -83,6 +83,13 @@ class Afip {
 		'RegisterScopeTen',
 		'RegisterScopeThirteen'
 	);
+	
+	/**
+	 * Route to save logs.
+	 *
+	 * @var string
+	 **/
+	var $log;
 
 	function __construct($options)
 	{
@@ -465,9 +472,36 @@ class AfipWebService
 
 		$results = $this->soap_client->{$operation}($params);
 
+		$this->_Log($operation, $results);
 		$this->_CheckErrors($operation, $results);
 
 		return $results;
+	}
+	
+	/**
+	 * If activated logs the request and response
+	 *
+	 * @since 0.7.5
+	 *
+	 * @param string 	$operation 	SOAP operation to check
+	 * @param mixed 	$results 	AFIP response
+	 *
+	 * @return void
+	 **/
+	private function _Log($operation, $results)
+	{
+        	$route = $this->afip->options['log'];
+        	if (!is_dir($route) or !is_writable($route)) {
+        		return;
+        	}
+        	$request = $this->soap_client->__getLastRequest();
+        	$response = $this->soap_client->__getLastResponse();
+		$micro = explode(" ", microtime())[0];
+        	$folder = "$route/$operation/" . date('Y-m-d--H-i-s-') . str_replace("0.", "", $micro);
+		mkdir($folder, 0777, true);
+
+        	file_put_contents("$folder/request.xml", $request);
+        	file_put_contents("$folder/response.xml", $response);
 	}
 
 	/**
