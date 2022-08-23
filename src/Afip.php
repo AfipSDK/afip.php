@@ -83,13 +83,6 @@ class Afip {
 		'RegisterScopeTen',
 		'RegisterScopeThirteen'
 	);
-	
-	/**
-	 * Route to save logs.
-	 *
-	 * @var string
-	 **/
-	var $log;
 
 	function __construct($options)
 	{
@@ -113,7 +106,7 @@ class Afip {
 		if (!isset($options['exceptions'])) {
 			$options['exceptions'] = FALSE;
 		}
-		
+
 		if (!isset($options['log'])) {
 			$options['log'] = '';
 		}
@@ -242,8 +235,11 @@ class Afip {
 			'trace'          => 1,
 			'exceptions'     => $this->options['exceptions'],
 			'stream_context' => stream_context_create(['ssl'=> ['ciphers'=> 'AES256-SHA','verify_peer'=> false,'verify_peer_name'=> false]])
-		)); 
+		));
 		$results=$client->loginCms(array('in0'=>$CMS));
+
+		$this->Log($client, 'loginCms');
+
 		if (is_soap_fault($results)) 
 			throw new Exception("SOAP Fault: ".$results->faultcode."\n".$results->faultstring."\n", 4);
 
@@ -292,6 +288,33 @@ class Afip {
 		} else {
 			return $this->{$property};
 		}
+	}
+
+	/**
+	 * If activated logs the request and response
+	 *
+	 * @since 0.7.5
+	 *
+	 * @param SoapClient	$soapClient	SOAP client
+	 * @param string 		$operation 	SOAP operation to log
+	 *
+	 * @return void
+	 **/
+	public function Log($soapClient, $operation)
+	{
+		/* @var $this->soap_cliente SoapClient */
+		$route = $this->options['log'];
+		if (!is_dir($route) or !is_writable($route)) {
+			return;
+		}
+		$request = $soapClient->__getLastRequest();
+		$response = $soapClient->__getLastResponse();
+		$micro = explode(" ", microtime())[0];
+		$folder = "$route/$operation/" . date('Y-m-d--H-i-s-') . str_replace("0.", "", $micro);
+		mkdir($folder, 0777, true);
+
+		file_put_contents("$folder/request.xml", $request);
+		file_put_contents("$folder/response.xml", $response);
 	}
 }
 
@@ -384,7 +407,7 @@ class AfipWebService
 	 * @var object
 	 **/
 	var $options;
-	
+
 	function __construct($afip, $options = array())
 	{
 		$this->afip = $afip;
@@ -476,36 +499,10 @@ class AfipWebService
 
 		$results = $this->soap_client->{$operation}($params);
 
-		$this->_Log($operation, $results);
+		$this->afip->Log($this->soap_client, $operation);
 		$this->_CheckErrors($operation, $results);
 
 		return $results;
-	}
-	
-	/**
-	 * If activated logs the request and response
-	 *
-	 * @since 0.7.5
-	 *
-	 * @param string 	$operation 	SOAP operation to check
-	 * @param mixed 	$results 	AFIP response
-	 *
-	 * @return void
-	 **/
-	private function _Log($operation, $results)
-	{
-        	$route = $this->afip->options['log'];
-        	if (!is_dir($route) or !is_writable($route)) {
-        		return;
-        	}
-        	$request = $this->soap_client->__getLastRequest();
-        	$response = $this->soap_client->__getLastResponse();
-		$micro = explode(" ", microtime())[0];
-        	$folder = "$route/$operation/" . date('Y-m-d--H-i-s-') . str_replace("0.", "", $micro);
-		mkdir($folder, 0777, true);
-
-        	file_put_contents("$folder/request.xml", $request);
-        	file_put_contents("$folder/response.xml", $response);
 	}
 
 	/**
