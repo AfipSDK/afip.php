@@ -113,6 +113,10 @@ class Afip {
 		if (!isset($options['exceptions'])) {
 			$options['exceptions'] = FALSE;
 		}
+		
+		if (!isset($options['log'])) {
+			$options['log'] = '';
+		}
 
 		if (!isset($options['cert'])) {
 			$options['cert'] = 'cert';
