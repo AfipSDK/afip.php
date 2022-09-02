@@ -385,5 +385,18 @@ class ElectronicBilling extends AfipWebService {
 		}
 	}
 
+    /**
+     * @param string $mon_id Código de identificación de la moneda en AFIP
+     * @return mixed
+     */
+    public function GetCotizacion($mon_id)
+    {
+        $req = array(
+            'MonId' => $mon_id
+        );
+
+        return $this->ExecuteRequest('FEParamGetCotizacion', $req);
+    }
+
 }
 
