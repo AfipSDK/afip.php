@@ -317,6 +317,8 @@ class ElectronicBilling extends AfipWebService {
 	 **/
 	public function ExecuteRequest($operation, $params = array())
 	{
+		$this->options = array('service' => 'wsfe');
+
 		$params = array_replace($this->GetWSInitialRequest($operation), $params); 
 
 		$results = parent::ExecuteRequest($operation, $params);

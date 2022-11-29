@@ -13,6 +13,8 @@
  * @version 0.6
  **/
 
+include_once __DIR__.'/libs/mixpanel/Mixpanel.php';
+
 class Afip {
 	/**
 	 * File name for the WSDL corresponding to WSAA
@@ -88,16 +90,26 @@ class Afip {
 	{
 		ini_set("soap.wsdl_cache_enabled", "0");
 
+		// Create the Mixpanel class instance
+		$this->mixpanel = Mixpanel::getInstance("e87ee11c8cc288e5c5dc213c4d957c7e");
+
+		$this->mixpanel->register('afip_sdk_library', 'php');
+
+		if (isset($_SERVER['REMOTE_ADDR'])) {
+			$this->mixpanel->register('ip', $_SERVER['REMOTE_ADDR']);
+		}
 
 		if (!isset($options['CUIT'])) {
 			throw new Exception("CUIT field is required in options array");
 		} else {
 			$this->CUIT = $options['CUIT'];
+			$this->mixpanel->register('distinct_id', $options['CUIT']);
 		}
 
 		if (!isset($options['production'])) {
 			$options['production'] = FALSE;
 		}
+		$this->mixpanel->register('production', $options['production']);
 
 		if (!isset($options['passphrase'])) {
 			$options['passphrase'] = 'xxxxx';
@@ -147,6 +159,10 @@ class Afip {
 			throw new Exception("Failed to open ".$this->PRIVATEKEY."\n", 2);
 		if (!file_exists($this->WSAA_WSDL)) 
 			throw new Exception("Failed to open ".$this->WSAA_WSDL."\n", 3);
+		
+		try {
+			$this->mixpanel->track("initialized", $options);
+		} catch (Exception $e) {}
 	}
 
 	/**
@@ -262,6 +278,28 @@ class Afip {
 		$options['generic'] = TRUE;
 
 		return new AfipWebService($this, $options);
+	}
+
+	/**
+	 * Track SDK usage
+	 * 
+	 * @param string 	$web_service 	ID of the web service used
+	 * @param string 	$operation 		SOAP operation called 
+	 * @param array 	$params 		Parameters for the ws
+	 **/
+	public function TrackUsage($web_service, $operation, $params = array())
+	{
+		$options = array();
+
+		if ($web_service === 'wsfe' && $operation === 'FECAESolicitar') {
+			if (isset($params['FeCAEReq']) && isset($params['FeCAEReq']['FeCabReq']) && isset($params['FeCAEReq']['FeCabReq']['CbteTipo'])) {
+				$options['CbteTipo'] = $params['FeCAEReq']['FeCabReq']['CbteTipo'];
+			}
+		}
+
+		try {
+			$this->mixpanel->track($web_service.'.'.$operation, $options);
+		} catch (Exception $e) {}
 	}
 
 	public function __get($property)
@@ -466,6 +504,8 @@ class AfipWebService
 		$results = $this->soap_client->{$operation}($params);
 
 		$this->_CheckErrors($operation, $results);
+		
+		$this->afip->TrackUsage($this->options['service'], $operation, $params);
 
 		return $results;
 	}

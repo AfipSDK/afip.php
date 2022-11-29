@@ -77,6 +77,8 @@ class RegisterScopeTen extends AfipWebService {
 	 **/
 	public function ExecuteRequest($operation, $params = array())
 	{
+		$this->options = array('service' => 'ws_sr_padron_a10');
+
 		$results = parent::ExecuteRequest($operation, $params);
 
 		return $results->{$operation == 'getPersona' ? 'personaReturn' : 'return'};
