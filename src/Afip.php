@@ -295,6 +295,12 @@ class Afip {
 			if (isset($params['FeCAEReq']) && isset($params['FeCAEReq']['FeCabReq']) && isset($params['FeCAEReq']['FeCabReq']['CbteTipo'])) {
 				$options['CbteTipo'] = $params['FeCAEReq']['FeCabReq']['CbteTipo'];
 			}
+
+
+
+			if (isset($params['FeCAEReq']) && isset($params['FeCAEReq']['FeDetReq']) && isset($params['FeCAEReq']['FeDetReq']['FECAEDetRequest']) && isset($params['FeCAEReq']['FeDetReq']['FECAEDetRequest']['ImpTotal'])) {
+				$options['ImpTotal'] = $params['FeCAEReq']['FeDetReq']['FECAEDetRequest']['ImpTotal'];
+			}
 		}
 
 		try {
