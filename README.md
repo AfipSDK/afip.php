@@ -42,12 +42,12 @@
   * [Padrón alcance 5](#padr%C3%B3n-alcance-5)
   * [Padrón alcance 10](#padr%C3%B3n-alcance-10)
   * [Padrón alcance 13](#padr%C3%B3n-alcance-13)
-* [Integrar otro web service](#otro-web-service)
+* [Integrar otro web service](https://afipsdk.com/pro/php/generic_web_service.html)
 * [Ejemplos de uso](https://afipsdk.com/pro/php/examples/index.html)
 * [Implementación en Frameworks y Plataformas](https://afipsdk.com/pro/php/frameworks/index.html)
 * [Tutoriales para la página AFIP](https://afipsdk.com/pro/php/tutorials/index.html)
-* [Solución a errores más frecuentes](https://afipsdk.com/pro/php/errors/index.html)
-* [Preguntas frecuentes](https://afipsdk.com/pro/php/faq/index.html)
+* [Solución a errores más frecuentes](https://afipsdk.com/pro/php/errors.html)
+* [Preguntas frecuentes](https://afipsdk.com/pro/php/faq.html)
 * [Migración](#migraci%C3%B3n)
 * [Proyectos relacionados](#proyectos-relacionados)
 * [¿Necesitas ayuda? 🚀](#necesitas-ayuda-)
@@ -123,12 +123,6 @@ Si tenes que utilizar este web service también está disponible dentro de la li
 ### Padrón alcance 13
 Si debes consultar por el CUIT de una persona física tendrás que utilizar este web service, su documentación se encuentra disponible en la wiki de [consulta al padrón de AFIP alcance 13](https://github.com/AfipSDK/afip.php/wiki/Consulta-al-padron-de-AFIP-alcance-13)
 
-### Otro web service
-Si necesitas usar algún otro web service la versión PRO incluye un tutorial completo para integrar cualquier otro web service de AFIP
-
-
-**[Saber más](https://afipsdk.com/pro.html)**
-
 
 <!-- MIGRATION -->
 ### Migración
@@ -153,7 +147,7 @@ Si necesitas utilizar los web services de Afip en _Symfony_ podes utilizar este 
 ¿Quieres implementarlo de forma rápida y fiable? Obtén Afip SDK PRO que incluye una amplia documentación con ejemplos, tutoriales, implementación en Frameworks y plataformas, y mucho más.
 
 
-**[Saber más](https://afipsdk.com/pro.html)**
+**[¡Ahora es gratis!](https://afipsdk.com/pro/js/index.html)**
 
 
 <!-- LICENCE -->
