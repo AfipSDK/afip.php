@@ -42,13 +42,17 @@
   * [Padrón alcance 5](#padr%C3%B3n-alcance-5)
   * [Padrón alcance 10](#padr%C3%B3n-alcance-10)
   * [Padrón alcance 13](#padr%C3%B3n-alcance-13)
-  * [🎉 Otro web service](#otro-web-service)
+* [Integrar otro web service](#otro-web-service)
+* [Ejemplos de uso](https://afipsdk.com/pro/php/examples/index.html)
+* [Implementación en Frameworks y Plataformas](https://afipsdk.com/pro/php/frameworks/index.html)
+* [Tutoriales para la página AFIP](https://afipsdk.com/pro/php/tutorials/index.html)
+* [Solución a errores más frecuentes](https://afipsdk.com/pro/php/errors/index.html)
+* [Preguntas frecuentes](https://afipsdk.com/pro/php/faq/index.html)
 * [Migración](#migraci%C3%B3n)
 * [Proyectos relacionados](#proyectos-relacionados)
 * [¿Necesitas ayuda? 🚀](#necesitas-ayuda-)
 * [Licencia](#licencia)
 * [Contacto](#contacto)
-
 
 
 <!-- ABOUT THE PROJECT -->
