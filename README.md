@@ -81,7 +81,7 @@ composer require afipsdk/afip.php
 * Remplazar `Afip_res/cert` por tu certificado provisto por AFIP y `Afip_res/key` por la clave generada. 
 * Procuren que la carpeta `Afip_res` no sea accesible desde internet ya que allí se guardara toda la informacion para acceder a los web services, **ademas esta carpeta deberá tener permisos de escritura**.
 
-Ir a http://www.afip.gob.ar/ws/documentacion/certificados.asp para obtener mas información de como generar la clave y certificado.
+Ir a [Tutoriales para la página AFIP](https://afipsdk.com/pro/php/tutorials/index.html) para obtener mas información de como generar la clave y certificado.
 
 Si no pueden seguir la complicada documentación de AFIP para obtener el certificado pueden obtener [Afip SDK PRO](#necesitas-ayuda-) donde se explica cómo obtener los certificados fácilmente.
 
