@@ -42,12 +42,12 @@
   * [Padrón alcance 5](#padr%C3%B3n-alcance-5)
   * [Padrón alcance 10](#padr%C3%B3n-alcance-10)
   * [Padrón alcance 13](#padr%C3%B3n-alcance-13)
-* [Integrar otro web service](https://afipsdk.com/pro/php/generic_web_service.html)
-* [Ejemplos de uso](https://afipsdk.com/pro/php/examples/index.html)
-* [Implementación en Frameworks y Plataformas](https://afipsdk.com/pro/php/frameworks/index.html)
-* [Tutoriales para la página AFIP](https://afipsdk.com/pro/php/tutorials/index.html)
-* [Solución a errores más frecuentes](https://afipsdk.com/pro/php/errors.html)
-* [Preguntas frecuentes](https://afipsdk.com/pro/php/faq.html)
+* [Integrar otro web service](https://afipsdk.com/wiki/php/generic_web_service.html)
+* [Ejemplos de uso](https://afipsdk.com/wiki/php/examples/index.html)
+* [Implementación en Frameworks y Plataformas](https://afipsdk.com/wiki/php/frameworks/index.html)
+* [Tutoriales para la página AFIP](https://afipsdk.com/wiki/php/tutorials/index.html)
+* [Solución a errores más frecuentes](https://afipsdk.com/wiki/php/errors.html)
+* [Preguntas frecuentes](https://afipsdk.com/wiki/php/faq.html)
 * [Migración](#migraci%C3%B3n)
 * [Proyectos relacionados](#proyectos-relacionados)
 * [¿Necesitas ayuda? 🚀](#necesitas-ayuda-)
@@ -81,7 +81,7 @@ composer require afipsdk/afip.php
 * Remplazar `Afip_res/cert` por tu certificado provisto por AFIP y `Afip_res/key` por la clave generada. 
 * Procuren que la carpeta `Afip_res` no sea accesible desde internet ya que allí se guardara toda la informacion para acceder a los web services, **ademas esta carpeta deberá tener permisos de escritura**.
 
-Ir a [Tutoriales para la página AFIP](https://afipsdk.com/pro/php/tutorials/index.html) para obtener mas información de como generar la clave y certificado.
+Ir a [Tutoriales para la página AFIP](https://afipsdk.com/wiki/php/tutorials/index.html) para obtener mas información de como generar la clave y certificado.
 
 Si no pueden seguir la complicada documentación de AFIP para obtener el certificado pueden obtener [Afip SDK PRO](#necesitas-ayuda-) donde se explica cómo obtener los certificados fácilmente.
 
@@ -147,7 +147,7 @@ Si necesitas utilizar los web services de Afip en _Symfony_ podes utilizar este 
 ¿Quieres implementarlo de forma rápida y fiable? Obtén Afip SDK PRO que incluye una amplia documentación con ejemplos, tutoriales, implementación en Frameworks y plataformas, y mucho más.
 
 
-**[¡Ahora es gratis!](https://afipsdk.com/pro/js/index.html)**
+**[¡Ahora es gratis!](https://afipsdk.com/wiki/js/index.html)**
 
 
 <!-- LICENCE -->
