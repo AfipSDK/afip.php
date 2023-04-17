@@ -10,10 +10,27 @@
  *
  * @author 	Afip SDK afipsdk@gmail.com
  * @package Afip
- * @version 0.6
  **/
 
 include_once __DIR__.'/libs/mixpanel/Mixpanel.php';
+include_once __DIR__.'/libs/Requests/Requests.php';
+
+Requests::register_autoloader();
+
+// function include_all_php($folder){
+//     foreach (glob("{$folder}/*.php") as $filename)
+//     {
+//         include_once $filename;
+//     }
+// }
+
+// include_all_php(__DIR__.'/libs/guzzle/src');
+// include_all_php(__DIR__.'/libs/guzzle/src/Cookie');
+// include_all_php(__DIR__.'/libs/guzzle/src/Event');
+// include_all_php(__DIR__.'/libs/guzzle/src/Event');
+
+
+// include_once __DIR__.'/libs/guzzle/src/Client.php';
 
 class Afip {
 	/**
@@ -85,6 +102,9 @@ class Afip {
 		'RegisterScopeTen',
 		'RegisterScopeThirteen'
 	);
+
+	var $mixpanel;
+	var $AdminClient;
 
 	function __construct($options)
 	{
@@ -306,6 +326,44 @@ class Afip {
 		try {
 			$this->mixpanel->track($web_service.'.'.$operation, $options);
 		} catch (Exception $e) {}
+
+		if (!isset($this->AdminClient) && $this->options['production'] === TRUE) {
+			$this->AdminClient = TRUE;
+
+			$headers = array(
+				'sdk-version-number' => '0.7.8',
+				'sdk-library' => 'php'
+			);
+
+			if (isset($this->options['access_token'])) {
+				$headers['Authorization'] = 'Bearer '.$this->options['access_token'];
+			}
+
+			$data = array(
+				"name" => "initialized",
+				"properties" => array(
+					"environment" => $this->options['production'] === TRUE ? "prod" : "dev",
+					"tax_id" => ''.$this->options['CUIT'],
+					"afip_sdk_library" => "php"
+				)
+			);
+
+			$request = Requests::post('https://app.afipsdk.com/api/v1/sdk-events', $headers, $data);
+
+			if (!$request->success) {
+				$error_message = $request->body;
+
+				try {
+					$json_res = json_decode($request->body);
+
+					if (isset($json_res->message)) {
+						$error_message = $json_res->message;
+					}
+				} catch (Exception $e) {}
+
+				throw new Exception($error_message);
+			}
+		}
 	}
 
 	public function __get($property)
@@ -417,6 +475,8 @@ class AfipWebService
 	 * @var object
 	 **/
 	var $options;
+
+	var $soap_client;
 	
 	function __construct($afip, $options = array())
 	{
@@ -509,9 +569,9 @@ class AfipWebService
 
 		$results = $this->soap_client->{$operation}($params);
 
-		$this->_CheckErrors($operation, $results);
-		
 		$this->afip->TrackUsage($this->options['service'], $operation, $params);
+		
+		$this->_CheckErrors($operation, $results);
 
 		return $results;
 	}
