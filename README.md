@@ -50,7 +50,6 @@
 * [Preguntas frecuentes](https://afipsdk.com/wiki/php/faq.html)
 * [Migración](#migraci%C3%B3n)
 * [Proyectos relacionados](#proyectos-relacionados)
-* [¿Necesitas ayuda? 🚀](#necesitas-ayuda-)
 * [Licencia](#licencia)
 * [Contacto](#contacto)
 
@@ -140,14 +139,6 @@ Si necesitas acceder los web services de AFIP en **Javascript** podes utilizar [
 
 #### Bundle para Symfony
 Si necesitas utilizar los web services de Afip en _Symfony_ podes utilizar este [bundle](https://github.com/gonzakpo/afip)
-
-<!-- AFIP SDK PRO -->
-### ¿Necesitas ayuda? 🚀
-
-¿Quieres implementarlo de forma rápida y fiable? Obtén Afip SDK PRO que incluye una amplia documentación con ejemplos, tutoriales, implementación en Frameworks y plataformas, y mucho más.
-
-
-**[¡Ahora es gratis!](https://afipsdk.com/wiki/js/index.html)**
 
 
 <!-- LICENCE -->
