@@ -82,8 +82,6 @@ composer require afipsdk/afip.php
 
 Ir a [Tutoriales para la página AFIP](https://afipsdk.com/wiki/php/tutorials/index.html) para obtener mas información de como generar la clave y certificado.
 
-Si no pueden seguir la complicada documentación de AFIP para obtener el certificado pueden obtener [Afip SDK PRO](#necesitas-ayuda-) donde se explica cómo obtener los certificados fácilmente.
-
 ### Como usarlo
 
 Si lo instalaste manualmente lo primero es incluir el SDK en tu aplicación
