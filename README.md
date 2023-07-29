@@ -4,7 +4,6 @@
 [![Packagist][packagist-shield]](https://packagist.org/packages/afipsdk/afip.php)
 [![Contributors][contributors-shield]](https://github.com/afipsdk/afip.php/graphs/contributors)
 [![Closed issues][issues-shield]](https://github.com/afipsdk/afip.php/issues)
-[![License][license-shield]](https://github.com/afipsdk/afip.php/blob/master/LICENSE)
 
 
 <!-- PROJECT LOGO -->
@@ -38,13 +37,9 @@
 
 <!-- ABOUT THE PROJECT -->
 ## Acerca del proyecto
-Afip SDK es la forma más rápida y simple de conectarse con los Web Services de AFIP.
+Con más de 50.000 descargas en sus versiones de PHP y Node, desde el 2017 Afip SDK es la librería elegida por los desarrolladores para integrar sus plataformas con AFIP. 
 
 Esta librería fue creada con la intención de ayudar a los programadores a usar los Web Services de AFIP sin romperse la cabeza ni perder tiempo tratando de entender la complicada documentación que AFIP provee.
-
-<!-- LICENCE -->
-### Licencia
-Distribuido bajo la licencia MIT. Vea `LICENSE` para más información.
 
 <!-- CONTACT -->
 ### Contacto
