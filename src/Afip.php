@@ -21,7 +21,7 @@ class Afip {
 	/**
 	 * SDK version
 	 **/
-	var $sdk_version_number = '0.7.8';
+	var $sdk_version_number = '0.8.0';
 
 	/**
 	 * File name for the WSDL corresponding to WSAA

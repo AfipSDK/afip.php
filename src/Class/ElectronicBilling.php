@@ -6,7 +6,6 @@
  *
  * @author 	Afip SDK
  * @package Afip
- * @version 0.7
  **/
 
 class ElectronicBilling extends AfipWebService {
