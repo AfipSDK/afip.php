@@ -17,22 +17,12 @@ include_once __DIR__.'/libs/Requests/Requests.php';
 
 Requests::register_autoloader();
 
-// function include_all_php($folder){
-//     foreach (glob("{$folder}/*.php") as $filename)
-//     {
-//         include_once $filename;
-//     }
-// }
-
-// include_all_php(__DIR__.'/libs/guzzle/src');
-// include_all_php(__DIR__.'/libs/guzzle/src/Cookie');
-// include_all_php(__DIR__.'/libs/guzzle/src/Event');
-// include_all_php(__DIR__.'/libs/guzzle/src/Event');
-
-
-// include_once __DIR__.'/libs/guzzle/src/Client.php';
-
 class Afip {
+	/**
+	 * SDK version
+	 **/
+	var $sdk_version_number = '0.7.8';
+
 	/**
 	 * File name for the WSDL corresponding to WSAA
 	 *
@@ -331,7 +321,7 @@ class Afip {
 			$this->AdminClient = TRUE;
 
 			$headers = array(
-				'sdk-version-number' => '0.7.8',
+				'sdk-version-number' => $this->sdk_version_number,
 				'sdk-library' => 'php'
 			);
 
