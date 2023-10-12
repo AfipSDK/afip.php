@@ -27,7 +27,8 @@ class ElectronicBilling extends AfipWebService {
 	{
 		$headers = array(
 			'sdk-version-number' => $this->afip->sdk_version_number,
-			'sdk-library' => 'php'
+			'sdk-library' => 'php',
+			'sdk-environment' => $this->afip->options['production'] === TRUE ? "prod" : "dev"
 		);
 
 		if (isset($this->afip->options['access_token'])) {
