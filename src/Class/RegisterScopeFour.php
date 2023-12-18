@@ -17,6 +17,10 @@ class RegisterScopeFour extends AfipWebService {
 	var $WSDL_TEST 		= 'ws_sr_padron_a4.wsdl';
 	var $URL_TEST 		= 'https://awshomo.afip.gov.ar/sr-padron/webservices/personaServiceA4';
 
+	function __construct($afip) {
+        parent::__construct($afip, array('service' => 'ws_sr_padron_a4'));
+    }
+
 	/**
 	 * Asks to web service for servers status {@see WS 
 	 * Specification item 3.1}

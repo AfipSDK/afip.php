@@ -503,7 +503,7 @@ class Requests {
 	 */
 	protected static function get_default_options($multirequest = false) {
 		$defaults = array(
-			'timeout'          => 10,
+			'timeout'          => 30,
 			'connect_timeout'  => 10,
 			'useragent'        => 'php-requests/' . self::VERSION,
 			'protocol_version' => 1.1,

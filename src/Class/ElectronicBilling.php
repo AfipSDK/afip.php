@@ -16,6 +16,10 @@ class ElectronicBilling extends AfipWebService {
 	var $WSDL_TEST 		= 'wsfe.wsdl';
 	var $URL_TEST 		= 'https://wswhomo.afip.gov.ar/wsfev1/service.asmx';
 
+	function __construct($afip) {
+        parent::__construct($afip, array('service' => 'wsfe'));
+    }
+
 	/**
 	 * Create PDF 
 	 * 
