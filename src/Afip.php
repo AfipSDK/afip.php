@@ -313,6 +313,22 @@ class AfipWebService {
 		$this->afip = $afip;
 		$this->options = $options;
 
+		if (isset($options['WSDL'])) {
+			$this->WSDL = $options['WSDL'];
+		}
+
+		if (isset($options['URL'])) {
+			$this->URL = $options['URL'];
+		}
+
+		if (isset($options['WSDL_TEST'])) {
+			$this->WSDL_TEST = $options['WSDL_TEST'];
+		}
+
+		if (isset($options['URL_TEST'])) {
+			$this->URL_TEST = $options['URL_TEST'];
+		}
+
 		if (isset($options['generic']) && $options['generic'] === TRUE) {
 			if (!isset($options['service'])) {
 				throw new Exception("service field is required in options");
@@ -377,7 +393,7 @@ class AfipWebService {
 
 		if ($request->success) {
 			$decoded_res = json_decode($request->body);
-
+			
 			//Return response
 			return $decoded_res;
 		}
