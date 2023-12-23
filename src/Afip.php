@@ -198,7 +198,7 @@ class Afip {
 	 *
 	 * @throws Exception if an error occurs
 	 *
-	 * @return AfipWebService Token Authorization for AFIP Web Service 
+	 * @return AfipWebService New AFIP Web Service 
 	 **/
 	public function WebService($service, $options = array())
 	{
