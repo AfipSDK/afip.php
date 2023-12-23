@@ -17,7 +17,7 @@ class Afip {
 	/**
 	 * SDK version
 	 **/
-	var $sdk_version_number = '1.0.1';
+	var $sdk_version_number = '1.0.2';
 
 	/**
 	 * X.509 certificate in PEM format
