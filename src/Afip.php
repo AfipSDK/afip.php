@@ -8,6 +8,14 @@
  * @package Afip
  **/
 
+if (!defined('SOAP_1_1')) {
+	define('SOAP_1_1', 1);
+}
+
+if (!defined('SOAP_1_2')) {
+	define('SOAP_1_2', 2);
+}
+
 include_once __DIR__.'/libs/Requests/Requests.php';
 
 Requests::register_autoloader();
