@@ -454,6 +454,10 @@ class ElectronicBilling extends AfipWebService {
 		$res = $results->{$operation.'Result'};
 
 		if ($operation == 'FECAESolicitar') {
+			if (is_array($res->FeDetResp->FECAEDetResponse)) {
+				$res->FeDetResp->FECAEDetResponse = $res->FeDetResp->FECAEDetResponse[0];
+			}
+
 			if (isset($res->FeDetResp->FECAEDetResponse->Observaciones) && $res->FeDetResp->FECAEDetResponse->Resultado != 'A') {
 				$res->Errors = new StdClass();
 				$res->Errors->Err = $res->FeDetResp->FECAEDetResponse->Observaciones->Obs;
