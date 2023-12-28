@@ -37,7 +37,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## Acerca del proyecto
-Con más de 50.000 descargas en sus versiones de PHP y Node, desde el 2017 Afip SDK es la librería elegida por los desarrolladores para integrar sus plataformas con AFIP. 
+Con más de 60.000 descargas en sus versiones de PHP, Node y Ruby desde el 2017 Afip SDK es la librería elegida por los desarrolladores para integrar sus plataformas con AFIP. 
 
 Esta librería fue creada con la intención de ayudar a los programadores a usar los Web Services de AFIP sin romperse la cabeza ni perder tiempo tratando de entender la complicada documentación que AFIP provee.
 
