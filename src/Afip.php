@@ -25,7 +25,7 @@ class Afip {
 	/**
 	 * SDK version
 	 **/
-	var $sdk_version_number = '1.0.2';
+	var $sdk_version_number = '1.0.4';
 
 	/**
 	 * X.509 certificate in PEM format
@@ -214,6 +214,145 @@ class Afip {
 		$options['generic'] = TRUE;
 
 		return new AfipWebService($this, $options);
+	}
+
+	/**
+	 * Create AFIP cert
+	 *
+	 * @param string $username Username used in AFIP page
+	 * @param string $password Password used in AFIP page
+	 * @param string $alias Alias for the cert
+	 **/
+	public function CreateCert($username, $password, $alias)
+	{
+		// Prepare data to for request
+		$data = array(
+			'environment' => $this->options['production'] === TRUE ? "prod" : "dev",
+			'tax_id' => $this->options['CUIT'],
+			'username' => $username,
+			'password' => $password,
+			'alias' => $alias
+		);
+
+		$headers = array(
+			'Content-Type' => 'application/json',
+			'sdk-version-number' => $this->sdk_version_number,
+			'sdk-library' => 'php',
+			'sdk-environment' => $this->options['production'] === TRUE ? "prod" : "dev"
+		);
+
+		if (isset($this->options['access_token'])) {
+			$headers['Authorization'] = 'Bearer '.$this->options['access_token'];
+		}
+
+		// Wait for max 120 seconds
+		$retry = 24;
+
+		while ($retry-- >= 0) {
+			// Execute request
+			$request = Requests::post('https://app.afipsdk.com/api/v1/afip/certs', $headers, json_encode($data));
+			
+			if ($request->success) {
+				$decoded_res = json_decode($request->body);
+				
+				if ($decoded_res->status === 'complete') {
+					return $decoded_res->data;
+				}
+
+				if (isset($decoded_res->long_job_id)) {
+					$data['long_job_id'] = $decoded_res->long_job_id;
+				}
+
+				// Wait 5 seconds
+				sleep(5);
+			}
+			else {
+				$error_message = $request->body;
+	
+				try {
+					$json_res = json_decode($request->body);
+	
+					if (isset($json_res->message)) {
+						$error_message = $json_res->message;
+					}
+				} catch (Exception $e) {}
+	
+				throw new Exception($error_message);
+			}
+		}
+
+		throw new Exception('Error: Waiting for too long');
+		
+	}
+
+	/**
+	 * Create authorization to use a web service
+	 *
+	 * @param string $username Username used in AFIP page
+	 * @param string $password Password used in AFIP page
+	 * @param string $alias Cert alias
+	 * @param string $wsid Web service id
+	 **/
+	public function CreateWSAuth($username, $password, $alias, $wsid)
+	{
+		// Prepare data to for request
+		$data = array(
+			'environment' => $this->options['production'] === TRUE ? "prod" : "dev",
+			'tax_id' => $this->options['CUIT'],
+			'username' => $username,
+			'password' => $password,
+			'wsid' => $wsid,
+			'alias' => $alias
+		);
+
+		$headers = array(
+			'Content-Type' => 'application/json',
+			'sdk-version-number' => $this->sdk_version_number,
+			'sdk-library' => 'php',
+			'sdk-environment' => $this->options['production'] === TRUE ? "prod" : "dev"
+		);
+
+		if (isset($this->options['access_token'])) {
+			$headers['Authorization'] = 'Bearer '.$this->options['access_token'];
+		}
+		
+		// Wait for max 120 seconds
+		$retry = 24;
+
+		while ($retry-- >= 0) {
+			// Execute request
+			$request = Requests::post('https://app.afipsdk.com/api/v1/afip/ws-auths', $headers, json_encode($data));
+
+			if ($request->success) {
+				$decoded_res = json_decode($request->body);
+				
+				if ($decoded_res->status === 'complete') {
+					return $decoded_res->data;
+				}
+
+				if (isset($decoded_res->long_job_id)) {
+					$data['long_job_id'] = $decoded_res->long_job_id;
+				}
+
+				// Wait 5 seconds
+				sleep(5);
+			}
+			else {
+				$error_message = $request->body;
+	
+				try {
+					$json_res = json_decode($request->body);
+	
+					if (isset($json_res->message)) {
+						$error_message = $json_res->message;
+					}
+				} catch (Exception $e) {}
+	
+				throw new Exception($error_message);
+			}
+		}
+
+		throw new Exception('Error: Waiting for too long');
 	}
 
 	public function __get($property)
