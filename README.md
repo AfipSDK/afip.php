@@ -32,13 +32,13 @@
 
 <!-- ABOUT THE PROJECT -->
 ## Acerca del proyecto
-Con más de 60k descargas, desde el 2017 Afip SDK es la librería elegida por los desarrolladores para integrar sus plataformas con AFIP.
+Con más de 75k descargas, desde el 2017 [Afip SDK](https://afipsdk.com) es la librería elegida por los desarrolladores para integrar sus plataformas con AFIP.
 
 Esta librería fue creada con la intención de ayudar a los programadores a usar los Web Services de AFIP sin romperse la cabeza ni perder tiempo tratando de entender la complicada documentación que AFIP provee.
 
 <!-- CONTACT -->
 ### Contacto
-Afip SDK - afipsdk@gmail.com
+Ivan - ivan@afipsdk.com
 
 Link del proyecto: [https://github.com/afipsdk/afip.php](https://github.com/afipsdk/afip.php)
 
