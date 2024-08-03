@@ -21,6 +21,9 @@
     <a href="https://docs.afipsdk.com"><strong>Explorar documentación »</strong></a>
     <br />
     <br />
+    <a href="https://discord.gg/A6TuHEyAZm"><strong>Comunidad Afip SDK</strong></a>
+    <br />
+    <br />
     <a href="https://github.com/afipsdk/afip.php/issues">Reportar un bug</a>
   </p>
 </p>
@@ -30,9 +33,14 @@
 ## Documentación
 [Explorar documentación](https://docs.afipsdk.com)
 
+<!-- COMUNITY -->
+## Comunidad
+[Comunidad Afip SDK](https://discord.gg/A6TuHEyAZm)
+
+
 <!-- ABOUT THE PROJECT -->
 ## Acerca del proyecto
-Con más de 75k descargas, desde el 2017 [Afip SDK](https://afipsdk.com) es la librería elegida por los desarrolladores para integrar sus plataformas con AFIP.
+Con más de 80k descargas, desde el 2017 [Afip SDK](https://afipsdk.com) es la librería elegida por los desarrolladores para integrar sus plataformas con AFIP.
 
 Esta librería fue creada con la intención de ayudar a los programadores a usar los Web Services de AFIP sin romperse la cabeza ni perder tiempo tratando de entender la complicada documentación que AFIP provee.
 
