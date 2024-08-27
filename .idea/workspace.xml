@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a05072cb-ed40-4233-8ece-1eb18b008667" name="Changes" comment="se trajo los tags del repo original" />
+    <list default="true" id="a05072cb-ed40-4233-8ece-1eb18b008667" name="Changes" comment="se editó el Afip.php">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Afip.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Afip.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,8 +65,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-PS-242.20224.361" />
-        <option value="bundled-php-predefined-a98d8de5180a-d6acee4cb394-com.jetbrains.php.sharedIndexes-PS-242.20224.361" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-PS-242.20224.427" />
+        <option value="bundled-php-predefined-a98d8de5180a-d6acee4cb394-com.jetbrains.php.sharedIndexes-PS-242.20224.427" />
       </set>
     </attachedChunks>
   </component>
@@ -77,6 +80,8 @@
       <updated>1723719385120</updated>
       <workItem from="1723719386848" duration="3415000" />
       <workItem from="1723722883762" duration="51000" />
+      <workItem from="1724710404431" duration="921000" />
+      <workItem from="1724755489447" duration="307000" />
     </task>
     <task id="LOCAL-00001" summary="se trajo los tags del repo original">
       <option name="closed" value="true" />
@@ -94,7 +99,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723722591195</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="se agregaron los archivos material_theme_project_new.xml,&#10;php.xml,&#10;vcs.xml,&#10;workspace.xml">
+      <option name="closed" value="true" />
+      <created>1724710772888</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1724710772888</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +115,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="se trajo los tags del repo original" />
-    <option name="LAST_COMMIT_MESSAGE" value="se trajo los tags del repo original" />
+    <MESSAGE value="se agregaron los archivos material_theme_project_new.xml,&#10;php.xml,&#10;vcs.xml,&#10;workspace.xml" />
+    <MESSAGE value="se editó el Afip.php" />
+    <option name="LAST_COMMIT_MESSAGE" value="se editó el Afip.php" />
   </component>
 </project>

@@ -297,7 +297,7 @@ class Afip {
 	 * @param string 	$operation 		SOAP operation called 
 	 * @param array 	$params 		Parameters for the ws
 	 **/
-	public function TrackUsage($web_service, $operation, $params = array())
+	/*public function TrackUsage($web_service, $operation, $params = array())
 	{
 		$options = array();
 
@@ -305,9 +305,6 @@ class Afip {
 			if (isset($params['FeCAEReq']) && isset($params['FeCAEReq']['FeCabReq']) && isset($params['FeCAEReq']['FeCabReq']['CbteTipo'])) {
 				$options['CbteTipo'] = $params['FeCAEReq']['FeCabReq']['CbteTipo'];
 			}
-
-
-
 			if (isset($params['FeCAEReq']) && isset($params['FeCAEReq']['FeDetReq']) && isset($params['FeCAEReq']['FeDetReq']['FECAEDetRequest']) && isset($params['FeCAEReq']['FeDetReq']['FECAEDetRequest']['ImpTotal'])) {
 				$options['ImpTotal'] = $params['FeCAEReq']['FeDetReq']['FECAEDetRequest']['ImpTotal'];
 			}
@@ -354,7 +351,7 @@ class Afip {
 				throw new Exception($error_message);
 			}
 		}
-	}
+	}*/
 
 	public function __get($property)
 	{
@@ -559,7 +556,7 @@ class AfipWebService
 
 		$results = $this->soap_client->{$operation}($params);
 
-		$this->afip->TrackUsage($this->options['service'], $operation, $params);
+		//$this->afip->TrackUsage($this->options['service'], $operation, $params);
 		
 		$this->_CheckErrors($operation, $results);
 
