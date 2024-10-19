@@ -54,7 +54,7 @@ Link del proyecto: [https://github.com/afipsdk/afip.php](https://github.com/afip
 _Este software y sus desarrolladores no tienen ninguna relación con la AFIP._
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[packagist-shield]: https://img.shields.io/packagist/dt/afipsdk/afip.php.svg??logo=php&?logoColor=white
+[packagist-shield]: https://img.shields.io/packagist/dt/afipsdk/afip.php.svg?logo=php&?logoColor=white
 [contributors-shield]: https://img.shields.io/github/contributors/afipsdk/afip.php.svg?color=orange
 [issues-shield]: https://img.shields.io/github/issues-closed-raw/afipsdk/afip.php.svg?color=blueviolet
 [license-shield]: https://img.shields.io/github/license/afipsdk/afip.php.svg?color=blue
