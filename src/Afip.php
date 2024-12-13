@@ -547,14 +547,6 @@ class AfipWebService {
 		else {
 			$error_message = $request->body;
 
-			try {
-				$json_res = json_decode($request->body);
-
-				if (isset($json_res->message)) {
-					$error_message = $json_res->message;
-				}
-			} catch (Exception $e) {}
-
 			throw new Exception($error_message);
 		}
 
