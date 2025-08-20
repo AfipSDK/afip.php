@@ -25,7 +25,7 @@ class Afip {
 	/**
 	 * SDK version
 	 **/
-	var $sdk_version_number = '1.1.5';
+	var $sdk_version_number = '1.2.0';
 
 	/**
 	 * X.509 certificate in PEM format
@@ -218,6 +218,8 @@ class Afip {
 
 	/**
 	 * Create AFIP cert
+	 * 
+	 * @deprecated Use Automation instead
 	 *
 	 * @param string $username Username used in AFIP page
 	 * @param string $password Password used in AFIP page
@@ -287,6 +289,8 @@ class Afip {
 
 	/**
 	 * Create authorization to use a web service
+	 * 
+	 * @deprecated Use Automation instead
 	 *
 	 * @param string $username Username used in AFIP page
 	 * @param string $password Password used in AFIP page
@@ -332,6 +336,75 @@ class Afip {
 
 				if (isset($decoded_res->long_job_id)) {
 					$data['long_job_id'] = $decoded_res->long_job_id;
+				}
+
+				// Wait 5 seconds
+				sleep(5);
+			}
+			else {
+				$error_message = $request->body;
+	
+				try {
+					$json_res = json_decode($request->body);
+	
+					if (isset($json_res->message)) {
+						$error_message = $json_res->message;
+					}
+				} catch (Exception $e) {}
+	
+				throw new Exception($error_message);
+			}
+		}
+
+		throw new Exception('Error: Waiting for too long');
+	}
+
+	/**
+	 * Create authorization to use a web service
+	 *
+	 * @since 1.2.0
+	 * 
+	 * @param string $name Name of the automation
+	 * @param array $data Parameters to send to the automation
+	 * @param boolean $wait Wait for the automation to finish (default TRUE)
+	 *
+	 * @throws Exception if an error occurs
+	 *
+	 * @return mixed Automation result data
+	 **/
+	public function Automation($name, $data, $wait = TRUE)
+	{
+		if (!isset($data['cuit'])) {
+			$data['cuit'] = $this->options['CUIT'];
+		}
+
+		$headers = array(
+			'Content-Type' => 'application/json',
+			'sdk-version-number' => $this->sdk_version_number,
+			'sdk-library' => 'php',
+			'sdk-environment' => $this->options['production'] === TRUE ? "prod" : "dev"
+		);
+
+		if (isset($this->options['access_token'])) {
+			$headers['Authorization'] = 'Bearer '.$this->options['access_token'];
+		}
+		
+		// Wait for max 120 seconds
+		$retry = 24;
+
+		while ($retry-- >= 0) {
+			// Execute request
+			$request = Requests::post('https://app.afipsdk.com/api/v1/automations/'.$name, $headers, json_encode($data));
+
+			if ($request->success) {
+				$decoded_res = json_decode($request->body);
+				
+				if (!$wait || $decoded_res->status === 'complete') {
+					return $decoded_res;
+				}
+
+				if (isset($decoded_res->automation_id)) {
+					$data['automation_id'] = $decoded_res->automation_id;
 				}
 
 				// Wait 5 seconds
