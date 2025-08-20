@@ -2,7 +2,7 @@
 /**
  * SDK for AFIP Electronic Billing (wsfe1)
  * 
- * @link http://www.afip.gob.ar/fe/documentos/manual_desarrollador_COMPG_v2_10.pdf WS Specification
+ * @link https://docs.afipsdk.com/
  *
  * @author 	Afip SDK
  * @package Afip

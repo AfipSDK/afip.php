@@ -2,7 +2,7 @@
 /**
  * SDK for AFIP Register Scope Ten (ws_sr_padron_a13)
  * 
- * @link http://www.afip.gob.ar/ws/ws-padron-a13/manual-ws-sr-padron-a13-v1.2.pdf WS Specification
+ * @link https://docs.afipsdk.com/
  *
  * @author 	Afip SDK
  * @package Afip

@@ -1,10 +1,10 @@
 <?php
 /**
- * Software Development Kit for AFIP web services
+ * Software Development Kit for ARCA web services
  * 
- * @link http://www.afip.gob.ar/ws/ AFIP Web Services documentation
+ * @link https://afipsdk.com/
  *
- * @author 	Afip SDK afipsdk@gmail.com
+ * @author 	Afip SDK ayuda@afipsdk.com
  * @package Afip
  **/
 
