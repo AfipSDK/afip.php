@@ -72,7 +72,7 @@ class Afip {
 		ini_set("soap.wsdl_cache_enabled", "0");
 
 		if (!isset($options['CUIT'])) {
-			throw new Exception("CUIT field is required in options array");
+			$this->CUIT = NULL;
 		} else {
 			$this->CUIT = $options['CUIT'];
 		}
