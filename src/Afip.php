@@ -360,24 +360,82 @@ class Afip {
 	}
 
 	/**
-	 * Create authorization to use a web service
+	 * Create automation
 	 *
 	 * @since 1.2.0
 	 * 
-	 * @param string $name Name of the automation
-	 * @param array $data Parameters to send to the automation
+	 * @param string $automation Name of the automation
+	 * @param array $params Parameters to send to the automation
 	 * @param boolean $wait Wait for the automation to finish (default TRUE)
 	 *
 	 * @throws Exception if an error occurs
 	 *
 	 * @return mixed Automation result data
 	 **/
-	public function Automation($name, $data, $wait = TRUE)
+	public function CreateAutomation($automation, $params, $wait = TRUE)
 	{
-		if (!isset($data['cuit'])) {
-			$data['cuit'] = $this->options['CUIT'];
+		if (!isset($params['cuit'])) {
+			$params['cuit'] = $this->options['CUIT'];
 		}
 
+		// Prepare data to for request
+		$data = array(
+			'automation' => $automation,
+			'params' => $params
+		);
+
+		$headers = array(
+			'Content-Type' => 'application/json',
+			'sdk-version-number' => $this->sdk_version_number,
+			'sdk-library' => 'php',
+			'sdk-environment' => $this->options['production'] === TRUE ? "prod" : "dev"
+		);
+
+		if (isset($this->options['access_token'])) {
+			$headers['Authorization'] = 'Bearer '.$this->options['access_token'];
+		}
+		
+		// Execute request
+		$request = Requests::post('https://app.afipsdk.com/api/v1/automations', $headers, json_encode($data));
+
+		if ($request->success) {
+			$decoded_res = json_decode($request->body);
+			
+			if (!$wait || $decoded_res->status === 'complete') {
+				return $decoded_res;
+			}
+
+			return $this->GetAutomationDetails($decoded_res->id, $wait);
+		}
+		else {
+			$error_message = $request->body;
+
+			try {
+				$json_res = json_decode($request->body);
+
+				if (isset($json_res->message)) {
+					$error_message = $json_res->message;
+				}
+			} catch (Exception $e) {}
+
+			throw new Exception($error_message);
+		}
+	}
+
+	/**
+	 * Get automation details
+	 *
+	 * @since 1.2.0
+	 * 
+	 * @param string $id Id of the automation
+	 * @param boolean $wait Wait for the automation to finish (default FALSE)
+	 *
+	 * @throws Exception if an error occurs
+	 *
+	 * @return mixed Automation result data
+	 **/
+	public function GetAutomationDetails($id, $wait = FALSE)
+	{
 		$headers = array(
 			'Content-Type' => 'application/json',
 			'sdk-version-number' => $this->sdk_version_number,
@@ -394,17 +452,13 @@ class Afip {
 
 		while ($retry-- >= 0) {
 			// Execute request
-			$request = Requests::post('https://app.afipsdk.com/api/v1/automations/'.$name, $headers, json_encode($data));
+			$request = Requests::get('https://app.afipsdk.com/api/v1/automations/'.$id, $headers);
 
 			if ($request->success) {
 				$decoded_res = json_decode($request->body);
 				
 				if (!$wait || $decoded_res->status === 'complete') {
 					return $decoded_res;
-				}
-
-				if (isset($decoded_res->automation_id)) {
-					$data['automation_id'] = $decoded_res->automation_id;
 				}
 
 				// Wait 5 seconds
