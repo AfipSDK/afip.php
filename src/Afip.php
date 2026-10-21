@@ -59,7 +59,8 @@ class Afip {
 		'RegisterScopeFive',
 		'RegisterInscriptionProof',
 		'RegisterScopeTen',
-		'RegisterScopeThirteen'
+		'RegisterScopeThirteen',
+		'FacturaSDK'
 	);
 
 	/**
@@ -528,7 +529,133 @@ class TokenAuthorization {
 }
 
 /**
- * Base class for AFIP web services 
+ * Error of the Factura SDK API
+ *
+ * Carries the HTTP status (also the exception code) and the body of the
+ * response: `message`, the problems by field in `data_errors` and the
+ * rules the invoice did not meet in `errors`
+ * {@see https://afipsdk.com/docs/facturasdk/errors}
+ **/
+class FacturaSDKError extends Exception {
+	/**
+	 * HTTP status of the response
+	 *
+	 * @var int
+	 **/
+	var $status;
+
+	/**
+	 * Decoded body of the response
+	 *
+	 * @var mixed
+	 **/
+	var $data;
+
+	/**
+	 * Problems by field, nested like the request, or NULL
+	 *
+	 * @var object|null
+	 **/
+	var $data_errors;
+
+	/**
+	 * Rules that were not met, each with code and message, or NULL
+	 *
+	 * @var array|null
+	 **/
+	var $errors;
+
+	function __construct($message, $status = 0, $data = NULL)
+	{
+		parent::__construct($message, (int) $status);
+
+		$this->status 	= $status;
+		$this->data 	= $data;
+
+		$detail = self::DetailOf($data);
+
+		$this->data_errors 	= isset($detail->data_errors) && is_object($detail->data_errors) ? $detail->data_errors : NULL;
+		$this->errors 		= isset($detail->errors) && is_array($detail->errors) ? $detail->errors : NULL;
+	}
+
+	/**
+	 * Build the error from a failed response of the API
+	 *
+	 * @param Requests_Response $response
+	 *
+	 * @return FacturaSDKError
+	 **/
+	public static function FromResponse($response)
+	{
+		$data = json_decode($response->body);
+		$detail = self::DetailOf($data);
+		$parts = array();
+
+		if (isset($detail->message)) {
+			$parts[] = $detail->message;
+		}
+
+		if (isset($detail->errors) && is_array($detail->errors)) {
+			foreach ($detail->errors as $error) {
+				$parts[] = $error->code.': '.$error->message;
+			}
+		}
+
+		if (isset($detail->data_errors) && is_object($detail->data_errors)) {
+			$parts = array_merge($parts, self::FlattenDataErrors($detail->data_errors));
+		}
+
+		if (count($parts) > 0) {
+			$message = implode(' ', $parts);
+		} elseif ($data === NULL && $response->body !== '') {
+			$message = $response->body;
+		} else {
+			$message = 'Factura SDK respondió '.$response->status_code;
+		}
+
+		return new FacturaSDKError($message, $response->status_code, $data);
+	}
+
+	/**
+	 * Where the message, data_errors and errors live in a body: the body
+	 * itself, or `data` when the body is a failed automation
+	 **/
+	private static function DetailOf($data)
+	{
+		if (!is_object($data)) {
+			return new stdClass();
+		}
+
+		if (isset($data->status) && $data->status === 'error' && isset($data->data) && is_object($data->data)) {
+			return $data->data;
+		}
+
+		return $data;
+	}
+
+	/**
+	 * { receiver: { vat_condition: 'mensaje' } } -> ['receiver.vat_condition: mensaje']
+	 **/
+	private static function FlattenDataErrors($errors, $prefix = '')
+	{
+		$lines = array();
+
+		foreach ((array) $errors as $field => $value) {
+			$path = $prefix === '' ? $field : $prefix.'.'.$field;
+
+			if (is_object($value) || is_array($value)) {
+				$lines = array_merge($lines, self::FlattenDataErrors($value, $path));
+			} else {
+				$lines[] = $path.': '.$value;
+			}
+		}
+
+		return $lines;
+	}
+}
+
+/**
+ * Base class for AFIP web services
 **/
 #[\AllowDynamicProperties]
 class AfipWebService {

@@ -33,6 +33,22 @@
 ## Documentación
 [Explorar documentación](https://docs.afipsdk.com)
 
+<!-- FACTURA SDK -->
+## Factura SDK
+La librería también incluye [Factura SDK](https://afipsdk.com/docs/facturasdk/), para emitir comprobantes de punta a punta (certificado, punto de venta, autorización en ARCA, PDF y webhooks) con el access token de un proyecto Factura SDK:
+
+```php
+$afip = new Afip(array('access_token' => 'fsk_dev_…'));
+
+// Responde enseguida con el comprobante en cola; el resultado llega a tu webhook
+$invoice = $afip->FacturaSDK->CreateInvoice($data, array('idempotency_key' => 'venta-0001'));
+
+// En tu endpoint de webhook: verifica la firma y devuelve el evento
+$event = $afip->FacturaSDK->ConstructWebhookEvent(file_get_contents('php://input'), $_SERVER['HTTP_X_FACTURASDK_SIGNATURE'], $secret);
+```
+
+Emisores, certificados, comprobantes, webhooks y automatizaciones están en `$afip->FacturaSDK` ([ejemplo completo](examples/FacturaSdkCreateInvoice.php)). Si además usás los web services de Afip SDK, pasá el token de Factura SDK en `facturasdk_access_token`.
+
 <!-- COMUNITY -->
 ## Comunidad
 [Comunidad Afip SDK](https://discord.gg/A6TuHEyAZm)
