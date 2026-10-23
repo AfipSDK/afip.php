@@ -47,7 +47,7 @@ $invoice = $afip->FacturaSDK->CreateInvoice($data, array('idempotency_key' => 'v
 $event = $afip->FacturaSDK->ConstructWebhookEvent(file_get_contents('php://input'), $_SERVER['HTTP_X_FACTURASDK_SIGNATURE'], $secret);
 ```
 
-Emisores, certificados, comprobantes, webhooks y automatizaciones están en `$afip->FacturaSDK` ([ejemplo completo](examples/FacturaSdkCreateInvoice.php)). Si además usás los web services de Afip SDK, pasá el token de Factura SDK en `facturasdk_access_token`.
+Emisores, certificados, comprobantes, webhooks y automatizaciones están en `$afip->FacturaSDK` ([ejemplo completo](examples/FacturaSdkCreateInvoice.php)).
 
 <!-- COMUNITY -->
 ## Comunidad

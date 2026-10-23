@@ -29,8 +29,7 @@ class FacturaSDK {
 	var $afip;
 
 	/**
-	 * Access token sent in every request: facturasdk_access_token, or the
-	 * access token of Afip
+	 * Access token sent in every request: the access token of Afip
 	 *
 	 * @var string
 	 **/
@@ -58,11 +57,7 @@ class FacturaSDK {
 	{
 		$this->afip = $afip;
 
-		if (isset($afip->options['facturasdk_access_token'])) {
-			$this->access_token = $afip->options['facturasdk_access_token'];
-		} else {
-			$this->access_token = isset($afip->options['access_token']) ? $afip->options['access_token'] : NULL;
-		}
+		$this->access_token = isset($afip->options['access_token']) ? $afip->options['access_token'] : NULL;
 
 		if ($this->access_token && strpos($this->access_token, 'fsk_prod_') === 0) {
 			$this->environment = 'prod';
