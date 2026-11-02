@@ -78,7 +78,7 @@ class FacturaSDK {
 	 * webhook. With `wait` the method polls until the invoice is decided;
 	 * with `sync` TRUE in the data Factura SDK decides it within the request.
 	 *
-	 * @param array $data Invoice data {@see https://afipsdk.com/docs/facturasdk/invoices}
+	 * @param array $data Invoice data {@see https://afipsdk.com/docs/facturasdk/invoices}. In the sandbox, `sandbox` => array('result' => …) forces the outcome
 	 * @param array $options idempotency_key (identifier of the sale in your
 	 * 	system; repeating it returns the same invoice instead of issuing
 	 * 	another one) and wait (default FALSE)
@@ -405,7 +405,7 @@ class FacturaSDK {
 	/**
 	 * List certificates, with cursor pagination
 	 *
-	 * @param array $params Filters: tax_id, status, limit, cursor
+	 * @param array $params Filters: tax_id, search, status, limit, cursor
 	 *
 	 * @throws FacturaSDKError if the API answers an error
 	 *
@@ -428,6 +428,43 @@ class FacturaSDK {
 	public function RevokeCertificate($id)
 	{
 		return $this->Request(Requests::POST, 'certificates/'.$id.'/revoke');
+	}
+
+	/**
+	 * Renew a certificate in place: it keeps its id, so the issuers that use
+	 * it keep invoicing with the new one
+	 *
+	 * Uploaded (cert and key in PEM) it answers the certificate. Renewed in
+	 * ARCA (source "automation", with username and password) it is an
+	 * automation: with `wait` returns it finished, with the certificate and
+	 * `renewed` TRUE in `data`. A revoked certificate can not be renewed
+	 *
+	 * @param string $id Id of the certificate
+	 * @param array $data Certificate data {@see https://afipsdk.com/docs/facturasdk/certificates}
+	 * @param boolean $wait Wait for the automation to finish (default TRUE)
+	 *
+	 * @throws FacturaSDKError if the API answers an error or the automation fails
+	 *
+	 * @return mixed The certificate, or the automation
+	 **/
+	public function RenewCertificate($id, $data, $wait = TRUE)
+	{
+		return $this->Automation($this->Request(Requests::POST, 'certificates/'.$id.'/renew', $data), $wait);
+	}
+
+	/**
+	 * Delete a certificate: it disappears from the project without being
+	 * revoked in ARCA. The issuers that used it keep their reference
+	 *
+	 * @param string $id Id of the certificate
+	 *
+	 * @throws FacturaSDKError if the API answers an error
+	 *
+	 * @return void
+	 **/
+	public function DeleteCertificate($id)
+	{
+		$this->Request(Requests::DELETE, 'certificates/'.$id);
 	}
 
 	/**
@@ -483,7 +520,7 @@ class FacturaSDK {
 	/**
 	 * List webhook endpoints
 	 *
-	 * @param array $params Filters: status
+	 * @param array $params Filters: status, limit, cursor
 	 *
 	 * @throws FacturaSDKError if the API answers an error
 	 *
