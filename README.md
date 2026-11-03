@@ -33,6 +33,10 @@
 ## Documentación
 [Explorar documentación](https://docs.afipsdk.com)
 
+<!-- FACTURA SDK -->
+## Factura SDK
+La librería también incluye [Factura SDK](https://afipsdk.com/docs/facturasdk/), para emitir comprobantes de punta a punta (certificado, punto de venta, autorización en ARCA, PDF y webhooks).
+
 <!-- COMUNITY -->
 ## Comunidad
 [Comunidad Afip SDK](https://discord.gg/A6TuHEyAZm)
